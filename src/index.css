@@ -1,0 +1,7 @@
+@import "./pages/signin/signin.style.css";
+@import "./components/forms/signin-form/signin-form.style.css";
+@import "./components/forms/registration-form/registration-form.style.css";
+@import "./pages/main/main.style.css";
+@import "./app/app.style.css";
+@import "./pages/profile/profile.style.css";
+@import "./layouts/profile/profile.style.css";

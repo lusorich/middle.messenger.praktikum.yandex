@@ -1,0 +1,11 @@
+.profile-left-block {
+  width: 10%;
+}
+
+.profile-right-block {
+  width: 90%;
+}
+
+.wrapper-profile-layout {
+  display: flex;
+}

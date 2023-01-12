@@ -1,0 +1,10 @@
+.wrapper-profile {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.wrapper-links {
+  display: flex;
+  flex-direction: column;
+}

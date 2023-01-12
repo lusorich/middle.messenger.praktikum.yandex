@@ -1,5 +1,23 @@
 {
+  "name": "web_messenger",
+  "version": "0.0.1",
+  "description": "Web messenger",
+  "source": "src/index.html",
+  "scripts": {
+    "start": "parcel -p 3000 src/index.html --no-source-maps --no-cache",
+    "build": "parcel build src/index.html --no-source-maps --no-cache"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "author": "",
+  "license": "ISC",
   "devDependencies": {
     "parcel": "^2.8.2"
+  },
+  "targets": {
+    "default": {
+      "sourceMap": false
+    }
   }
 }
