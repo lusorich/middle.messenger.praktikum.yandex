@@ -6,7 +6,7 @@
 @import "./pages/profile/profile.style.css";
 @import "./layouts/profile/profile.style.css";
 @import "./components/button/button.style.css";
-@import "./colors.css";
+@import "./assets/colors.css";
 @import "./components/input/input.style.css";
 @import "./components/link/link.style.css";
 @import "./layouts/unauthorized/unauthorized.style.css";
