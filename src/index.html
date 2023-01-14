@@ -10,20 +10,23 @@
 
   <body>
     <nav
+      id="nav-list"
       style="
         display: flex;
         justify-content: space-evenly;
         background-color: azure;
       "
     >
-      <a href="/">Главная</a>
-      <a href="/signin">Войти</a>
-      <a href="/registration">Регистрация</a>
-      <a href="/profile">Профиль</a>
-      <a href="/profile/edit">Редактирование профиля</a>
-      <a href="/profile/edit-password">Редактирование пароля</a>
-      <a href="/404">404</a>
-      <a href="/505">505</a>
+      <a id="nav-main" href="/">Главная</a>
+      <a id="nav-signin" href="/signin">Войти</a>
+      <a id="nav-registration" href="/registration">Регистрация</a>
+      <a id="nav-profile" href="/profile">Профиль</a>
+      <a id="nav-profile-edit" href="/profile/edit">Редактирование профиля</a>
+      <a id="nav-profile-edit-password" href="/profile/edit-password"
+        >Редактирование пароля</a
+      >
+      <a id="nav-400" href="/404">404</a>
+      <a id="nav-505" href="/505">505</a>
     </nav>
     <main id="root"></main>
     <script type="module" src="app/app.js"></script>
