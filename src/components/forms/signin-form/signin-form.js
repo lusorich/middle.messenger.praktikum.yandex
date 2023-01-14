@@ -9,6 +9,7 @@ export default () => {
       name: "signin",
       text: "Войти",
       className: "btn btn--contained",
+      type: "submit",
     }),
     inputName: input({
       placeholder: "Логин",

@@ -53,6 +53,7 @@ export default () => {
       name: "save",
       text: "Сохранить",
       className: "btn btn--contained",
+      type: "submit",
     }),
   });
 };

@@ -9,6 +9,7 @@ export default () => {
       name: "registration",
       text: "Зарегистрироваться",
       className: "btn btn--contained",
+      type: "submit",
     }),
     inputFirstName: input({
       placeholder: "Имя",
