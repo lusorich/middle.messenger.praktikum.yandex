@@ -10,6 +10,7 @@ export const renderActualRoute = (pathname, rootEl) => {
 
   if (!ROUTES[window.location.pathname]) {
     rootEl.innerHTML = ROUTES["/404"]();
+    window.history.pushState({}, "", "/404");
     return;
   }
   rootEl.innerHTML = ROUTES[window.location.pathname]();
@@ -70,6 +71,11 @@ export const setListenersByRoute = {
   },
   "/profile/edit": (rootEl) => {
     const profileBackLink = document.querySelector("#link-profile-back");
+    const editProfileform = document.querySelector(".profile-form");
+
+    editProfileform.addEventListener("submit", (e) =>
+      navLinkClickHandler(e, "/profile", rootEl)
+    );
 
     profileBackLink.addEventListener("click", (e) =>
       navLinkClickHandler(e, "/profile", rootEl)
@@ -77,9 +83,28 @@ export const setListenersByRoute = {
   },
   "/profile/edit-password": (rootEl) => {
     const profileBackLink = document.querySelector("#link-profile-back");
+    const editPasswordform = document.querySelector(".profile-password-form");
+
+    editPasswordform.addEventListener("submit", (e) =>
+      navLinkClickHandler(e, "/profile", rootEl)
+    );
 
     profileBackLink.addEventListener("click", (e) =>
       navLinkClickHandler(e, "/profile", rootEl)
+    );
+  },
+  "/404": (rootEl) => {
+    const mainBackLink = document.querySelector("#link-main");
+
+    mainBackLink.addEventListener("click", (e) =>
+      navLinkClickHandler(e, "/", rootEl)
+    );
+  },
+  "/505": (rootEl) => {
+    const mainBackLink = document.querySelector("#link-main");
+
+    mainBackLink.addEventListener("click", (e) =>
+      navLinkClickHandler(e, "/", rootEl)
     );
   },
 };

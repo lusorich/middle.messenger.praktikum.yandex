@@ -1,2 +1,2 @@
 export default () => `
-  <input placeholder={{ placeholder }} name={{ name }} type={{ type }} />`;
+  <input id={{ name }} placeholder={{ placeholder }} name={{ name }} type={{ type }} class="{{ className }}" />`;

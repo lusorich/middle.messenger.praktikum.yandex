@@ -1,0 +1,17 @@
+.link {
+  font-size: 0.8rem;
+  color: var(--blue-color);
+
+  &:hover {
+    transition: all 0.5s;
+    opacity: 0.8;
+  }
+
+  &--red {
+    color: var(--error-color);
+  }
+
+  &.link-border-bottom {
+    border-bottom: 1px solid var(--border-grey-color);
+  }
+}

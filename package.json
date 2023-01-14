@@ -13,7 +13,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "parcel": "^2.8.2"
+    "parcel": "~2.8.2",
+    "postcss": "~8.4.21",
+    "postcss-nested": "~6.0.0"
   },
   "targets": {
     "default": {

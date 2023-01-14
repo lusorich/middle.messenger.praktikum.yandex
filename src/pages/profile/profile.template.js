@@ -1,37 +1,37 @@
 export default () => `
   <div class="wrapper-profile">
-    <div>
+    <div class="wrapper-profile-avatar">
       Mark
     </div>
-    <div>
+    <div class="wrapper-profile-fields">
       <div>
         <span>Имя</span>
-        <span>Бэтмен</span>
+        <span class="profile-filled">Бэтмен</span>
       </div>
       <div>
         <span>Фамилия</span>
-        <span>Бэтменюк</span>
+        <span class="profile-filled">Бэтменюк</span>
       </div>
       <div>
         <span>Отображаемое имя</span>
-        <span>Бэтмен</span>
+        <span class="profile-filled">Бэтмен</span>
       </div>
       <div>
         <span>Логин</span>
-        <span>Batman</span>
+        <span class="profile-filled">Batman</span>
       </div>
       <div>
         <span>Почта</span>
-        <span>batman2hero.com</span>
+        <span class="profile-filled">batman@hero.com</span>
       </div>
       <div>
         <span>Телефон</span>
-        <span>8-777-777-77-77</span>
+        <span class="profile-filled">8-777-777-77-77</span>
       </div>
     </div>
     <div class="wrapper-links">
-      <a id="link-profile-edit">Изменить данные</a>
-      <a id="link-profile-password-edit">Изменить пароль</a>
-      <a id="link-profile-signin">Выйти</a>
+      {{ editDataLink }}
+      {{ editPasswordLink }}
+      {{ exitLink }}
     </div>
   </div>`;

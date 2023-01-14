@@ -5,13 +5,8 @@
   align-items: center;
 }
 
-.wrapper-signin {
+.wrapper-registration-link {
   display: flex;
-  flex-grow: 1;
-  flex-direction: column;
-  gap: 2rem;
-  max-width: 40rem;
-  padding: 2rem;
-  box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.14);
-  border-radius: 0.5rem;
+  justify-content: center;
+  margin-top: 1rem;
 }

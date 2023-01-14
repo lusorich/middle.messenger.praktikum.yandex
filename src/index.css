@@ -5,3 +5,13 @@
 @import "./app/app.style.css";
 @import "./pages/profile/profile.style.css";
 @import "./layouts/profile/profile.style.css";
+@import "./components/button/button.style.css";
+@import "./colors.css";
+@import "./components/input/input.style.css";
+@import "./components/link/link.style.css";
+@import "./layouts/unauthorized/unauthorized.style.css";
+@import "./components/forms/profile-form/profile-form.style.css";
+@import "./components/inputWithLabel/inputWithLabel.style.css";
+@import "./components/forms/profile-password-form/profile-password-form.style.css";
+@import "./pages/404/404.style.css";
+@import "./pages/505/505.style.css";

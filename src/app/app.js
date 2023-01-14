@@ -2,8 +2,8 @@ import { setListenersByRoute, renderActualRoute } from "./app.helpers";
 
 const rootEl = document.getElementById("root");
 
-renderActualRoute("signin", rootEl);
-setListenersByRoute["/signin"](rootEl);
+renderActualRoute(document.location.pathname, rootEl);
+setListenersByRoute[`${document.location.pathname}`](rootEl);
 
 const observeUrlChange = () => {
   let lastPathname = document.location.pathname;

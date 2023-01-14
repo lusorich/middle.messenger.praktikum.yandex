@@ -1,0 +1,18 @@
+.btn {
+  font-size: 0.8rem;
+  cursor: pointer;
+
+  &--contained {
+    background: var(--blue-color);
+    color: var(--white-color);
+    border: none;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+  }
+
+  &:hover {
+    opacity: 0.8;
+    transition: all 0.5s;
+  }
+}
