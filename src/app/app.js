@@ -9,28 +9,30 @@ const rootEl = document.getElementById("root");
 renderActualRoute(document.location.pathname, rootEl);
 setListenersByRoute[`${document.location.pathname}`](rootEl);
 
-document.querySelector("#nav-main").addEventListener((e) => {
+document.querySelector("#nav-main").addEventListener("click", (e) => {
   navLinkClickHandler(e, "/", rootEl);
 });
-document.querySelector("#nav-signin").addEventListener((e) => {
+document.querySelector("#nav-signin").addEventListener("click", (e) => {
   navLinkClickHandler(e, "/signin", rootEl);
 });
-document.querySelector("#nav-registration").addEventListener((e) => {
+document.querySelector("#nav-registration").addEventListener("click", (e) => {
   navLinkClickHandler(e, "/registration", rootEl);
 });
-document.querySelector("#nav-profile").addEventListener((e) => {
+document.querySelector("#nav-profile").addEventListener("click", (e) => {
   navLinkClickHandler(e, "/profile", rootEl);
 });
-document.querySelector("#nav-profile-edit").addEventListener((e) => {
+document.querySelector("#nav-profile-edit").addEventListener("click", (e) => {
   navLinkClickHandler(e, "/profile/edit", rootEl);
 });
-document.querySelector("#nav-profile-edit-password").addEventListener((e) => {
-  navLinkClickHandler(e, "/profile/edit-password", rootEl);
-});
-document.querySelector("#nav-404").addEventListener((e) => {
+document
+  .querySelector("#nav-profile-edit-password")
+  .addEventListener("click", (e) => {
+    navLinkClickHandler(e, "/profile/edit-password", rootEl);
+  });
+document.querySelector("#nav-404").addEventListener("click", (e) => {
   navLinkClickHandler(e, "/404", rootEl);
 });
-document.querySelector("#nav-505").addEventListener((e) => {
+document.querySelector("#nav-505").addEventListener("click", (e) => {
   navLinkClickHandler(e, "/505", rootEl);
 });
 
