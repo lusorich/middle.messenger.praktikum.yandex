@@ -3,6 +3,8 @@
 
 ## [Проект на Netlify](https://capable-croissant-37c6fb.netlify.app/)
 
+## [Ссылка на макет, который был взят для примера](https://www.figma.com/file/jF5fFFzgGOxQeB4CmKWTiE/Chat_external_link?node-id=0%3A1&t=lZthIp7nwzxESX8U-0)
+
 ## Команды для установки и запуска проекта:
 
 - `yarn install` — для установки зависимостей,
