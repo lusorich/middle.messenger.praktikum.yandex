@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./index.css" />
+    <title>Web messenger</title>
+  </head>
+
+  <body>
+    <nav
+      id="nav-list"
+      style="
+        display: flex;
+        justify-content: space-evenly;
+        background-color: azure;
+      "
+    >
+      <a id="nav-main" href="/">Главная</a>
+      <a id="nav-signin" href="/signin">Войти</a>
+      <a id="nav-registration" href="/registration">Регистрация</a>
+      <a id="nav-profile" href="/profile">Профиль</a>
+      <a id="nav-profile-edit" href="/profile/edit">Редактирование профиля</a>
+      <a id="nav-profile-edit-password" href="/profile/edit-password"
+        >Редактирование пароля</a
+      >
+      <a id="nav-404" href="/404">404</a>
+      <a id="nav-505" href="/505">505</a>
+    </nav>
+    <main id="root"></main>
+    <script type="module" src="app/app.js"></script>
+  </body>
+</html>

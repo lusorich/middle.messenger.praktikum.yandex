@@ -1,0 +1,16 @@
+.wrapper-505 {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    text-align: center;
+    font-size: 2rem;
+    margin: 0;
+  }
+}
+
+.wrapper-505-link {
+  text-align: center;
+}

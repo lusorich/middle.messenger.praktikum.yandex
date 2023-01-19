@@ -1,0 +1,7 @@
+export default () => `
+  <form class="profile-password-form">
+    {{ inputOldPassword }}
+    {{ inputNewPassword }}
+    {{ inputNewPasswordRepeat }}
+    {{ saveBtn }}
+  </form>`;

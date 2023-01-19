@@ -1,0 +1,28 @@
+.input {
+  font-size: 0.8rem;
+  color: var(--input-text-color);
+
+  &:focus {
+    outline: none;
+    border-bottom-color: var(--input-border-focus-color);
+  }
+
+  &::placeholder {
+    color: var(--input-placeholder-color);
+  }
+
+  &--secondary {
+    border: none;
+    border-bottom: 1px solid var(--blue-color);
+  }
+
+  &.input-form {
+    border: none;
+    text-align: end;
+
+    &:focus {
+      outline: none;
+      border-bottom: 1px solid var(--input-border-focus-color);
+    }
+  }
+}

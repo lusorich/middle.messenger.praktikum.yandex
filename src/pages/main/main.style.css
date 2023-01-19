@@ -1,0 +1,14 @@
+.wrapper-main {
+  display: flex;
+  height: 100%;
+}
+
+.main-left-block {
+  width: 20%;
+  background-color: rgb(188, 173, 224);
+}
+
+.main-right-block {
+  width: 80%;
+  background-color: rgb(39, 79, 90);
+}
