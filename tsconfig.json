@@ -5,15 +5,6 @@
     "outDir": "dist",
     "removeComments": true,
     "typeRoots": ["node_modules/@types"],
-    "paths": {
-      "app/*": ["src/app/*"],
-      "@/*": ["src/*"],
-      "assets/*": ["src/assets/*"],
-      "pages/*": ["src/pages/*"],
-      "lib/*": ["src/lib/*"],
-      "layouts/*": ["src/layouts/*"],
-      "components/*": ["src/components/*"]
-    },
     "strictNullChecks": true,
     "target": "ES2019",
     "module": "commonjs",
