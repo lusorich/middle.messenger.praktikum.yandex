@@ -9,6 +9,13 @@ export default ({
   type,
   wrapperClassName,
   inputClassName,
+}: {
+  labelText: string;
+  placeholder: string;
+  name: string;
+  type: string;
+  wrapperClassName: string;
+  inputClassName: string;
 }) => {
   const inputWithLabel = compile(tpl(), {
     input: input({
