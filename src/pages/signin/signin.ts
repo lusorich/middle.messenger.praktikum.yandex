@@ -1,19 +1,26 @@
-import tpl from "./signin.template";
-import getSignInForm from "../../components/forms/signin-form/signin-form";
-import { compile } from "../../lib/template-engine/compile";
-import link from "../../components/link/link";
-import layout from "../../layouts/unauthorized/unauthorized";
+import tpl from './signin.template';
+import SignInForm from '../../components/forms/signin-form/signin-form';
+import { compile } from '../../lib/template-engine/compile';
+import Link from '../../components/link/link';
+import Component from '../../utils/Component';
+export default class SigninPage extends Component {
+  init() {
+    this.children.form = new SignInForm({ formTitle: 'Вход' });
+    this.children.registrationLink = new Link({
+      id: 'link-registration',
+      href: '/registration',
+      text: 'Регистрация',
+      className: 'link',
+    });
+  }
 
-export default () => {
-  return layout(
-    compile(tpl(), {
-      form: getSignInForm(),
-      registrationLink: link({
-        id: "link-registration",
-        href: "/registration",
-        text: "Регистрация",
-        className: "link",
-      }),
-    })
-  );
-};
+  render() {
+    return this.compile(
+      context =>
+        compile(tpl(), {
+          ...context,
+        }),
+      this.props,
+    );
+  }
+}

@@ -1,33 +1,20 @@
-import { compile } from "../../lib/template-engine/compile";
-import tpl from "./inputWithLabel.template";
-import input from "../input/input";
+import { compile } from '../../lib/template-engine/compile';
+import tpl from './inputWithLabel.template';
+import Input from '../input/input';
+import Component from '../../utils/Component';
+import { InputWithLabelProps } from './inputWithLabel.types';
 
-export default ({
-  labelText,
-  placeholder = " ",
-  name,
-  type,
-  wrapperClassName,
-  inputClassName,
-}: {
-  labelText: string;
-  placeholder: string;
-  name: string;
-  type: string;
-  wrapperClassName: string;
-  inputClassName: string;
-}) => {
-  const inputWithLabel = compile(tpl(), {
-    input: input({
-      placeholder,
-      name,
-      type,
-      className: inputClassName,
-    }),
-    labelText,
-    wrapperClassName,
-    name,
-  });
+export default class InputWithLabel extends Component<InputWithLabelProps> {
+  init() {
+    this.children.input = new Input({
+      placeholder: this.props.placeholder,
+      name: this.props.name,
+      className: this.props.inputClassName,
+      type: this.props.type,
+    });
+  }
 
-  return inputWithLabel;
-};
+  render() {
+    return this.compile(context => compile(tpl(), { ...context }), this.props);
+  }
+}

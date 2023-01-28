@@ -1,12 +1,19 @@
-import tpl from "./registration.template";
-import getRegistrationForm from "../../components/forms/registration-form/registration-form";
-import { compile } from "../../lib/template-engine/compile";
-import layout from "../../layouts/unauthorized/unauthorized";
+import tpl from './registration.template';
+import RegistrationForm from '../../components/forms/registration-form/registration-form';
+import { compile } from '../../lib/template-engine/compile';
+import Component from '../../utils/Component';
+export default class RegistrationPage extends Component {
+  init() {
+    this.children.form = new RegistrationForm({ formTitle: 'Регистрация' });
+  }
 
-export default () => {
-  return layout(
-    compile(tpl(), {
-      form: getRegistrationForm(),
-    })
-  );
-};
+  render() {
+    return this.compile(
+      context =>
+        compile(tpl(), {
+          ...context,
+        }),
+      this.props,
+    );
+  }
+}

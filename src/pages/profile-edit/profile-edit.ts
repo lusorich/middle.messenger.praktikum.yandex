@@ -1,12 +1,20 @@
-import tpl from "./profile-edit.template";
-import layout from "../../layouts/profile/profile";
-import profileForm from "../../components/forms/profile-form/profile-form";
-import { compile } from "../../lib/template-engine/compile";
+import tpl from './profile-edit.template';
+import { compile } from '../../lib/template-engine/compile';
+import Component from '../../utils/Component';
+import ProfileForm from '../../components/forms/profile-form/profile-form';
 
-export default () => {
-  return layout(
-    compile(tpl(), {
-      content: profileForm(),
-    })
-  );
-};
+export default class ProfileEditPage extends Component {
+  init() {
+    this.children.content = new ProfileForm({});
+  }
+
+  render() {
+    return this.compile(
+      context =>
+        compile(tpl(), {
+          ...context,
+        }),
+      this.props,
+    );
+  }
+}

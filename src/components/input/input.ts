@@ -1,23 +1,10 @@
-import { compile } from "../../lib/template-engine/compile";
-import tpl from "./input.template";
+import Component from '../../utils/Component';
+import { compile } from '../../lib/template-engine/compile';
+import tpl from './input.template';
+import { InputProps } from './input.types';
 
-export default ({
-  placeholder = " ",
-  name,
-  type = "text",
-  className,
-}: {
-  placeholder: string;
-  name: string;
-  type: string;
-  className: string;
-}) => {
-  const input = compile(tpl(), {
-    placeholder,
-    name,
-    type,
-    className,
-  });
-
-  return input;
-};
+export default class Input extends Component<InputProps> {
+  render() {
+    return this.compile(context => compile(tpl(), { ...context }), this.props);
+  }
+}

@@ -1,5 +1,5 @@
-import Component from "./Component";
-import { ValueOf } from "./custom-utility-types";
+import Component from './Component';
+import { ValueOf } from './custom-utility-types';
 
 type T_EVENTS = ValueOf<typeof Component.EVENTS>;
 
@@ -30,14 +30,14 @@ class EventBus {
     this._checkEventExist(event);
 
     this.listeners[event] = this.listeners[event]?.filter(
-      (listener) => listener !== callback
+      listener => listener !== callback,
     );
   }
 
   emit(event: T_EVENTS, ...args: any) {
     this._checkEventExist(event);
 
-    this.listeners[event]?.forEach((cb) => cb(...args));
+    this.listeners[event]?.forEach(cb => cb(...args));
   }
 }
 

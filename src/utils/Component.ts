@@ -1,37 +1,34 @@
-import EventBus from "./Event-bus";
+import EventBus from './Event-bus';
+import { nanoid } from 'nanoid';
 
-class Component {
+type Props = Record<string, any>;
+type Children = Record<string, Component<{}>>;
+
+abstract class Component<T extends {} = {}> {
   static EVENTS = {
-    INIT: "init",
-    FLOW_CDM: "flow:component-did-mount",
-    FLOW_RENDER: "flow:render",
-    FLOW_CDU: "flow:component-did-update",
+    INIT: 'init',
+    FLOW_CDM: 'flow:component-did-mount',
+    FLOW_RENDER: 'flow:render',
+    FLOW_CDU: 'flow:component-did-update',
   } as const;
 
-  private _element: HTMLElement | null = null;
+  public id = nanoid(6);
 
-  private _meta: {
-    tagName: string;
-    props: {};
-  };
+  private _element?: HTMLElement;
 
   private eventBus: () => EventBus;
 
-  /** JSDoc
-   * @param {string} tagName
-   * @param {Object} props
-   *
-   * @returns {void}
-   */
-  constructor(public tagName = "div", protected props = {}) {
+  protected children: Children = {};
+
+  protected props: Props = {};
+
+  constructor(protected propsWithChildren: T = {} as T) {
     const eventBus = new EventBus();
 
-    this._meta = {
-      tagName,
-      props,
-    };
+    const { props, children } = this._getChildrenAndProps(propsWithChildren);
 
     this.props = this._makePropsProxy(props);
+    this.children = children;
 
     this.eventBus = () => eventBus;
 
@@ -40,28 +37,40 @@ class Component {
     eventBus.emit(Component.EVENTS.INIT);
   }
 
+  _getChildrenAndProps(propsWithChildren: T) {
+    const props: Record<string, any> = {};
+    const children: Record<string, Component<T>> = {};
+
+    Object.entries(propsWithChildren).forEach(([key, value]) => {
+      if (value instanceof Component) {
+        children[key] = value;
+      } else {
+        props[key] = value;
+      }
+    });
+
+    return { props, children };
+  }
+
   _registerEvents(eventBus: EventBus) {
-    eventBus.on(Component.EVENTS.INIT, this.init.bind(this));
+    eventBus.on(Component.EVENTS.INIT, this._init.bind(this));
     eventBus.on(Component.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Component.EVENTS.FLOW_RENDER, this._render.bind(this));
     eventBus.on(Component.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
   }
 
-  _createResources() {
-    const { tagName } = this._meta;
-    this._element = this._createDocumentElement(tagName);
-  }
+  private _init() {
+    this.init();
 
-  init() {
-    this._createResources();
     this.eventBus().emit(Component.EVENTS.FLOW_RENDER);
   }
+
+  protected init() {}
 
   _componentDidMount() {
     this.componentDidMount();
   }
 
-  // Может переопределять пользователь, необязательно трогать
   componentDidMount() {}
 
   dispatchComponentDidMount() {
@@ -76,7 +85,6 @@ class Component {
     }
   }
 
-  // Может переопределять пользователь, необязательно трогать
   componentDidUpdate() {
     return true;
   }
@@ -94,21 +102,21 @@ class Component {
   }
 
   _render() {
-    const User_component = this.render();
-    // Этот небезопасный метод для упрощения логики
-    // Используйте шаблонизатор из npm или напишите свой безопасный
-    // Нужно не в строку компилировать (или делать это правильно),
-    // либо сразу в DOM-элементы возвращать из compile DOM-ноду
-    if (this._element instanceof HTMLElement) {
-      this._element.innerHTML = User_component;
+    const fragment = this.render();
+
+    let actualElement = fragment.firstElementChild as HTMLElement;
+
+    if (this._element && actualElement) {
+      this._element.replaceWith(actualElement);
     }
+
+    this._element = actualElement;
   }
 
-  // Может переопределять пользователь, необязательно трогать
-  render() {}
+  abstract render(): DocumentFragment;
 
   getContent() {
-    return this.element;
+    return this._element;
   }
 
   _makePropsProxy(props: Record<string, any>) {
@@ -119,7 +127,7 @@ class Component {
         this._checkPrivateMethod(name);
 
         const value: any = target[name];
-        return typeof value === "function" ? value.bind(target) : value;
+        return typeof value === 'function' ? value.bind(target) : value;
       },
       set: (target, name: string, value) => {
         this._checkPrivateMethod(name);
@@ -140,23 +148,46 @@ class Component {
   }
 
   _checkPrivateMethod(name: string) {
-    if (name.startsWith("_")) {
-      throw new Error("Нет прав");
+    if (name.startsWith('_')) {
+      throw new Error('Нет прав');
     }
     return true;
   }
 
-  _createDocumentElement(tagName: string) {
-    // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
-    return document.createElement(tagName);
-  }
-
   show() {
-    if (this.element) this.element.style.display = "Component";
+    if (this.element) this.element.style.display = 'block';
   }
 
   hide() {
-    if (this.element) this.element.style.display = "none";
+    if (this.element) this.element.style.display = 'none';
+  }
+
+  protected compile(template: (context: any) => string, context: any) {
+    const contextAndStubs = { ...context };
+
+    Object.entries(this.children).forEach(([name, component]) => {
+      contextAndStubs[name] = `<div data-id="${component.id}"></div>`;
+    });
+
+    const html = template(contextAndStubs);
+
+    const temp = document.createElement('template');
+
+    temp.innerHTML = html;
+
+    Object.entries(this.children).forEach(([_, component]) => {
+      const stub = temp.content.querySelector(`[data-id="${component.id}"]`);
+
+      if (!stub) {
+        return;
+      }
+
+      component.getContent()?.append(...Array.from(stub.childNodes));
+
+      stub.replaceWith(component.getContent()!);
+    });
+
+    return temp.content;
   }
 }
 

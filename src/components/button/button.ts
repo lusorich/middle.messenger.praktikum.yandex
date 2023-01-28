@@ -1,23 +1,10 @@
-import { compile } from "../../lib/template-engine/compile";
-import tpl from "./button.template";
+import Component from '../../utils/Component';
+import { compile } from '../../lib/template-engine/compile';
+import tpl from './button.template';
+import { ButtonProps } from './button.types';
 
-export default ({
-  name,
-  text,
-  className,
-  type = "button",
-}: {
-  name: string;
-  text: string;
-  className: string;
-  type: string;
-}) => {
-  const btn = compile(tpl(), {
-    name,
-    text,
-    className,
-    type,
-  });
-
-  return btn;
-};
+export default class Button extends Component<ButtonProps> {
+  render() {
+    return this.compile(context => compile(tpl(), { ...context }), this.props);
+  }
+}

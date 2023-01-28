@@ -1,5 +1,7 @@
 export default () => `
-  {{ form }}
-  <div class="wrapper-registration-link">
-    {{ registrationLink }}
-  </div>`;
+  <div>
+    {{ form }}
+    <div class="wrapper-registration-link">
+      {{ registrationLink }}
+    </div>
+  <div>`;
