@@ -17,6 +17,7 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
+  "ignorePatterns": ["**/*.css", "**/*.html"],
   "rules": {
     "no-undef": "error",
     "no-console": "warn",
@@ -30,6 +31,7 @@
       }
     ],
     "react/jsx-filename-extension": 0,
+    "@typescript-eslint/no-unused-expressions": "off",
     "@typescript-eslint/no-unused-vars": [
       "error",
       {
