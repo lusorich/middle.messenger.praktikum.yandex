@@ -1,6 +1,6 @@
 import { compile } from '../../../lib/template-engine/compile';
 import tpl from './registration-form.template';
-import Component from '../../../utils/Component';
+import Component from '../../../utils/component/component';
 import Button from '../../button/button';
 import Input from '../../input/input';
 import { RegistrationFormProps } from './registration-form.types';

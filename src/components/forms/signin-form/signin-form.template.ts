@@ -3,7 +3,13 @@ export default () => `
     <div class="wrapper-signin-form-title">
       <h2>{{ formTitle }}</h2>
     </div>
-    {{ inputName }}
-    {{ inputPassword }}
+    <div class="wrapper-signin-input">
+      {{ inputName }}
+      <span class="{{ inputLoginErrorClassName }}"> {{ errorLoginText }} </span>
+    </div>
+    <div class="wrapper-signin-input">
+      {{ inputPassword }}
+      <span class="{{ inputPasswordErrorClassName }}"> {{ errorPasswordText }} </span>
+    </div>
     {{ signInBtn }}
   </form>`;

@@ -1,4 +1,4 @@
-import Component from '../../utils/Component';
+import Component from '../../utils/component/component';
 import { compile } from '../../lib/template-engine/compile';
 import tpl from './button.template';
 import { ButtonProps } from './button.types';

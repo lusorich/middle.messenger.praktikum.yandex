@@ -1,7 +1,7 @@
 import { compile } from '../../lib/template-engine/compile';
 import tpl from './inputWithLabel.template';
 import Input from '../input/input';
-import Component from '../../utils/Component';
+import Component from '../../utils/component/component';
 import { InputWithLabelProps } from './inputWithLabel.types';
 
 export default class InputWithLabel extends Component<InputWithLabelProps> {

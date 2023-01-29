@@ -1,6 +1,6 @@
 import { compile } from '../../../lib/template-engine/compile';
 import tpl from './profile-password-form.template';
-import Component from '../../../utils/Component';
+import Component from '../../../utils/component/component';
 import InputWithLabel from '../../inputWithLabel/inputWithLabel';
 import Button from '../../button/button';
 

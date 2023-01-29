@@ -1,7 +1,7 @@
 import { compile } from '../../lib/template-engine/compile';
 import tpl from './404.template';
 import Link from '../../components/link/link';
-import Component from '../../utils/Component';
+import Component from '../../utils/component/component';
 
 export default class Page404 extends Component {
   init() {

@@ -16,7 +16,7 @@ if (rootEl) {
     navLinkClickHandler(e, PAGE_PATHS.MAIN, rootEl);
   });
   document.querySelector('#nav-signin')?.addEventListener('click', e => {
-    navLinkClickHandler(e, PAGE_PATHS.SIGNING, rootEl);
+    navLinkClickHandler(e, PAGE_PATHS.SIGNIN, rootEl);
   });
   document.querySelector('#nav-registration')?.addEventListener('click', e => {
     navLinkClickHandler(e, PAGE_PATHS.REGISTRATION, rootEl);

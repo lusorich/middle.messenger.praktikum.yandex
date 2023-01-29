@@ -1,4 +1,4 @@
-import Component from '../../utils/Component';
+import Component from '../../utils/component/component';
 
 export type UnauthorizedLayoutProps = {
   content: Component;

@@ -1,6 +1,6 @@
 export enum PAGE_PATHS {
   MAIN = '/',
-  SIGNING = '/signin',
+  SIGNIN = '/signin',
   REGISTRATION = '/registration',
   PROFILE = '/profile',
   PROFILE_EDIT = '/profile/edit',

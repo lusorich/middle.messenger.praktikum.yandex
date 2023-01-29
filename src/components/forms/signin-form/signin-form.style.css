@@ -12,6 +12,16 @@
   }
 }
 
+.wrapper-signin-input {
+  display: flex;
+  flex-direction: column;
+  min-height: 3rem;
+
+  >.input__error {
+    color: var(--error-color)
+  }
+}
+
 .wrapper-signin-form-title {
   margin-bottom: 4rem;
   display: flex;

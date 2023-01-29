@@ -1,4 +1,4 @@
-import Component from './Component';
+import Component from './component/component';
 import { ValueOf } from './custom-utility-types';
 
 type T_EVENTS = ValueOf<typeof Component.EVENTS>;
@@ -18,7 +18,7 @@ class EventBus {
     }
   }
 
-  on(event: T_EVENTS, callback: (args: any) => void) {
+  on(event: T_EVENTS, callback: (...args: any) => void) {
     if (!this.listeners[event]) {
       this.listeners[event] = [];
     }

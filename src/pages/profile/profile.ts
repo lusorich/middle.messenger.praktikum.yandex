@@ -1,6 +1,6 @@
 import { compile } from '../../lib/template-engine/compile';
 import Link from '../../components/link/link';
-import Component from '../../utils/Component';
+import Component from '../../utils/component/component';
 import tpl from './profile.template';
 export default class ProfilePage extends Component<{}> {
   init() {

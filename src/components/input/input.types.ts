@@ -13,4 +13,5 @@ export type InputProps = {
   placeholder: string;
   type: InputType;
   className: string;
+  events?: Record<string, (e: Event & { target: HTMLInputElement }) => void>;
 };

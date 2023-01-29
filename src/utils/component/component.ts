@@ -1,8 +1,6 @@
-import EventBus from './Event-bus';
+import EventBus from '../event-bus';
 import { nanoid } from 'nanoid';
-
-type Props = Record<string, any>;
-type Children = Record<string, Component<{}>>;
+import { Children, Props } from './component.types';
 
 abstract class Component<T extends {} = {}> {
   static EVENTS = {
@@ -16,6 +14,8 @@ abstract class Component<T extends {} = {}> {
 
   private _element?: HTMLElement;
 
+  protected state: Record<string, string | number> = {};
+
   private eventBus: () => EventBus;
 
   protected children: Children = {};
@@ -28,6 +28,8 @@ abstract class Component<T extends {} = {}> {
     const { props, children } = this._getChildrenAndProps(propsWithChildren);
 
     this.props = this._makePropsProxy(props);
+    this.state = this._makePropsProxy(this.state);
+
     this.children = children;
 
     this.eventBus = () => eventBus;
@@ -37,7 +39,7 @@ abstract class Component<T extends {} = {}> {
     eventBus.emit(Component.EVENTS.INIT);
   }
 
-  _getChildrenAndProps(propsWithChildren: T) {
+  private _getChildrenAndProps(propsWithChildren: T) {
     const props: Record<string, any> = {};
     const children: Record<string, Component<T>> = {};
 
@@ -52,7 +54,13 @@ abstract class Component<T extends {} = {}> {
     return { props, children };
   }
 
-  _registerEvents(eventBus: EventBus) {
+  protected addEvents(events: Props) {
+    for (const [event, cb] of Object.entries(events)) {
+      this._element?.addEventListener(event, cb);
+    }
+  }
+
+  private _registerEvents(eventBus: EventBus) {
     eventBus.on(Component.EVENTS.INIT, this._init.bind(this));
     eventBus.on(Component.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Component.EVENTS.FLOW_RENDER, this._render.bind(this));
@@ -67,7 +75,7 @@ abstract class Component<T extends {} = {}> {
 
   protected init() {}
 
-  _componentDidMount() {
+  private _componentDidMount() {
     this.componentDidMount();
   }
 
@@ -77,15 +85,15 @@ abstract class Component<T extends {} = {}> {
     this.eventBus().emit(Component.EVENTS.FLOW_CDM);
   }
 
-  _componentDidUpdate() {
-    const response = this.componentDidUpdate();
+  private _componentDidUpdate(prevProps: Props, nextProps: Props) {
+    const response = this.componentDidUpdate(prevProps, nextProps);
 
     if (response) {
       this._render();
     }
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps: Props, nextProps: Props) {
     return true;
   }
 
@@ -97,11 +105,19 @@ abstract class Component<T extends {} = {}> {
     Object.assign(this.props, nextProps);
   };
 
+  setState = (nextState: {}) => {
+    if (!nextState) {
+      return;
+    }
+
+    Object.assign(this.state, nextState);
+  };
+
   get element() {
     return this._element;
   }
 
-  _render() {
+  private _render() {
     const fragment = this.render();
 
     let actualElement = fragment.firstElementChild as HTMLElement;
@@ -111,6 +127,10 @@ abstract class Component<T extends {} = {}> {
     }
 
     this._element = actualElement;
+
+    if (!!this.props?.events) {
+      this.addEvents(this.props.events);
+    }
   }
 
   abstract render(): DocumentFragment;
@@ -119,7 +139,7 @@ abstract class Component<T extends {} = {}> {
     return this._element;
   }
 
-  _makePropsProxy(props: Record<string, any>) {
+  private _makePropsProxy(props: Record<string, any>) {
     // Можно и так передать this
     // Такой способ больше не применяется с приходом ES6+
     const propsProxy = new Proxy(props, {
@@ -132,22 +152,25 @@ abstract class Component<T extends {} = {}> {
       set: (target, name: string, value) => {
         this._checkPrivateMethod(name);
 
+        const prevTarget = { ...target };
+
         target[name] = value;
 
-        this.eventBus().emit(Component.EVENTS.FLOW_CDU);
+        this.eventBus().emit(Component.EVENTS.FLOW_CDU, prevTarget, target);
 
         return true;
       },
-      deleteProperty(target, name: string) {
+      deleteProperty: (target, name: string) => {
         this._checkPrivateMethod(name);
         delete target[name];
+        return true;
       },
     });
 
     return propsProxy;
   }
 
-  _checkPrivateMethod(name: string) {
+  private _checkPrivateMethod(name: string) {
     if (name.startsWith('_')) {
       throw new Error('Нет прав');
     }

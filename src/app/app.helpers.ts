@@ -14,7 +14,7 @@ export const getPageByPath: {
   [key in PAGE_PATHS]: () => HTMLElement | Element | undefined;
 } = {
   [PAGE_PATHS.MAIN]: () => new MainPage({}).getContent(),
-  [PAGE_PATHS.SIGNING]: () =>
+  [PAGE_PATHS.SIGNIN]: () =>
     new UnauthorizedLayout({ content: new SigninPage() }).getContent(),
   [PAGE_PATHS.REGISTRATION]: () =>
     new UnauthorizedLayout({
@@ -59,14 +59,14 @@ export const navLinkClickHandler = (
 export const setListenersByRoute: {
   [key in PAGE_PATHS]: (rootEl: HTMLElement) => void;
 } = {
-  [PAGE_PATHS.SIGNING]: rootEl => {
-    const signInForm = document.querySelector('.signin-form');
+  [PAGE_PATHS.SIGNIN]: rootEl => {
+    // const signInForm = document.querySelector('.signin-form');
     const registrationPageLink = document.querySelector('#link-registration');
 
-    signInForm &&
-      signInForm.addEventListener('submit', e =>
-        navLinkClickHandler(e, PAGE_PATHS.MAIN, rootEl),
-      );
+    // signInForm &&
+    //   signInForm.addEventListener('submit', e =>
+    //     navLinkClickHandler(e, PAGE_PATHS.MAIN, rootEl),
+    //   );
 
     registrationPageLink &&
       registrationPageLink.addEventListener('click', e =>
@@ -104,7 +104,7 @@ export const setListenersByRoute: {
 
     profileSigninLink &&
       profileSigninLink.addEventListener('click', e =>
-        navLinkClickHandler(e, PAGE_PATHS.SIGNING, rootEl),
+        navLinkClickHandler(e, PAGE_PATHS.SIGNIN, rootEl),
       );
 
     profilePasswordEditLink &&
