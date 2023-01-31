@@ -4,8 +4,14 @@ import Button from '../../button/button';
 import Input from '../../input/input';
 import Component from '../../../utils/component/component';
 import { SigninFormProps } from './signin-form.types';
-import { Props } from 'src/utils/component/component.types';
-import { isLoginValid, isPasswordValid } from './signin-form.helpers';
+import { Props } from '../../../utils/component/component.types';
+import {
+  isLoginValid,
+  isPasswordValid,
+  validate,
+  ERROR_LOGIN_MSG,
+  ERROR_PASSWORD_MSG,
+} from '../../../utils/validation.helpers';
 
 export default class SigninForm extends Component<SigninFormProps> {
   componentDidUpdate(prevProps: Props, nextProps: Props) {
@@ -36,16 +42,13 @@ export default class SigninForm extends Component<SigninFormProps> {
           const isValidPasswordValue = isPasswordValid(inputPasswordValue);
 
           if (isValidLoginValue && isValidPasswordValue) {
-            this.setState({
-              isLoginError: false,
-              isPasswordError: false,
+            console.log({
+              input: inputLoginValue,
+              password: inputPasswordValue,
             });
-            console.log('login, password', inputLoginValue, inputPasswordValue);
           } else {
-            this.setState({
-              isLoginError: !isValidLoginValue,
-              isPasswordError: !isValidPasswordValue,
-            });
+            validate('login', ERROR_LOGIN_MSG, isLoginValid);
+            validate('password', ERROR_PASSWORD_MSG, isPasswordValid);
           }
         },
       },
@@ -57,11 +60,11 @@ export default class SigninForm extends Component<SigninFormProps> {
       className: 'input input--secondary',
       type: 'text',
       events: {
-        blur: (e: Event & { target: HTMLInputElement }) => {
-          e.preventDefault();
-          this.setState({
-            isLoginError: !isLoginValid(e.target.value ?? ''),
-          });
+        blur: () => {
+          validate('login', ERROR_LOGIN_MSG, isLoginValid);
+        },
+        focus: () => {
+          validate('login', ERROR_LOGIN_MSG, isLoginValid);
         },
       },
     });
@@ -71,11 +74,11 @@ export default class SigninForm extends Component<SigninFormProps> {
       type: 'password',
       className: 'input input--secondary',
       events: {
-        blur: (e: Event & { target: HTMLInputElement }) => {
-          e.preventDefault();
-          this.setState({
-            isPasswordError: !isPasswordValid(e.target.value ?? ''),
-          });
+        blur: () => {
+          validate('password', ERROR_PASSWORD_MSG, isPasswordValid);
+        },
+        focus: () => {
+          validate('password', ERROR_PASSWORD_MSG, isPasswordValid);
         },
       },
     });
@@ -90,14 +93,8 @@ export default class SigninForm extends Component<SigninFormProps> {
   render() {
     return this.compile(context => compile(tpl(), { ...context }), {
       ...this.props,
-      inputLoginErrorClassName: this.state.isLoginError
-        ? 'input__error'
-        : 'input__error visually-hidden',
-      inputPasswordErrorClassName: this.state.isPasswordError
-        ? 'input__error'
-        : 'input__error visually-hidden',
-      errorLoginText: this.state.isLoginError && 'Ошибка ввода логина',
-      errorPasswordText: this.state.isPasswordError && 'Ошибка ввода пароля',
+      errorLoginText: '',
+      errorPasswordText: '',
     });
   }
 }

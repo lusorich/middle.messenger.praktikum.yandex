@@ -60,27 +60,14 @@ export const setListenersByRoute: {
   [key in PAGE_PATHS]: (rootEl: HTMLElement) => void;
 } = {
   [PAGE_PATHS.SIGNIN]: rootEl => {
-    // const signInForm = document.querySelector('.signin-form');
     const registrationPageLink = document.querySelector('#link-registration');
-
-    // signInForm &&
-    //   signInForm.addEventListener('submit', e =>
-    //     navLinkClickHandler(e, PAGE_PATHS.MAIN, rootEl),
-    //   );
 
     registrationPageLink &&
       registrationPageLink.addEventListener('click', e =>
         navLinkClickHandler(e, PAGE_PATHS.REGISTRATION, rootEl),
       );
   },
-  [PAGE_PATHS.REGISTRATION]: rootEl => {
-    const regitrationForm = document.querySelector('.registration-form');
-
-    regitrationForm &&
-      regitrationForm.addEventListener('submit', e =>
-        navLinkClickHandler(e, PAGE_PATHS.MAIN, rootEl),
-      );
-  },
+  [PAGE_PATHS.REGISTRATION]: _rootEl => {},
   [PAGE_PATHS.MAIN]: rootEl => {
     const profileLink = document.querySelector('#link-profile');
 
@@ -119,12 +106,6 @@ export const setListenersByRoute: {
   },
   [PAGE_PATHS.PROFILE_EDIT]: rootEl => {
     const profileBackLink = document.querySelector('#link-profile-back');
-    const editProfileform = document.querySelector('.profile-form');
-
-    editProfileform &&
-      editProfileform.addEventListener('submit', e =>
-        navLinkClickHandler(e, PAGE_PATHS.PROFILE, rootEl),
-      );
 
     profileBackLink &&
       profileBackLink.addEventListener('click', e =>
@@ -133,12 +114,6 @@ export const setListenersByRoute: {
   },
   [PAGE_PATHS.PROFILE_EDIT_PASSWORD]: rootEl => {
     const profileBackLink = document.querySelector('#link-profile-back');
-    const editPasswordform = document.querySelector('.profile-password-form');
-
-    editPasswordform &&
-      editPasswordform.addEventListener('submit', e =>
-        navLinkClickHandler(e, PAGE_PATHS.PROFILE, rootEl),
-      );
 
     profileBackLink &&
       profileBackLink.addEventListener('click', e =>

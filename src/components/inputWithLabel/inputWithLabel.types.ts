@@ -5,4 +5,5 @@ export type InputWithLabelProps = {
   placeholder: string;
   inputClassName: string;
   type: string;
+  events: Record<string, () => void>
 };

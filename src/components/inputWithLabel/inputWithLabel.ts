@@ -11,10 +11,14 @@ export default class InputWithLabel extends Component<InputWithLabelProps> {
       name: this.props.name,
       className: this.props.inputClassName,
       type: this.props.type,
+      events: this.props.events,
     });
   }
 
   render() {
-    return this.compile(context => compile(tpl(), { ...context }), this.props);
+    return this.compile(context => compile(tpl(), { ...context }), {
+      ...this.props,
+      errorText: '',
+    });
   }
 }
