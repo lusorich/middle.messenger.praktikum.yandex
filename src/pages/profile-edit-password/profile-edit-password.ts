@@ -10,7 +10,7 @@ export default class ProfileEditPasswordPage extends Component {
 
   render() {
     return this.compile(
-      context =>
+      (context) =>
         compile(tpl(), {
           ...context,
         }),

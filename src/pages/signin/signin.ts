@@ -3,6 +3,7 @@ import SignInForm from '../../components/forms/signin-form/signin-form';
 import { compile } from '../../lib/template-engine/compile';
 import Link from '../../components/link/link';
 import Component from '../../utils/component/component';
+
 export default class SigninPage extends Component {
   init() {
     this.children.form = new SignInForm({
@@ -18,7 +19,7 @@ export default class SigninPage extends Component {
 
   render() {
     return this.compile(
-      context =>
+      (context) =>
         compile(tpl(), {
           ...context,
         }),

@@ -16,7 +16,7 @@ export default class InputWithLabel extends Component<InputWithLabelProps> {
   }
 
   render() {
-    return this.compile(context => compile(tpl(), { ...context }), {
+    return this.compile((context) => compile(tpl(), { ...context }), {
       ...this.props,
       errorText: '',
     });

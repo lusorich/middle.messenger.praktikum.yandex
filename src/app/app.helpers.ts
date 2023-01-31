@@ -59,24 +59,22 @@ export const navLinkClickHandler = (
 export const setListenersByRoute: {
   [key in PAGE_PATHS]: (rootEl: HTMLElement) => void;
 } = {
-  [PAGE_PATHS.SIGNIN]: rootEl => {
+  [PAGE_PATHS.SIGNIN]: (rootEl) => {
     const registrationPageLink = document.querySelector('#link-registration');
 
     registrationPageLink &&
-      registrationPageLink.addEventListener('click', e =>
-        navLinkClickHandler(e, PAGE_PATHS.REGISTRATION, rootEl),
-      );
+      registrationPageLink.addEventListener('click', (e) =>
+        navLinkClickHandler(e, PAGE_PATHS.REGISTRATION, rootEl));
   },
-  [PAGE_PATHS.REGISTRATION]: _rootEl => {},
-  [PAGE_PATHS.MAIN]: rootEl => {
+  [PAGE_PATHS.REGISTRATION]: (_rootEl) => {},
+  [PAGE_PATHS.MAIN]: (rootEl) => {
     const profileLink = document.querySelector('#link-profile');
 
     profileLink &&
-      profileLink.addEventListener('click', e =>
-        navLinkClickHandler(e, PAGE_PATHS.PROFILE, rootEl),
-      );
+      profileLink.addEventListener('click', (e) =>
+        navLinkClickHandler(e, PAGE_PATHS.PROFILE, rootEl));
   },
-  [PAGE_PATHS.PROFILE]: rootEl => {
+  [PAGE_PATHS.PROFILE]: (rootEl) => {
     const profileEditLink = document.querySelector('#link-profile-edit');
     const profilePasswordEditLink = document.querySelector(
       '#link-profile-password-edit',
@@ -85,55 +83,47 @@ export const setListenersByRoute: {
     const profileSigninLink = document.querySelector('#link-profile-signin');
 
     profileEditLink &&
-      profileEditLink.addEventListener('click', e =>
-        navLinkClickHandler(e, PAGE_PATHS.PROFILE_EDIT, rootEl),
-      );
+      profileEditLink.addEventListener('click', (e) =>
+        navLinkClickHandler(e, PAGE_PATHS.PROFILE_EDIT, rootEl));
 
     profileSigninLink &&
-      profileSigninLink.addEventListener('click', e =>
-        navLinkClickHandler(e, PAGE_PATHS.SIGNIN, rootEl),
-      );
+      profileSigninLink.addEventListener('click', (e) =>
+        navLinkClickHandler(e, PAGE_PATHS.SIGNIN, rootEl));
 
     profilePasswordEditLink &&
-      profilePasswordEditLink.addEventListener('click', e =>
-        navLinkClickHandler(e, PAGE_PATHS.PROFILE_EDIT_PASSWORD, rootEl),
-      );
+      profilePasswordEditLink.addEventListener('click', (e) =>
+        navLinkClickHandler(e, PAGE_PATHS.PROFILE_EDIT_PASSWORD, rootEl));
 
     profileBackLink &&
-      profileBackLink.addEventListener('click', e =>
-        navLinkClickHandler(e, PAGE_PATHS.MAIN, rootEl),
-      );
+      profileBackLink.addEventListener('click', (e) =>
+        navLinkClickHandler(e, PAGE_PATHS.MAIN, rootEl));
   },
-  [PAGE_PATHS.PROFILE_EDIT]: rootEl => {
+  [PAGE_PATHS.PROFILE_EDIT]: (rootEl) => {
     const profileBackLink = document.querySelector('#link-profile-back');
 
     profileBackLink &&
-      profileBackLink.addEventListener('click', e =>
-        navLinkClickHandler(e, PAGE_PATHS.PROFILE, rootEl),
-      );
+      profileBackLink.addEventListener('click', (e) =>
+        navLinkClickHandler(e, PAGE_PATHS.PROFILE, rootEl));
   },
-  [PAGE_PATHS.PROFILE_EDIT_PASSWORD]: rootEl => {
+  [PAGE_PATHS.PROFILE_EDIT_PASSWORD]: (rootEl) => {
     const profileBackLink = document.querySelector('#link-profile-back');
 
     profileBackLink &&
-      profileBackLink.addEventListener('click', e =>
-        navLinkClickHandler(e, PAGE_PATHS.PROFILE, rootEl),
-      );
+      profileBackLink.addEventListener('click', (e) =>
+        navLinkClickHandler(e, PAGE_PATHS.PROFILE, rootEl));
   },
-  [PAGE_PATHS.NOT_FIND]: rootEl => {
+  [PAGE_PATHS.NOT_FIND]: (rootEl) => {
     const mainBackLink = document.querySelector('#link-main');
 
     mainBackLink &&
-      mainBackLink.addEventListener('click', e =>
-        navLinkClickHandler(e, PAGE_PATHS.MAIN, rootEl),
-      );
+      mainBackLink.addEventListener('click', (e) =>
+        navLinkClickHandler(e, PAGE_PATHS.MAIN, rootEl));
   },
-  [PAGE_PATHS.SERVER_ERROR]: rootEl => {
+  [PAGE_PATHS.SERVER_ERROR]: (rootEl) => {
     const mainBackLink = document.querySelector('#link-main');
 
     mainBackLink &&
-      mainBackLink.addEventListener('click', e =>
-        navLinkClickHandler(e, PAGE_PATHS.MAIN, rootEl),
-      );
+      mainBackLink.addEventListener('click', (e) =>
+        navLinkClickHandler(e, PAGE_PATHS.MAIN, rootEl));
   },
 };

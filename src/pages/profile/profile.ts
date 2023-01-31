@@ -2,7 +2,8 @@ import { compile } from '../../lib/template-engine/compile';
 import Link from '../../components/link/link';
 import Component from '../../utils/component/component';
 import tpl from './profile.template';
-export default class ProfilePage extends Component<{}> {
+
+export default class ProfilePage extends Component<Record<string, void>> {
   init() {
     this.children.editDataLink = new Link({
       id: 'link-profile-edit',
@@ -26,7 +27,7 @@ export default class ProfilePage extends Component<{}> {
 
   render() {
     return this.compile(
-      context =>
+      (context) =>
         compile(tpl(), {
           ...context,
         }),

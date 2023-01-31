@@ -2,9 +2,9 @@ import { compile } from '../../../lib/template-engine/compile';
 import tpl from './signin-form.template';
 import Button from '../../button/button';
 import Input from '../../input/input';
-import Component from '../../../utils/component/component';
+import Component, { Props } from '../../../utils/component/component';
 import { SigninFormProps } from './signin-form.types';
-import { Props } from '../../../utils/component/component.types';
+
 import {
   isLoginValid,
   isPasswordValid,
@@ -23,6 +23,7 @@ export default class SigninForm extends Component<SigninFormProps> {
     }
     return false;
   }
+
   init() {
     this.setState({
       isLoginError: false,
@@ -91,7 +92,7 @@ export default class SigninForm extends Component<SigninFormProps> {
   }
 
   render() {
-    return this.compile(context => compile(tpl(), { ...context }), {
+    return this.compile((context) => compile(tpl(), { ...context }), {
       ...this.props,
       errorLoginText: '',
       errorPasswordText: '',

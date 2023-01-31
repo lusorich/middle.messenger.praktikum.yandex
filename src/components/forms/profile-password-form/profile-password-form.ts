@@ -102,6 +102,9 @@ export default class ProfilePasswordForm extends Component {
   }
 
   render() {
-    return this.compile(context => compile(tpl(), { ...context }), this.props);
+    return this.compile(
+      (context) => compile(tpl(), { ...context }),
+      this.props,
+    );
   }
 }

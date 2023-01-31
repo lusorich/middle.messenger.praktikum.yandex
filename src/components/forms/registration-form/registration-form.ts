@@ -18,6 +18,7 @@ import {
   ERROR_PHONE_MSG,
   isPhoneValid,
 } from '../../../utils/validation.helpers';
+
 export default class RegistrationForm extends Component<RegistrationFormProps> {
   init() {
     this.children.registrationBtn = new Button({
@@ -162,7 +163,7 @@ export default class RegistrationForm extends Component<RegistrationFormProps> {
   }
 
   render() {
-    return this.compile(context => compile(tpl(), { ...context }), {
+    return this.compile((context) => compile(tpl(), { ...context }), {
       ...this.props,
       errorFirstNameText: '',
       errorSecondNameText: '',

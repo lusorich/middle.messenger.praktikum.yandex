@@ -1,7 +1,7 @@
-import Component from './component/component';
+import { EVENTS_T } from './component/component.types';
 import { ValueOf } from './custom-utility-types';
 
-type T_EVENTS = ValueOf<typeof Component.EVENTS>;
+type T_EVENTS = ValueOf<typeof EVENTS_T>;
 
 class EventBus {
   private listeners: {
@@ -30,14 +30,14 @@ class EventBus {
     this._checkEventExist(event);
 
     this.listeners[event] = this.listeners[event]?.filter(
-      listener => listener !== callback,
+      (listener) => listener !== callback,
     );
   }
 
   emit(event: T_EVENTS, ...args: any) {
     this._checkEventExist(event);
 
-    this.listeners[event]?.forEach(cb => cb(...args));
+    this.listeners[event]?.forEach((cb) => cb(...args));
   }
 }
 

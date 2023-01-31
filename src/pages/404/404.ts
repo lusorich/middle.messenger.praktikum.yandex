@@ -15,7 +15,7 @@ export default class Page404 extends Component {
 
   render() {
     return this.compile(
-      context =>
+      (context) =>
         compile(tpl(), {
           ...context,
         }),

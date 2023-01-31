@@ -5,7 +5,7 @@ import Component from '../../utils/component/component';
 export default class MainPage extends Component {
   render() {
     return this.compile(
-      context =>
+      (context) =>
         compile(tpl(), {
           ...context,
         }),

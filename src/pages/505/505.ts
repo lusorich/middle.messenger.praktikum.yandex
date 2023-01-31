@@ -15,7 +15,7 @@ export default class Page505 extends Component {
 
   render() {
     return this.compile(
-      context =>
+      (context) =>
         compile(tpl(), {
           ...context,
         }),

@@ -5,6 +5,9 @@ import { ButtonProps } from './button.types';
 
 export default class Button extends Component<ButtonProps> {
   render() {
-    return this.compile(context => compile(tpl(), { ...context }), this.props);
+    return this.compile(
+      (context) => compile(tpl(), { ...context }),
+      this.props,
+    );
   }
 }

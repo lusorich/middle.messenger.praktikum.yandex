@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-shadow
 export enum PAGE_PATHS {
   MAIN = '/',
   SIGNIN = '/signin',

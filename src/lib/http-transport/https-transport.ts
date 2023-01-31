@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-shadow
 const enum HTTP_METHODS {
   GET = 'GET',
   POST = 'POST',
@@ -17,18 +18,19 @@ interface METHOD_OPTIONS extends REQUEST_OPTIONS {
 
 function queryStringify(data: REQUEST_OPTIONS['data']) {
   if (!data || Object.keys(data).length === 0) return '';
-  let res = [];
+  const res = [];
 
-  for (let [key, value] of Object.entries(data)) {
+  // eslint-disable-next-line no-restricted-syntax
+  for (const [key, value] of Object.entries(data)) {
     res.push(`${key}=${value}`);
   }
 
-  return '?' + res.join('&');
+  return `?${res.join('&')}`;
 }
 
-class HTTPTransport {
-  get = (url: string, options: METHOD_OPTIONS) => {
-    return this.request(
+export default class HTTPTransport {
+  get = (url: string, options: METHOD_OPTIONS) =>
+    this.request(
       url,
       {
         ...options,
@@ -36,10 +38,9 @@ class HTTPTransport {
       },
       options.timeout,
     );
-  };
 
-  put = (url: string, options: METHOD_OPTIONS) => {
-    return this.request(
+  put = (url: string, options: METHOD_OPTIONS) =>
+    this.request(
       url,
       {
         ...options,
@@ -47,10 +48,9 @@ class HTTPTransport {
       },
       options.timeout,
     );
-  };
 
-  post = (url: string, options: METHOD_OPTIONS) => {
-    return this.request(
+  post = (url: string, options: METHOD_OPTIONS) =>
+    this.request(
       url,
       {
         ...options,
@@ -58,10 +58,9 @@ class HTTPTransport {
       },
       options.timeout,
     );
-  };
 
-  delete = (url: string, options: METHOD_OPTIONS) => {
-    return this.request(
+  delete = (url: string, options: METHOD_OPTIONS) =>
+    this.request(
       url,
       {
         ...options,
@@ -69,13 +68,13 @@ class HTTPTransport {
       },
       options.timeout,
     );
-  };
 
   request = (url: string, options: REQUEST_OPTIONS, timeout = 5000) => {
     const { method, data, headers = {} } = options;
 
     return new Promise((resolve, reject) => {
       if (!method) {
+        // eslint-disable-next-line prefer-promise-reject-errors
         reject('No method');
         return;
       }
@@ -89,7 +88,7 @@ class HTTPTransport {
           : url,
       );
 
-      Object.keys(headers).forEach(key => {
+      Object.keys(headers).forEach((key) => {
         xhr.setRequestHeader(key, headers[key]);
       });
 

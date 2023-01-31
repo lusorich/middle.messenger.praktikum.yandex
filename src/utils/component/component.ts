@@ -1,14 +1,11 @@
-import EventBus from '../event-bus';
 import { nanoid } from 'nanoid';
-import { Children, Props } from './component.types';
+import EventBus from '../event-bus';
+import { EVENTS_T } from './component.types';
 
-abstract class Component<T extends {} = {}> {
-  static EVENTS = {
-    INIT: 'init',
-    FLOW_CDM: 'flow:component-did-mount',
-    FLOW_RENDER: 'flow:render',
-    FLOW_CDU: 'flow:component-did-update',
-  } as const;
+export type Props = Record<string, any>;
+export type Children = Record<string, Component<Record<string, unknown>>>;
+abstract class Component<T extends Record<string, unknown>> {
+  static EVENTS = EVENTS_T;
 
   public id = nanoid(6);
 
@@ -55,6 +52,7 @@ abstract class Component<T extends {} = {}> {
   }
 
   protected addEvents(events: Props) {
+    // eslint-disable-next-line no-restricted-syntax
     for (const [event, cb] of Object.entries(events)) {
       this._element?.addEventListener(event, cb);
     }
@@ -93,11 +91,11 @@ abstract class Component<T extends {} = {}> {
     }
   }
 
-  componentDidUpdate(prevProps: Props, nextProps: Props) {
+  componentDidUpdate(_prevProps: Props, _nextProps: Props) {
     return true;
   }
 
-  setProps = (nextProps: {}) => {
+  setProps = (nextProps: Record<string, unknown>) => {
     if (!nextProps) {
       return;
     }
@@ -105,7 +103,7 @@ abstract class Component<T extends {} = {}> {
     Object.assign(this.props, nextProps);
   };
 
-  setState = (nextState: {}) => {
+  setState = (nextState: Record<string, unknown>) => {
     if (!nextState) {
       return;
     }
@@ -120,7 +118,7 @@ abstract class Component<T extends {} = {}> {
   private _render() {
     const fragment = this.render();
 
-    let actualElement = fragment.firstElementChild as HTMLElement;
+    const actualElement = fragment.firstElementChild as HTMLElement;
 
     if (this._element && actualElement) {
       this._element.replaceWith(actualElement);

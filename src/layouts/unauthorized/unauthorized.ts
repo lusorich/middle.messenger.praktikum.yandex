@@ -5,6 +5,9 @@ import { UnauthorizedLayoutProps } from './unauthorized.types';
 
 export default class UnauthorizedLayout extends Component<UnauthorizedLayoutProps> {
   render() {
-    return this.compile(context => compile(tpl(), { ...context }), this.props);
+    return this.compile(
+      (context) => compile(tpl(), { ...context }),
+      this.props,
+    );
   }
 }
