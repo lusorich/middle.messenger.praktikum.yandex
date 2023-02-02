@@ -33,6 +33,9 @@
   },
   "targets": {
     "default": {
+      "engines": {
+        "browsers": ">= 50%"
+      },
       "sourceMap": false
     }
   },
