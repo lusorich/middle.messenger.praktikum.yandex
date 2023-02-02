@@ -31,5 +31,5 @@
 .profile-filled {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 0.8rem;
-  color: var(--input-placeholder-color);
+  color: var(--text-grey-color);
 }

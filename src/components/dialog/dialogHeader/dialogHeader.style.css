@@ -1,0 +1,14 @@
+.dialog__header {
+  display: flex;
+}
+
+.dialog__header-chat {
+  display: flex;
+  gap: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+.header-chat__name {
+  font-size: 1rem;
+  font-weight: 600;
+}

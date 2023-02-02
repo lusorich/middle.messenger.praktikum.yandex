@@ -14,6 +14,7 @@ const ONLY_UPPERCASE_REGEXP = /[A-ZА-Я]+/;
 const ONLY_NUMBER_REGEXP = /[1-9]+/;
 
 export const ERROR_LOGIN_MSG = 'Ошибка ввода логина';
+export const ERROR_MSG_MSG = 'Сообщение не может быть пустым';
 export const ERROR_PASSWORD_MSG = 'Ошибка ввода пароля';
 export const ERROR_FIRST_NAME_MSG = 'Ошибка ввода имени';
 export const ERROR_SECOND_NAME_MSG = 'Ошибка ввода фамилии';
@@ -43,6 +44,8 @@ export const isEmailValid = (str: string): boolean =>
 export const isPhoneValid = (str: string): boolean =>
   isInRange(str.length, 10, 15) &&
   isContainsOnlyAllowedChars(str, PHONE_REGEXP);
+
+export const isMessageValid = (str: string): boolean => !!str.length;
 
 export const validate = (
   inputElementId: string,

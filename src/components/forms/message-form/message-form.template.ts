@@ -1,0 +1,8 @@
+export default () => `
+  <form class="message-form">
+    <div class="wrapper-message-input">
+      {{ inputMsg }}
+      <span> {{ errorMsgText }} </span>
+    </div>
+    {{ sendMsgBtn }}
+  </form>`;

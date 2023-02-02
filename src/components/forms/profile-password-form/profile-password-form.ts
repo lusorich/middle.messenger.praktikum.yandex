@@ -9,7 +9,7 @@ import {
   validate,
 } from '../../../utils/validation.helpers';
 
-export default class ProfilePasswordForm extends Component {
+export default class ProfilePasswordForm extends Component<Record<string, unknown>> {
   init() {
     this.children.inputOldPassword = new InputWithLabel({
       labelText: 'Старый пароль',

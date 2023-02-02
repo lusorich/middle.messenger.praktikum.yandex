@@ -16,7 +16,7 @@ import {
   validate,
 } from '../../../utils/validation.helpers';
 
-export default class ProfileForm extends Component {
+export default class ProfileForm extends Component<Record<string, unknown>> {
   init() {
     this.children.inputFirstName = new InputWithLabel({
       labelText: 'Имя',

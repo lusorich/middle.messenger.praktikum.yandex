@@ -3,7 +3,7 @@ import { compile } from '../../lib/template-engine/compile';
 import Component from '../../utils/component/component';
 import ProfileForm from '../../components/forms/profile-form/profile-form';
 
-export default class ProfileEditPage extends Component {
+export default class ProfileEditPage extends Component<Record<string, unknown>> {
   init() {
     this.children.content = new ProfileForm({});
   }

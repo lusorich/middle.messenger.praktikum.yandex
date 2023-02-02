@@ -3,7 +3,7 @@ import RegistrationForm from '../../components/forms/registration-form/registrat
 import { compile } from '../../lib/template-engine/compile';
 import Component from '../../utils/component/component';
 
-export default class RegistrationPage extends Component {
+export default class RegistrationPage extends Component<Record<string, unknown>> {
   init() {
     this.children.form = new RegistrationForm({ formTitle: 'Регистрация' });
   }

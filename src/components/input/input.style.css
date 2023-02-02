@@ -8,7 +8,7 @@
   }
 
   &::placeholder {
-    color: var(--input-placeholder-color);
+    color: var(--text-grey-color);
   }
 
   &--secondary {
@@ -24,5 +24,13 @@
       outline: none;
       border-bottom: 1px solid var(--input-border-focus-color);
     }
+  }
+
+  &.input-msg {
+    border: unset;
+    border-radius: 1rem;
+    background: var(--input-msg-background);
+    padding: 0.8rem;
+    flex-grow: 1;
   }
 }

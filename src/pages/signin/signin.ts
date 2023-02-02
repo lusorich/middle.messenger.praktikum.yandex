@@ -4,7 +4,7 @@ import { compile } from '../../lib/template-engine/compile';
 import Link from '../../components/link/link';
 import Component from '../../utils/component/component';
 
-export default class SigninPage extends Component {
+export default class SigninPage extends Component<Record<string, unknown>> {
   init() {
     this.children.form = new SignInForm({
       formTitle: 'Вход',

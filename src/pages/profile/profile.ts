@@ -3,7 +3,7 @@ import Link from '../../components/link/link';
 import Component from '../../utils/component/component';
 import tpl from './profile.template';
 
-export default class ProfilePage extends Component<Record<string, void>> {
+export default class ProfilePage extends Component<Record<string, unknown>> {
   init() {
     this.children.editDataLink = new Link({
       id: 'link-profile-edit',
