@@ -1,7 +1,7 @@
 [![Tests](https://github.com/lusorich/middle.messenger.praktikum.yandex/actions/workflows/tests.yml/badge.svg?branch=sprint_2)](https://github.com/lusorich/middle.messenger.praktikum.yandex/actions/workflows/tests.yml)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/244e5342-6fbf-4822-a231-7dd9bf881afb/deploy-status)](https://app.netlify.com/sites/capable-croissant-37c6fb/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/9178155c-a4eb-4699-849b-8d1fc75f4d40/deploy-status)](https://app.netlify.com/sites/creative-madeleine-6a833e/deploys)
 
-## [Проект на Netlify](https://capable-croissant-37c6fb.netlify.app/)
+## [Проект на Netlify](https://creative-madeleine-6a833e.netlify.app/)
 
 ## [Ссылка на макет, который был взят для примера](https://www.figma.com/file/jF5fFFzgGOxQeB4CmKWTiE/Chat_external_link?node-id=0%3A1&t=lZthIp7nwzxESX8U-0)
 
