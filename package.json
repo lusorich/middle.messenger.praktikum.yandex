@@ -24,6 +24,7 @@
     "eslint-plugin-n": "15.0.0",
     "eslint-plugin-promise": "6.0.0",
     "eslint-plugin-unused-imports": "2.0.0",
+    "lightningcss": "1.18.0",
     "parcel": "2.8.3",
     "postcss": "8.4.21",
     "postcss-nested": "6.0.0",
