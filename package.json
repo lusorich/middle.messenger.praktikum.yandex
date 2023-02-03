@@ -17,6 +17,7 @@
     "nanoid": "4.0.0"
   },
   "devDependencies": {
+    "@parcel/css": "^1.14.0",
     "eslint": "^8.2.0",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-plugin-import": "2.25.3",
