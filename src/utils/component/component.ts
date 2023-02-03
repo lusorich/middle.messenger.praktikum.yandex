@@ -51,10 +51,15 @@ abstract class Component<T extends Record<string, unknown>> {
     return { props, children };
   }
 
-  protected addEvents(events: Props) {
-    // eslint-disable-next-line no-restricted-syntax
+  private _addEvents(events: Props) {
     for (const [event, cb] of Object.entries(events)) {
       this._element?.addEventListener(event, cb);
+    }
+  }
+
+  private _removeEvents(events: Props): void {
+    for (const [event, cb] of Object.entries(events)) {
+      this._element?.removeEventListener(event, cb);
     }
   }
 
@@ -127,7 +132,8 @@ abstract class Component<T extends Record<string, unknown>> {
     this._element = actualElement;
 
     if (!!this.props?.events) {
-      this.addEvents(this.props.events);
+      this._removeEvents(this.props.events);
+      this._addEvents(this.props.events);
     }
   }
 
@@ -138,8 +144,6 @@ abstract class Component<T extends Record<string, unknown>> {
   }
 
   private _makePropsProxy(props: Record<string, any>) {
-    // Можно и так передать this
-    // Такой способ больше не применяется с приходом ES6+
     const propsProxy = new Proxy(props, {
       get: (target, name: string) => {
         this._checkPrivateMethod(name);
