@@ -4,11 +4,8 @@
     "es2021": true,
     "node": true
   },
-  "extends": [
-    "airbnb-typescript/base",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:import/recommended"
-  ],
+  "parser": "@typescript-eslint/parser",
+  "extends": ["airbnb-typescript/base", "plugin:import/recommended"],
   "overrides": [
     {
       "files": ["*.ts"],
@@ -22,7 +19,6 @@
     "sourceType": "module",
     "modules": true
   },
-  "parser": "@typescript-eslint/parser",
   "ignorePatterns": ["**/*.css", "**/*.html"],
   "rules": {
     "no-undef": "error",
@@ -31,14 +27,6 @@
     "operator-linebreak": "off",
     "implicit-arrow-linebreak": "off",
     "linebreak-style": ["error", "windows"],
-    "import/extensions": [
-      "error",
-      "ignorePackages",
-      {
-        "js": "never",
-        "ts": "never"
-      }
-    ],
     "import/prefer-default-export": "off",
     "no-underscore-dangle": "off",
     "no-extra-boolean-cast": "off",
@@ -53,6 +41,14 @@
         "caughtErrorsIgnorePattern": "^_"
       }
     ],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "ts": "never"
+      }
+    ],
     "@typescript-eslint/camelcase": "off",
     "@typescript-eslint/naming-convention": [
       "error",
@@ -62,5 +58,6 @@
       }
     ]
   },
-  "plugins": ["unused-imports", "@typescript-eslint"]
+  "plugins": ["unused-imports", "@typescript-eslint"],
+  "root": true
 }
