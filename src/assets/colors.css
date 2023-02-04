@@ -1,10 +1,14 @@
 :root {
   --blue-color: #3369f3;
   --white-color: #fff;
-  --input-placeholder-color: #999999;
+  --text-grey-color: #999999;
   --input-text-color: #000;
   --input-border-focus-color: #000;
   --back-block-color: #fbfbfb;
   --border-grey-color: #eaeaea;
   --error-color: #ff0000;
+  --chat-background: #e4edfd;
+  --other-msg-background: #f8f8f8;
+  --my-msg-background: #e4edfd;
+  --input-msg-background: #efefef;
 }

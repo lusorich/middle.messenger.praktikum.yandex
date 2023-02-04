@@ -3,3 +3,16 @@
   justify-content: space-between;
   border-bottom: 1px solid var(--border-grey-color);
 }
+
+.wrapper-input-error {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  >.input__error {
+    position: absolute;
+    left: -2rem;
+    top: 1.5rem;
+    color: var(--error-color)
+  }
+}

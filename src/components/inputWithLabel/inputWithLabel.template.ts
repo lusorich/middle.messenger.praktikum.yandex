@@ -1,0 +1,8 @@
+export default () => `
+  <div class="{{ wrapperClassName }}">
+    <label for={{ name }}>{{ labelText }}</label>
+    <div class="wrapper-input-error">
+      {{ input }}
+      <span> {{ errorText }} </span>
+    </div>
+  </div>`;
