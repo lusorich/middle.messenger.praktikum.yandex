@@ -3,6 +3,8 @@ import SignInForm from '../../components/forms/signin-form/signin-form';
 import { compile } from '../../lib/template-engine/compile';
 import Link from '../../components/link/link';
 import Component from '../../utils/component/component';
+import { mainRouter } from '../../app/app';
+import { PAGE_PATHS } from '../../app/app.constants';
 
 export default class SigninPage extends Component<Record<string, unknown>> {
   init() {
@@ -14,6 +16,12 @@ export default class SigninPage extends Component<Record<string, unknown>> {
       href: '/registration',
       text: 'Регистрация',
       className: 'link',
+      events: {
+        click: (e: Event) => {
+          e.preventDefault();
+          mainRouter.go(PAGE_PATHS.REGISTRATION);
+        },
+      },
     });
   }
 

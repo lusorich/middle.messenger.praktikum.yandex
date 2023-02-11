@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import EventBus from '../Event-bus';
+import EventBus from '../event-bus';
 import { EVENTS_T } from './component.types';
 
 export type Props = Record<string, any>;
@@ -180,11 +180,11 @@ abstract class Component<T extends Record<string, unknown>> {
   }
 
   show() {
-    if (this.element) this.element.style.display = 'block';
+    if (this.element) this.element.classList.remove('visually-hidden');
   }
 
   hide() {
-    if (this.element) this.element.style.display = 'none';
+    if (this.element) this.element.classList.add('visually-hidden');
   }
 
   protected compile(template: (context: any) => string, context: any) {
