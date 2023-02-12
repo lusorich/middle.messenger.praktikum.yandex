@@ -49,6 +49,7 @@
         "ts": "never"
       }
     ],
+    "import/no-unresolved": "off",
     "@typescript-eslint/camelcase": "off",
     "@typescript-eslint/naming-convention": [
       "error",
