@@ -14,7 +14,7 @@ import {
   isNameValid,
   isPhoneValid,
   validate,
-} from '../../../utils/validation.helpers';
+} from '../../../helpers/validation.helpers';
 
 export default class ProfileForm extends Component<Record<string, unknown>> {
   init() {

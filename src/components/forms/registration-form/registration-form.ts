@@ -17,7 +17,8 @@ import {
   ERROR_EMAIL_MSG,
   ERROR_PHONE_MSG,
   isPhoneValid,
-} from '../../../utils/validation.helpers';
+} from '../../../helpers/validation.helpers';
+import { RegistrationAPI } from 'src/pages/registration/registraion.api';
 
 export default class RegistrationForm extends Component<RegistrationFormProps> {
   init() {
@@ -141,9 +142,10 @@ export default class RegistrationForm extends Component<RegistrationFormProps> {
             isValidPassword &&
             isValidPhone
           ) {
-            console.log({
-              firstName,
-              secondName,
+            const api = new RegistrationAPI();
+            api.request({
+              first_name: firstName,
+              second_name: secondName,
               login,
               email,
               password,

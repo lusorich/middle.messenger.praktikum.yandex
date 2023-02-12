@@ -1,7 +1,8 @@
 import { EVENTS_T } from './component/component.types';
-import { ValueOf } from './custom-utility-types';
+import { ValueOf } from '../helpers/custom-utility-types';
+import { StoreEvents } from './store';
 
-type T_EVENTS = ValueOf<typeof EVENTS_T>;
+type T_EVENTS = ValueOf<typeof EVENTS_T> | ValueOf<typeof StoreEvents>;
 
 class EventBus {
   private listeners: {

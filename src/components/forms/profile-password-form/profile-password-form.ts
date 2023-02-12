@@ -7,9 +7,11 @@ import {
   ERROR_PASSWORD_MSG,
   isPasswordValid,
   validate,
-} from '../../../utils/validation.helpers';
+} from '../../../helpers/validation.helpers';
 
-export default class ProfilePasswordForm extends Component<Record<string, unknown>> {
+export default class ProfilePasswordForm extends Component<
+  Record<string, unknown>
+> {
   init() {
     this.children.inputOldPassword = new InputWithLabel({
       labelText: 'Старый пароль',

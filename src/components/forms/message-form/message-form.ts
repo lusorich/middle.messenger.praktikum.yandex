@@ -8,7 +8,7 @@ import {
   isMessageValid,
   validate,
   ERROR_MSG_MSG,
-} from '../../../utils/validation.helpers';
+} from '../../../helpers/validation.helpers';
 
 export default class MessageForm extends Component<Record<string, unknown>> {
   init() {

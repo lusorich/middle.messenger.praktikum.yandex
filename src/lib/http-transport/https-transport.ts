@@ -1,10 +1,4 @@
-// eslint-disable-next-line no-shadow
-const enum HTTP_METHODS {
-  GET = 'GET',
-  POST = 'POST',
-  PUT = 'PUT',
-  DELETE = 'DELETE',
-}
+import { HTTP_METHODS } from './https-transport.types';
 
 interface REQUEST_OPTIONS {
   method: HTTP_METHODS;
@@ -13,7 +7,7 @@ interface REQUEST_OPTIONS {
 }
 
 interface METHOD_OPTIONS extends REQUEST_OPTIONS {
-  timeout: number;
+  timeout?: number;
 }
 
 function queryStringify(data: REQUEST_OPTIONS['data']) {
@@ -28,10 +22,17 @@ function queryStringify(data: REQUEST_OPTIONS['data']) {
   return `?${res.join('&')}`;
 }
 
+const BASE_API_PATH = 'https://ya-praktikum.tech/api/v2';
 export default class HTTPTransport {
+  protected endpoint: string;
+
+  constructor(endpoint: string) {
+    this.endpoint = `${BASE_API_PATH}${endpoint}`;
+  }
+
   get = (url: string, options: METHOD_OPTIONS) =>
     this.request(
-      url,
+      this.endpoint + url,
       {
         ...options,
         method: HTTP_METHODS.GET,
@@ -41,7 +42,7 @@ export default class HTTPTransport {
 
   put = (url: string, options: METHOD_OPTIONS) =>
     this.request(
-      url,
+      this.endpoint + url,
       {
         ...options,
         method: HTTP_METHODS.PUT,
@@ -51,7 +52,7 @@ export default class HTTPTransport {
 
   post = (url: string, options: METHOD_OPTIONS) =>
     this.request(
-      url,
+      this.endpoint + url,
       {
         ...options,
         method: HTTP_METHODS.POST,
@@ -61,7 +62,7 @@ export default class HTTPTransport {
 
   delete = (url: string, options: METHOD_OPTIONS) =>
     this.request(
-      url,
+      this.endpoint + url,
       {
         ...options,
         method: HTTP_METHODS.DELETE,
@@ -101,6 +102,8 @@ export default class HTTPTransport {
 
       xhr.timeout = timeout;
       xhr.ontimeout = reject;
+
+      xhr.setRequestHeader('Content-Type', 'application/json');
 
       if (method === HTTP_METHODS.GET || !data) {
         xhr.send();
