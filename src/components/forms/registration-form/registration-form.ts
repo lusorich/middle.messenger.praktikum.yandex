@@ -18,7 +18,7 @@ import {
   ERROR_PHONE_MSG,
   isPhoneValid,
 } from '../../../helpers/validation.helpers';
-import { RegistrationAPI } from 'src/pages/registration/registraion.api';
+import AuthController from 'src/controllers/auth-controller';
 
 export default class RegistrationForm extends Component<RegistrationFormProps> {
   init() {
@@ -142,14 +142,15 @@ export default class RegistrationForm extends Component<RegistrationFormProps> {
             isValidPassword &&
             isValidPhone
           ) {
-            const api = new RegistrationAPI();
-            api.request({
-              first_name: firstName,
-              second_name: secondName,
-              login,
-              email,
-              password,
-              phone,
+            AuthController.signup({
+              data: JSON.stringify({
+                first_name: firstName,
+                second_name: secondName,
+                login,
+                email,
+                password,
+                phone,
+              }),
             });
           } else {
             validate('first_name', ERROR_FIRST_NAME_MSG, isNameValid);

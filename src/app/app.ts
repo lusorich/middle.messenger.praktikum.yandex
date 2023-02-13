@@ -32,3 +32,37 @@ mainRouter
   .use('/404', Page404)
   .use('/505', Page505)
   .start();
+
+const navMain = document.querySelector('#nav-main');
+const navSignin = document.querySelector('#nav-signin');
+const navReg = document.querySelector('#nav-registration');
+const navProfile = document.querySelector('#nav-profile');
+const navProfileEdit = document.querySelector('#nav-profile-edit');
+const navProfileEditPassword = document.querySelector(
+  '#nav-profile-edit-password',
+);
+
+navMain?.addEventListener('click', (e) => {
+  e.preventDefault();
+  mainRouter.go('/');
+});
+navSignin?.addEventListener('click', (e) => {
+  e.preventDefault();
+  mainRouter.go('/signin');
+});
+navReg?.addEventListener('click', (e) => {
+  e.preventDefault();
+  mainRouter.go('/registration');
+});
+navProfile?.addEventListener('click', (e) => {
+  e.preventDefault();
+  mainRouter.go('/profile');
+});
+navProfileEdit?.addEventListener('click', (e) => {
+  e.preventDefault();
+  mainRouter.go('/profile/edit');
+});
+navProfileEditPassword?.addEventListener('click', (e) => {
+  e.preventDefault();
+  mainRouter.go('/profile/edit-password');
+});

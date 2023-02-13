@@ -18,3 +18,5 @@ export class Store extends EventBus {
     return this.state;
   }
 }
+
+export const store = new Store();

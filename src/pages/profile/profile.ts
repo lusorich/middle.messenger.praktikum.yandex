@@ -2,6 +2,7 @@ import { compile } from '../../lib/template-engine/compile';
 import Link from '../../components/link/link';
 import Component from '../../utils/component/component';
 import tpl from './profile.template';
+import AuthController from 'src/controllers/auth-controller';
 
 export default class ProfilePage extends Component<Record<string, unknown>> {
   init() {
@@ -22,6 +23,12 @@ export default class ProfilePage extends Component<Record<string, unknown>> {
       href: '/signin',
       text: 'Выйти',
       className: 'link link--red',
+      events: {
+        click: (e: Event) => {
+          e.preventDefault();
+          AuthController.logout();
+        },
+      },
     });
   }
 

@@ -5,8 +5,7 @@ import Link from '../../components/link/link';
 import Component from '../../utils/component/component';
 import { mainRouter } from '../../app/app';
 import { PAGE_PATHS } from '../../app/app.constants';
-import { connect } from 'src/utils/connect';
-class SigninPage extends Component<Record<string, unknown>> {
+export default class SigninPage extends Component<Record<string, unknown>> {
   init() {
     this.children.form = new SignInForm({
       formTitle: 'Вход',
@@ -35,5 +34,3 @@ class SigninPage extends Component<Record<string, unknown>> {
     );
   }
 }
-
-export default connect(() => {})(SigninPage);

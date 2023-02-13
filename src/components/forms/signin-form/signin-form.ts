@@ -12,7 +12,7 @@ import {
   ERROR_LOGIN_MSG,
   ERROR_PASSWORD_MSG,
 } from '../../../helpers/validation.helpers';
-import { AuthController } from 'src/controllers/auth-controller';
+import AuthController from 'src/controllers/auth-controller';
 
 export default class SigninForm extends Component<SigninFormProps> {
   componentDidUpdate(prevProps: Props, nextProps: Props) {
@@ -44,8 +44,7 @@ export default class SigninForm extends Component<SigninFormProps> {
           const isValidPasswordValue = isPasswordValid(inputPasswordValue);
 
           if (isValidLoginValue && isValidPasswordValue) {
-            const test = new AuthController();
-            test.signin({
+            AuthController.signin({
               data: JSON.stringify({
                 login: inputLoginValue,
                 password: inputPasswordValue,

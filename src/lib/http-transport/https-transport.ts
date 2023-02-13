@@ -30,14 +30,14 @@ export default class HTTPTransport {
     this.endpoint = `${BASE_API_PATH}${endpoint}`;
   }
 
-  get = (url: string, options: METHOD_OPTIONS) =>
+  get = (url: string, options?: METHOD_OPTIONS) =>
     this.request(
       this.endpoint + url,
       {
         ...options,
         method: HTTP_METHODS.GET,
       },
-      options.timeout,
+      options?.timeout,
     );
 
   put = (url: string, options: METHOD_OPTIONS) =>
@@ -50,14 +50,14 @@ export default class HTTPTransport {
       options.timeout,
     );
 
-  post = (url: string, options: METHOD_OPTIONS) =>
+  post = (url: string, options?: METHOD_OPTIONS) =>
     this.request(
       this.endpoint + url,
       {
         ...options,
         method: HTTP_METHODS.POST,
       },
-      options.timeout,
+      options?.timeout,
     );
 
   delete = (url: string, options: METHOD_OPTIONS) =>
@@ -104,6 +104,7 @@ export default class HTTPTransport {
       xhr.ontimeout = reject;
 
       xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.withCredentials = true;
 
       if (method === HTTP_METHODS.GET || !data) {
         xhr.send();
