@@ -106,6 +106,8 @@ export default class HTTPTransport {
       xhr.setRequestHeader('Content-Type', 'application/json');
       xhr.withCredentials = true;
 
+      console.log('data', data);
+
       if (method === HTTP_METHODS.GET || !data) {
         xhr.send();
       } else {

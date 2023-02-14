@@ -15,6 +15,7 @@ import {
   isPhoneValid,
   validate,
 } from '../../../helpers/validation.helpers';
+import UserController from 'src/controllers/user-controller';
 
 export default class ProfileForm extends Component<Record<string, unknown>> {
   init() {
@@ -150,13 +151,15 @@ export default class ProfileForm extends Component<Record<string, unknown>> {
             isValidDisplayName &&
             isValidPhone
           ) {
-            console.log({
-              firstName,
-              secondName,
-              displayName,
-              login,
-              email,
-              phone,
+            UserController.changeProfile({
+              data: JSON.stringify({
+                first_name: firstName,
+                second_name: secondName,
+                display_name: displayName,
+                login,
+                email,
+                phone,
+              }),
             });
           } else {
             validate('first_name', ERROR_FIRST_NAME_MSG, isNameValid);

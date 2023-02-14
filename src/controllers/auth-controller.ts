@@ -1,16 +1,14 @@
-import { AuthAPI } from 'src/api/auth-api';
+import AuthAPI from 'src/api/auth-api';
 import { mainRouter } from 'src/app/app';
 import { store, StoreEvents } from 'src/utils/store';
-
-const API = new AuthAPI();
 
 store.on(StoreEvents.Updated, () => console.log('updated'));
 
 export class AuthController {
-  private readonly api: AuthAPI;
+  private readonly api: typeof AuthAPI;
 
   constructor() {
-    this.api = API;
+    this.api = AuthAPI;
   }
 
   async signin(data: any) {
@@ -64,7 +62,7 @@ export class AuthController {
       }
 
       store.set('auth', {
-        id: null,
+        id: '',
         isSignin: false,
       });
 
