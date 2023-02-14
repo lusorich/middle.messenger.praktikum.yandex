@@ -29,6 +29,37 @@ export class UserController {
       console.error(e);
     }
   }
+
+  async changePassword(data: any) {
+    try {
+      const res: any = await this.api.changePassword(data);
+
+      if (res.status < 200 || res.status > 300) {
+        throw new Error('Ошибка при попытке изменения пароля');
+      }
+
+      mainRouter.go('/profile');
+    } catch (e: any) {
+      console.error(e);
+    }
+  }
+
+  async changeAvatar(data: any) {
+    try {
+      const res: any = await this.api.changeAvatar(data);
+
+      if (res.status < 200 || res.status > 300) {
+        throw new Error('Ошибка при попытке изменения данных');
+      }
+
+      // store.set('auth', {
+      //   ...JSON.parse(res.response),
+      //   isSignin: true,
+      // });
+    } catch (e: any) {
+      console.error(e);
+    }
+  }
 }
 
 export default new UserController();

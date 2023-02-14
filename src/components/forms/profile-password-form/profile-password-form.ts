@@ -8,9 +8,10 @@ import {
   isPasswordValid,
   validate,
 } from '../../../helpers/validation.helpers';
+import UserController from 'src/controllers/user-controller';
 
 export default class ProfilePasswordForm extends Component<
-  Record<string, unknown>
+Record<string, unknown>
 > {
   init() {
     this.children.inputOldPassword = new InputWithLabel({
@@ -88,10 +89,11 @@ export default class ProfilePasswordForm extends Component<
             isValidNewPassword &&
             isValidNewPasswordRepeat
           ) {
-            console.log({
-              oldPassword,
-              newPassword,
-              newPasswordRepeat,
+            UserController.changePassword({
+              data: JSON.stringify({
+                oldPassword,
+                newPassword,
+              }),
             });
           } else {
             validate('oldPassword', ERROR_PASSWORD_MSG, isPasswordValid);
