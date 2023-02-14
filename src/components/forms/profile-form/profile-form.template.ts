@@ -1,5 +1,6 @@
 export default () => `
   <form class="profile-form">
+    {{ inputAvatar }}
     {{ inputFirstName }}
     {{ inputSecondName }}
     {{ inputDisplayName }}

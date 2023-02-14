@@ -4,6 +4,7 @@ import Component from '../../utils/component/component';
 import tpl from './profile.template';
 import AuthController from 'src/controllers/auth-controller';
 import { mainRouter } from 'src/app/app';
+import Avatar from 'src/components/avatar/avatar';
 
 export default class ProfilePage extends Component<Record<string, unknown>> {
   init() {
@@ -42,6 +43,10 @@ export default class ProfilePage extends Component<Record<string, unknown>> {
           AuthController.logout();
         },
       },
+    });
+    this.children.avatar = new Avatar({
+      alt: 'Аватар пользователя',
+      size: 'xl',
     });
   }
 

@@ -16,6 +16,7 @@ import {
   validate,
 } from '../../../helpers/validation.helpers';
 import UserController from 'src/controllers/user-controller';
+import InputAvatar from 'src/components/inputAvatar/inputAvatar';
 
 export default class ProfileForm extends Component<Record<string, unknown>> {
   init() {
@@ -121,6 +122,8 @@ export default class ProfileForm extends Component<Record<string, unknown>> {
       className: 'btn btn--contained',
       type: 'submit',
     });
+
+    this.children.inputAvatar = new InputAvatar();
 
     this.setProps({
       ...this.props,

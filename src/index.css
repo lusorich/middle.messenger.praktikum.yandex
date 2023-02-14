@@ -20,3 +20,5 @@
 @import "./components/dialog/dialogContent/dialogContent.style.css";
 @import "./components/dialog/dialogFooter/dialogFooter.style.css";
 @import "./components/forms/message-form/message-form.style.css";
+@import "./components/avatar/avatar.style.css";
+@import "./components/inputAvatar/inputAvatar.style.css";

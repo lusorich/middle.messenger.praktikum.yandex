@@ -1,7 +1,7 @@
 export default () => `
   <div class="wrapper-profile">
     <div class="wrapper-profile-avatar">
-      Mark
+      {{ avatar }}
     </div>
     <div class="wrapper-profile-fields">
       <div>
