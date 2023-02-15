@@ -1,9 +1,10 @@
 import { HTTP_METHODS } from './https-transport.types';
 
 interface REQUEST_OPTIONS {
-  method: HTTP_METHODS;
+  method?: HTTP_METHODS;
   headers?: Record<string, string>;
   data?: XMLHttpRequestBodyInit;
+  isClearHeaders?: boolean;
 }
 
 interface METHOD_OPTIONS extends REQUEST_OPTIONS {
@@ -40,14 +41,14 @@ export default class HTTPTransport {
       options?.timeout,
     );
 
-  put = (url: string, options: METHOD_OPTIONS) =>
+  put = (url: string, options?: METHOD_OPTIONS) =>
     this.request(
       this.endpoint + url,
       {
         ...options,
         method: HTTP_METHODS.PUT,
       },
-      options.timeout,
+      options?.timeout,
     );
 
   post = (url: string, options?: METHOD_OPTIONS) =>
@@ -71,7 +72,7 @@ export default class HTTPTransport {
     );
 
   request = (url: string, options: REQUEST_OPTIONS, timeout = 5000) => {
-    const { method, data, headers = {} } = options;
+    const { method, data, headers = {}, isClearHeaders = false } = options;
 
     return new Promise((resolve, reject) => {
       if (!method) {
@@ -103,10 +104,9 @@ export default class HTTPTransport {
       xhr.timeout = timeout;
       xhr.ontimeout = reject;
 
-      xhr.setRequestHeader('Content-Type', 'application/json');
+      !isClearHeaders &&
+        xhr.setRequestHeader('Content-Type', 'application/json');
       xhr.withCredentials = true;
-
-      console.log('data', data);
 
       if (method === HTTP_METHODS.GET || !data) {
         xhr.send();

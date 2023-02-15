@@ -17,7 +17,10 @@ export class UserAPI extends BaseAPI {
   }
 
   changeAvatar(data: any) {
-    return this.http.put(USER_CHANGE_AVATAR_API_PATH, data);
+    return this.http.put(USER_CHANGE_AVATAR_API_PATH, {
+      data,
+      isClearHeaders: true,
+    });
   }
 
   changePassword(data: any) {

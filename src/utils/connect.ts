@@ -1,9 +1,7 @@
 import { Indexed } from 'src/helpers/custom-utility-types';
 import { isDeepEqual } from 'src/helpers/isDeepEqual';
 import { Props } from './component/component';
-import { Store, StoreEvents } from './store';
-
-const store = new Store();
+import { store, StoreEvents } from './store';
 
 export function connect(mapStateToProps: (state: Indexed) => Indexed) {
   return function (UserComponent: any) {
@@ -18,7 +16,7 @@ export function connect(mapStateToProps: (state: Indexed) => Indexed) {
         store.on(StoreEvents.Updated, () => {
           const newState = mapStateToProps(store.getState());
 
-          if (!isDeepEqual(prevState, newState)) {
+          if (!isDeepEqual((prevState = {}), newState)) {
             this.setProps({ ...newState });
           }
 

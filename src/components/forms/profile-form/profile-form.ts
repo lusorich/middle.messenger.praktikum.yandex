@@ -17,8 +17,31 @@ import {
 } from '../../../helpers/validation.helpers';
 import UserController from 'src/controllers/user-controller';
 import InputAvatar from 'src/components/inputAvatar/inputAvatar';
+import { connect } from 'src/utils/connect';
 
-export default class ProfileForm extends Component<Record<string, unknown>> {
+const update = {
+  inputAvatar: {
+    prop: 'src',
+    observe: 'avatar',
+  },
+};
+
+class ProfileForm extends Component<Record<string, unknown>> {
+  componentDidUpdate(oldProps, newProps): boolean {
+    if (!this.children) return false;
+
+    for (const [key, component] of Object.entries(this.children)) {
+      if (oldProps[update[key]?.observe] !== newProps[update[key]?.observe]) {
+        component.setProps({
+          ...component.props,
+          [update[key]?.prop]: this.props[update[key]?.observe],
+        });
+      }
+    }
+
+    return true;
+  }
+
   init() {
     this.children.inputFirstName = new InputWithLabel({
       labelText: 'Имя',
@@ -123,7 +146,19 @@ export default class ProfileForm extends Component<Record<string, unknown>> {
       type: 'submit',
     });
 
-    this.children.inputAvatar = new InputAvatar();
+    this.children.inputAvatar = new InputAvatar({
+      events: {
+        change: (e: Event) => {
+          const formData = new FormData();
+          const file = (<HTMLInputElement>e.target).files?.[0] ?? '';
+
+          formData.append('avatar', file);
+
+          UserController.changeAvatar(formData);
+        },
+      },
+      src: this.props.avatar ?? '',
+    });
 
     this.setProps({
       ...this.props,
@@ -184,3 +219,9 @@ export default class ProfileForm extends Component<Record<string, unknown>> {
     );
   }
 }
+
+export default connect((state) => {
+  console.log('from profile form', state);
+
+  return state.auth;
+})(ProfileForm);

@@ -1,7 +1,7 @@
 export default () => `
-  <div>
-    <label for="avatar">
-      <img alt="{{ alt }}" />
+  <div class="wrapper-input-avatar">
+    <label class="input-avatar-label" for="avatar">
+      <img class="input-avatar-img" alt="{{ alt }}" src="https://ya-praktikum.tech/api/v2/resources/{{ src }}" />
     </label>
-    <input type="file" name="ava" id="avatar"/>
+    <input class="input-avatar" type="file" name="avatar" id="avatar"/>
   </div>`;

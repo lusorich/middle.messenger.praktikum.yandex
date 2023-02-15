@@ -1,8 +1,6 @@
 import AuthAPI from 'src/api/auth-api';
 import { mainRouter } from 'src/app/app';
-import { store, StoreEvents } from 'src/utils/store';
-
-store.on(StoreEvents.Updated, () => console.log('updated'));
+import { store } from 'src/utils/store';
 
 export class AuthController {
   private readonly api: typeof AuthAPI;

@@ -1,8 +1,6 @@
 import UserAPI from 'src/api/user-api';
 import { mainRouter } from 'src/app/app';
-import { store, StoreEvents } from 'src/utils/store';
-
-store.on(StoreEvents.Updated, () => console.log('updated'));
+import { store } from 'src/utils/store';
 
 export class UserController {
   private readonly api: typeof UserAPI;
@@ -52,10 +50,9 @@ export class UserController {
         throw new Error('Ошибка при попытке изменения данных');
       }
 
-      // store.set('auth', {
-      //   ...JSON.parse(res.response),
-      //   isSignin: true,
-      // });
+      store.set('auth', {
+        ...JSON.parse(res.response),
+      });
     } catch (e: any) {
       console.error(e);
     }

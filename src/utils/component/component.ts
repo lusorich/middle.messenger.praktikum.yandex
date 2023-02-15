@@ -17,7 +17,7 @@ abstract class Component<T extends Record<string, unknown>> {
 
   protected children: Children = {};
 
-  protected props: Props = {};
+  public props: Props = {};
 
   constructor(protected propsWithChildren: T = {} as T) {
     const eventBus = new EventBus();
@@ -96,7 +96,7 @@ abstract class Component<T extends Record<string, unknown>> {
     }
   }
 
-  componentDidUpdate(_prevProps: Props, _nextProps: Props) {
+  protected componentDidUpdate(_prevProps: Props, _nextProps: Props) {
     return true;
   }
 
@@ -106,6 +106,11 @@ abstract class Component<T extends Record<string, unknown>> {
     }
 
     Object.assign(this.props, nextProps);
+
+    // const { props, children } = this._getChildrenAndProps(nextProps);
+
+    // Object.assign(this.props, props);
+    // Object.assign(this.children, children);
   };
 
   setState = (nextState: Record<string, unknown>) => {
