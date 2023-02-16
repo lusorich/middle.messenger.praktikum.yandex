@@ -7,7 +7,7 @@ export default class ProfileEditPage extends Component<
 Record<string, unknown>
 > {
   init() {
-    this.children.content = new ProfileForm({});
+    this.children.content = new ProfileForm({}) as any;
   }
 
   render() {

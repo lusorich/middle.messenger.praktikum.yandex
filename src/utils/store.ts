@@ -8,8 +8,26 @@ export enum StoreEvents {
 export class Store extends EventBus {
   private state: any = {};
 
+  static __instance: Store;
+
+  constructor() {
+    super();
+
+    if (Store.__instance) {
+      return Store.__instance;
+    }
+
+    const lsStore = localStorage.getItem('store') ?? '{}';
+
+    this.state = JSON.parse(lsStore);
+
+    Store.__instance = this;
+  }
+
   public set(keypath: string, data: unknown) {
     set(this.state, keypath, data);
+
+    localStorage.setItem('store', JSON.stringify(this.state));
 
     this.emit(StoreEvents.Updated, this.getState());
   }

@@ -5,8 +5,10 @@ import tpl from './profile.template';
 import AuthController from 'src/controllers/auth-controller';
 import { mainRouter } from 'src/app/app';
 import Avatar from 'src/components/avatar/avatar';
+import { connect } from 'src/utils/connect';
+import { Indexed } from 'src/helpers/custom-utility-types';
 
-export default class ProfilePage extends Component<Record<string, unknown>> {
+class ProfilePage extends Component<Record<string, unknown>> {
   init() {
     this.children.editDataLink = new Link({
       id: 'link-profile-edit',
@@ -44,9 +46,11 @@ export default class ProfilePage extends Component<Record<string, unknown>> {
         },
       },
     });
+    console.log('this.props', this.props);
     this.children.avatar = new Avatar({
       alt: 'Аватар пользователя',
       size: 'xl',
+      src: this.props.avatar ?? '',
     });
   }
 
@@ -60,3 +64,7 @@ export default class ProfilePage extends Component<Record<string, unknown>> {
     );
   }
 }
+
+export default connect((state) => {
+  return state.auth as Indexed;
+})(ProfilePage);

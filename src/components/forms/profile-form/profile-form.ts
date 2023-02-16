@@ -18,23 +18,55 @@ import {
 import UserController from 'src/controllers/user-controller';
 import InputAvatar from 'src/components/inputAvatar/inputAvatar';
 import { connect } from 'src/utils/connect';
+import { Indexed } from 'src/helpers/custom-utility-types';
 
-const update = {
+const fieldUpdate = {
   inputAvatar: {
-    prop: 'src',
-    observe: 'avatar',
+    componentProp: 'src',
+    dataProp: 'avatar',
+  },
+  inputFirstName: {
+    componentProp: 'placeholder',
+    dataProp: 'first_name',
+  },
+  inputSecondName: {
+    componentProp: 'placeholder',
+    dataProp: 'second_name',
+  },
+  inputDisplayName: {
+    componentProp: 'placeholder',
+    dataProp: 'display_name',
+  },
+  inputLogin: {
+    componentProp: 'placeholder',
+    dataProp: 'login',
+  },
+  inputEmail: {
+    componentProp: 'placeholder',
+    dataProp: 'email',
+  },
+  inputPhone: {
+    componentProp: 'placeholder',
+    dataProp: 'phone',
   },
 };
 
 class ProfileForm extends Component<Record<string, unknown>> {
-  componentDidUpdate(oldProps, newProps): boolean {
+  componentDidUpdate(
+    oldProps: Record<string, unknown>,
+    newProps: Record<string, unknown>,
+  ): boolean {
     if (!this.children) return false;
 
     for (const [key, component] of Object.entries(this.children)) {
-      if (oldProps[update[key]?.observe] !== newProps[update[key]?.observe]) {
+      if (
+        oldProps[fieldUpdate[key as keyof typeof fieldUpdate]?.dataProp] !==
+        newProps[fieldUpdate[key as keyof typeof fieldUpdate]?.dataProp]
+      ) {
         component.setProps({
           ...component.props,
-          [update[key]?.prop]: this.props[update[key]?.observe],
+          [fieldUpdate[key as keyof typeof fieldUpdate]?.componentProp]:
+            this.props[fieldUpdate[key as keyof typeof fieldUpdate]?.dataProp],
         });
       }
     }
@@ -45,7 +77,7 @@ class ProfileForm extends Component<Record<string, unknown>> {
   init() {
     this.children.inputFirstName = new InputWithLabel({
       labelText: 'Имя',
-      placeholder: 'Бэтмен',
+      placeholder: this.props.first_name ?? 'Введите имя',
       name: 'first_name',
       wrapperClassName: 'wrapper-profile-form',
       inputClassName: 'input input-form',
@@ -61,7 +93,7 @@ class ProfileForm extends Component<Record<string, unknown>> {
     });
     this.children.inputSecondName = new InputWithLabel({
       labelText: 'Фамилия',
-      placeholder: 'Бэтменюк',
+      placeholder: this.props.second_name ?? 'Введите фамилию',
       name: 'second_name',
       wrapperClassName: 'wrapper-profile-form',
       inputClassName: 'input input-form',
@@ -77,7 +109,7 @@ class ProfileForm extends Component<Record<string, unknown>> {
     });
     this.children.inputDisplayName = new InputWithLabel({
       labelText: 'Отображаемое имя',
-      placeholder: 'Бэтмен',
+      placeholder: this.props.display_name ?? 'Введите отображаемое имя',
       name: 'display_name',
       wrapperClassName: 'wrapper-profile-form',
       inputClassName: 'input input-form',
@@ -93,7 +125,7 @@ class ProfileForm extends Component<Record<string, unknown>> {
     });
     this.children.inputLogin = new InputWithLabel({
       labelText: 'Логин',
-      placeholder: 'Batman',
+      placeholder: this.props.login ?? 'Введите логин',
       name: 'login',
       wrapperClassName: 'wrapper-profile-form',
       inputClassName: 'input input-form',
@@ -109,7 +141,7 @@ class ProfileForm extends Component<Record<string, unknown>> {
     });
     this.children.inputEmail = new InputWithLabel({
       labelText: 'Почта',
-      placeholder: 'batman@hero.com',
+      placeholder: this.props.email ?? 'Введите почту',
       name: 'email',
       wrapperClassName: 'wrapper-profile-form',
       inputClassName: 'input input-form',
@@ -125,7 +157,7 @@ class ProfileForm extends Component<Record<string, unknown>> {
     });
     this.children.inputPhone = new InputWithLabel({
       labelText: 'Телефон',
-      placeholder: '8-777-777-77-77',
+      placeholder: this.props.phone ?? 'Введите телефон',
       name: 'phone',
       type: 'tel',
       wrapperClassName: 'wrapper-profile-form',
@@ -221,7 +253,5 @@ class ProfileForm extends Component<Record<string, unknown>> {
 }
 
 export default connect((state) => {
-  console.log('from profile form', state);
-
-  return state.auth;
+  return state.auth as Indexed;
 })(ProfileForm);
