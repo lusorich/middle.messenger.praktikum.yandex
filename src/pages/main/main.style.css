@@ -3,6 +3,11 @@
   height: 100%;
 }
 
+.main-left-block__header {
+  display: flex;
+  justify-content: space-between;
+}
+
 .main-left-block {
   width: 20%;
   background-color: var(--back-block-color);

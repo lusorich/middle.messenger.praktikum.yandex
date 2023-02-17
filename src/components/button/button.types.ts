@@ -4,4 +4,5 @@ export type ButtonProps = {
   name: string;
   text: string;
   type: ButtonType;
+  events?: Record<string, () => void>;
 };

@@ -6,6 +6,7 @@ import Component from '../../utils/component/component';
 import DialogContent from '../../components/dialog/dialogContent/dialogContent';
 import DialogFooter from '../../components/dialog/dialogFooter/dialogFooter';
 import { store } from 'src/utils/store';
+import Button from 'src/components/button/button';
 
 export default class MainPage extends Component<Record<string, unknown>> {
   init() {
@@ -13,6 +14,16 @@ export default class MainPage extends Component<Record<string, unknown>> {
     this.children.dialogHeader = new DialogHeader();
     this.children.dialogContent = new DialogContent();
     this.children.dialogFooter = new DialogFooter();
+
+    this.children.addChatBtn = new Button({
+      name: 'addChat',
+      className: '',
+      type: 'button',
+      text: 'Add chat',
+      events: {
+        click: () => console.log('add'),
+      },
+    });
 
     console.log(store.getState());
   }
