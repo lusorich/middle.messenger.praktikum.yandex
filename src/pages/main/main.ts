@@ -7,6 +7,8 @@ import DialogFooter from '../../components/dialog/dialogFooter/dialogFooter';
 import Button from 'src/components/button/button';
 import Popup from 'src/components/popup/popup';
 import AddChatForm from 'src/components/forms/add-chat-form/addChatForm';
+import Link from 'src/components/link/link';
+import { mainRouter } from 'src/app/app';
 
 export default class MainPage extends Component<Record<string, unknown>> {
   init() {
@@ -23,12 +25,25 @@ export default class MainPage extends Component<Record<string, unknown>> {
 
     this.children.addChatBtn = new Button({
       name: 'addChat',
-      className: '',
+      className: 'btn btn--outline',
       type: 'button',
       text: 'Add chat',
       events: {
         click: () => {
           this.children.addChatPopup.show();
+        },
+      },
+    });
+
+    this.children.linkProfile = new Link({
+      id: 'link-profile',
+      href: '/profile',
+      text: 'Профиль',
+      className: 'link-profile',
+      events: {
+        click: (e: Event) => {
+          e.preventDefault();
+          mainRouter.go('/profile');
         },
       },
     });

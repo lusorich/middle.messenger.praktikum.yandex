@@ -24,23 +24,8 @@ export class ChatsAPI extends BaseAPI {
     return this.http.post('', data);
   }
 
-  changeAvatar(data: any) {
-    return this.http.put(USER_CHANGE_AVATAR_API_PATH, {
-      data,
-      isClearHeaders: true,
-    });
-  }
-
-  changePassword(data: any) {
-    return this.http.put(USER_CHANGE_PASSWORD_API_PATH, data);
-  }
-
-  getUser(data: any) {
-    return this.http.get(USER_INFO_API_PATH, data);
-  }
-
-  searchUser(data: any) {
-    return this.http.post(USER_SEARCH_API_PATH, data);
+  getChats(data: any) {
+    return this.http.get('', data);
   }
 
   request() {}

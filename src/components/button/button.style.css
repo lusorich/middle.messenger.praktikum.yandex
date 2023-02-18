@@ -11,6 +11,14 @@
     font-size: 1rem;
   }
 
+  &--outline {
+    background: unset;
+    border: 1px solid var(--blue-color);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+  }
+
   &:hover {
     opacity: 0.8;
     transition: all 0.5s;

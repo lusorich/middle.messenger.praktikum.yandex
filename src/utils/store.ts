@@ -7,6 +7,7 @@ export enum StoreEvents {
 
 export const enum ACTIONS {
   'ADD_CHAT',
+  'SET_CHATS',
 }
 export class Store extends EventBus {
   private state: any = {};
@@ -43,6 +44,13 @@ export class Store extends EventBus {
         }
 
         this.state.chats.list.push(data);
+        localStorage.setItem('store', JSON.stringify(this.state));
+        this.emit(StoreEvents.Updated, this.getState());
+
+        break;
+      }
+      case ACTIONS.SET_CHATS: {
+        this.state.chats.list = data;
         localStorage.setItem('store', JSON.stringify(this.state));
         this.emit(StoreEvents.Updated, this.getState());
 
