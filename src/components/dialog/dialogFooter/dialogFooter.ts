@@ -1,7 +1,6 @@
 import MessageForm from '../../forms/message-form/message-form';
-import { compile } from '../../../lib/template-engine/compile';
 import Component from '../../../utils/component/component';
-import tpl from './dialogFooter.template';
+import tpl from './dialogFooter.template.hbs';
 
 export default class DialogFooter extends Component<Record<string, unknown>> {
   init() {
@@ -9,8 +8,6 @@ export default class DialogFooter extends Component<Record<string, unknown>> {
   }
 
   render() {
-    return this.compile((context) => compile(tpl(), { ...context }), {
-      ...this.props,
-    });
+    return this.compile(tpl, this.props);
   }
 }

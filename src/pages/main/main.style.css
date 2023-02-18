@@ -51,3 +51,7 @@
   justify-content: end;
   margin: 1rem 0.6rem;
 }
+
+.wrapper-chat-actions {
+  display: flex;
+}

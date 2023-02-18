@@ -1,0 +1,25 @@
+.add-chat-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  min-width: 20rem;
+}
+
+.wrapper-chat-name-input {
+  display: flex;
+  flex-direction: column;
+
+  min-height: 3rem;
+
+  >input {
+    font-size: 1.2rem;
+  }
+
+  >.input__error {
+    color: var(--error-color);
+  }
+
+  >.input__success {
+    color: var(--success-color);
+  }
+}

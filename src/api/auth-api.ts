@@ -7,8 +7,16 @@ const AUTH_USER_INFO_API_PATH = '/user';
 const AUTH_USER_LOGOUT_API_PATH = '/logout';
 
 export class AuthAPI extends BaseAPI {
+  static __instance: AuthAPI;
+
   constructor() {
     super(AUTH_API_PATH);
+
+    if (AuthAPI.__instance) {
+      return AuthAPI.__instance;
+    }
+
+    AuthAPI.__instance = this;
   }
 
   signin(data: any) {

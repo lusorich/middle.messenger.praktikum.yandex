@@ -1,5 +1,4 @@
-import { compile } from '../../../lib/template-engine/compile';
-import tpl from './profile-form.template';
+import tpl from './profile-form.template.hbs';
 import Component from '../../../utils/component/component';
 import InputWithLabel from '../../inputWithLabel/inputWithLabel';
 import Button from '../../button/button';
@@ -245,10 +244,7 @@ class ProfileForm extends Component<Record<string, unknown>> {
   }
 
   render() {
-    return this.compile(
-      (context) => compile(tpl(), { ...context }),
-      this.props,
-    );
+    return this.compile(tpl, this.props);
   }
 }
 

@@ -1,5 +1,4 @@
-import { compile } from '../../../lib/template-engine/compile';
-import tpl from './registration-form.template';
+import tpl from './registration-form.template.hbs';
 import Component from '../../../utils/component/component';
 import Button from '../../button/button';
 import Input from '../../input/input';
@@ -166,7 +165,7 @@ export default class RegistrationForm extends Component<RegistrationFormProps> {
   }
 
   render() {
-    return this.compile((context) => compile(tpl(), { ...context }), {
+    return this.compile(tpl, {
       ...this.props,
       errorFirstNameText: '',
       errorSecondNameText: '',

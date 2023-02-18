@@ -1,7 +1,6 @@
-import { compile } from '../../lib/template-engine/compile';
 import Link from '../../components/link/link';
 import Component from '../../utils/component/component';
-import tpl from './profile.template';
+import tpl from './profile.template.hbs';
 import AuthController from 'src/controllers/auth-controller';
 import { mainRouter } from 'src/app/app';
 import Avatar from 'src/components/avatar/avatar';
@@ -46,7 +45,6 @@ class ProfilePage extends Component<Record<string, unknown>> {
         },
       },
     });
-    console.log('this.props', this.props);
     this.children.avatar = new Avatar({
       alt: 'Аватар пользователя',
       size: 'xl',
@@ -55,13 +53,7 @@ class ProfilePage extends Component<Record<string, unknown>> {
   }
 
   render() {
-    return this.compile(
-      (context) =>
-        compile(tpl(), {
-          ...context,
-        }),
-      this.props,
-    );
+    return this.compile(tpl, this.props);
   }
 }
 

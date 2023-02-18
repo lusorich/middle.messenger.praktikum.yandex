@@ -8,8 +8,16 @@ const USER_INFO_API_PATH = '/';
 const USER_SEARCH_API_PATH = '/search';
 
 export class UserAPI extends BaseAPI {
+  static __instance: UserAPI;
+
   constructor() {
     super(USER_API_PATH);
+
+    if (UserAPI.__instance) {
+      return UserAPI.__instance;
+    }
+
+    UserAPI.__instance = this;
   }
 
   changeProfile(data: any) {

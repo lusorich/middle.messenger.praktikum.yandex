@@ -1,5 +1,4 @@
-import { compile } from '../../../lib/template-engine/compile';
-import tpl from './signin-form.template';
+import tpl from './signin-form.template.hbs';
 import Button from '../../button/button';
 import Input from '../../input/input';
 import Component, { Props } from '../../../utils/component/component';
@@ -95,7 +94,7 @@ export default class SigninForm extends Component<SigninFormProps> {
   }
 
   render() {
-    return this.compile((context) => compile(tpl(), { ...context }), {
+    return this.compile(tpl, {
       ...this.props,
       errorLoginText: '',
       errorPasswordText: '',

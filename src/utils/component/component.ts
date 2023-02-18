@@ -106,11 +106,6 @@ abstract class Component<T extends Record<string, unknown>> {
     }
 
     Object.assign(this.props, nextProps);
-
-    // const { props, children } = this._getChildrenAndProps(nextProps);
-
-    // Object.assign(this.props, props);
-    // Object.assign(this.children, children);
   };
 
   setState = (nextState: Record<string, unknown>) => {
@@ -205,7 +200,7 @@ abstract class Component<T extends Record<string, unknown>> {
 
     temp.innerHTML = html;
 
-    Object.entries(this.children).forEach(([_, component]) => {
+    const replaceStub = (component: Component<Record<string, unknown>>) => {
       const stub = temp.content.querySelector(`[data-id="${component.id}"]`);
 
       if (!stub) {
@@ -215,6 +210,14 @@ abstract class Component<T extends Record<string, unknown>> {
       component.getContent()?.append(...Array.from(stub.childNodes));
 
       stub.replaceWith(component.getContent()!);
+    };
+
+    Object.entries(this.children).forEach(([_, component]) => {
+      if (Array.isArray(component)) {
+        component.forEach(replaceStub);
+      } else {
+        replaceStub(component);
+      }
     });
 
     return temp.content;

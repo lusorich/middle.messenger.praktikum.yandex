@@ -1,6 +1,5 @@
-import tpl from './signin.template';
+import tpl from './signin.template.hbs';
 import SignInForm from '../../components/forms/signin-form/signin-form';
-import { compile } from '../../lib/template-engine/compile';
 import Link from '../../components/link/link';
 import Component from '../../utils/component/component';
 import { mainRouter } from '../../app/app';
@@ -25,12 +24,6 @@ export default class SigninPage extends Component<Record<string, unknown>> {
   }
 
   render() {
-    return this.compile(
-      (context) =>
-        compile(tpl(), {
-          ...context,
-        }),
-      this.props,
-    );
+    return this.compile(tpl, this.props);
   }
 }

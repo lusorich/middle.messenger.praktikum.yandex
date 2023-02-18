@@ -1,5 +1,4 @@
-import { compile } from '../../lib/template-engine/compile';
-import tpl from './inputWithLabel.template';
+import tpl from './inputWithLabel.template.hbs';
 import Input from '../input/input';
 import Component from '../../utils/component/component';
 import { InputWithLabelProps } from './inputWithLabel.types';
@@ -16,7 +15,7 @@ export default class InputWithLabel extends Component<InputWithLabelProps> {
   }
 
   render() {
-    return this.compile((context) => compile(tpl(), { ...context }), {
+    return this.compile(tpl, {
       ...this.props,
       errorText: '',
     });

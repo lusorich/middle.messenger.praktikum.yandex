@@ -1,11 +1,8 @@
-import { compile } from '../../../lib/template-engine/compile';
 import Component from '../../../utils/component/component';
-import tpl from './dialogContent.template';
+import tpl from './dialogContent.template.hbs';
 
 export default class DialogContent extends Component<Record<string, unknown>> {
   render() {
-    return this.compile((context) => compile(tpl(), { ...context }), {
-      ...this.props,
-    });
+    return this.compile(tpl, this.props);
   }
 }

@@ -14,9 +14,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "handlebars": "^4.7.7",
     "nanoid": "4.0.0"
   },
   "devDependencies": {
+    "@anikin/parcel-transformer-handlebars-precompile": "^1.0.1",
     "@parcel/transformer-css": "2.8.3",
     "eslint": "8.2.0",
     "eslint-config-airbnb-typescript": "17.0.0",

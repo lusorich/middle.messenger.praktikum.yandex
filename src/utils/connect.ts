@@ -8,7 +8,7 @@ export function connect(mapStateToProps: (state: Indexed) => Indexed) {
     let prevState: any;
 
     return class extends UserComponent {
-      constructor(props: Props) {
+      constructor(props?: Props) {
         prevState = mapStateToProps(store.getState());
 
         super({ ...props, ...prevState });

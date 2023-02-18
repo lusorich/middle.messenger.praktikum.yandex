@@ -1,19 +1,25 @@
 import DialogHeader from '../../components/dialog/dialogHeader/dialogHeader';
-import ChatItem from '../../components/chat/chatItem/chatItem';
-import tpl from './main.template';
-import { compile } from '../../lib/template-engine/compile';
+import ChatList from '../../components/chat/chatList/chatList';
+import tpl from './main.template.hbs';
 import Component from '../../utils/component/component';
 import DialogContent from '../../components/dialog/dialogContent/dialogContent';
 import DialogFooter from '../../components/dialog/dialogFooter/dialogFooter';
-import { store } from 'src/utils/store';
 import Button from 'src/components/button/button';
+import Popup from 'src/components/popup/popup';
+import AddChatForm from 'src/components/forms/add-chat-form/addChatForm';
 
 export default class MainPage extends Component<Record<string, unknown>> {
   init() {
-    this.children.chatItem = new ChatItem();
+    this.children.chatList = new ChatList() as any;
     this.children.dialogHeader = new DialogHeader();
     this.children.dialogContent = new DialogContent();
     this.children.dialogFooter = new DialogFooter();
+
+    this.children.addChatPopup = new Popup({
+      content: new AddChatForm(),
+    });
+
+    this.children.addChatPopup.hide();
 
     this.children.addChatBtn = new Button({
       name: 'addChat',
@@ -21,20 +27,14 @@ export default class MainPage extends Component<Record<string, unknown>> {
       type: 'button',
       text: 'Add chat',
       events: {
-        click: () => console.log('add'),
+        click: () => {
+          this.children.addChatPopup.show();
+        },
       },
     });
-
-    console.log(store.getState());
   }
 
   render() {
-    return this.compile(
-      (context) =>
-        compile(tpl(), {
-          ...context,
-        }),
-      this.props,
-    );
+    return this.compile(tpl, this.props);
   }
 }

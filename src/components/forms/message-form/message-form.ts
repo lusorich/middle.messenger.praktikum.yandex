@@ -1,5 +1,4 @@
-import { compile } from '../../../lib/template-engine/compile';
-import tpl from './message-form.template';
+import tpl from './message-form.template.hbs';
 import Button from '../../button/button';
 import Input from '../../input/input';
 import Component from '../../../utils/component/component';
@@ -49,7 +48,7 @@ export default class MessageForm extends Component<Record<string, unknown>> {
   }
 
   render() {
-    return this.compile((context) => compile(tpl(), { ...context }), {
+    return this.compile(tpl, {
       ...this.props,
       errorMsgText: '',
     });

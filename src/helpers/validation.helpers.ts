@@ -20,6 +20,7 @@ export const ERROR_FIRST_NAME_MSG = 'Ошибка ввода имени';
 export const ERROR_SECOND_NAME_MSG = 'Ошибка ввода фамилии';
 export const ERROR_EMAIL_MSG = 'Ошибка ввода почты';
 export const ERROR_PHONE_MSG = 'Ошибка ввода телефона';
+export const ERROR_CHAT_NAME_MSG = 'Наименование чата не может быть пустым';
 
 export const isLoginValid = (str: string): boolean =>
   isInRange(str.length, 3, 20) &&
@@ -46,11 +47,13 @@ export const isPhoneValid = (str: string): boolean =>
   isContainsOnlyAllowedChars(str, PHONE_REGEXP);
 
 export const isMessageValid = (str: string): boolean => !!str.length;
+export const isChatNameValid = (str: string): boolean => !!str.length;
 
 export const validate = (
   inputElementId: string,
   errorText: string,
   validateFn: (value: string) => boolean,
+  successText?: string,
 ) => {
   const inputElement: HTMLInputElement | null = document.getElementById(
     inputElementId,
@@ -65,8 +68,13 @@ export const validate = (
       errorEl?.classList.add('input__error');
       errorEl!.textContent = errorText;
     } else {
-      errorEl?.classList.add('input__error', 'visually-hidden');
-      errorEl!.textContent = '';
+      if (successText) {
+        errorEl?.classList.add('input__success');
+        errorEl!.textContent = successText;
+      } else {
+        errorEl?.classList.add('input__error', 'visually-hidden');
+        errorEl!.textContent = '';
+      }
     }
   }
 };

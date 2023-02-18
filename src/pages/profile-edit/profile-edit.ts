@@ -1,5 +1,4 @@
-import tpl from './profile-edit.template';
-import { compile } from '../../lib/template-engine/compile';
+import tpl from './profile-edit.template.hbs';
 import Component from '../../utils/component/component';
 import ProfileForm from '../../components/forms/profile-form/profile-form';
 
@@ -11,12 +10,6 @@ Record<string, unknown>
   }
 
   render() {
-    return this.compile(
-      (context) =>
-        compile(tpl(), {
-          ...context,
-        }),
-      this.props,
-    );
+    return this.compile(tpl, this.props);
   }
 }
