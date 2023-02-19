@@ -15,7 +15,7 @@ abstract class Component<T extends Record<string, unknown>> {
 
   private eventBus: () => EventBus;
 
-  protected children: Children = {};
+  protected children: Record<string, any>;
 
   public props: Props = {};
 
@@ -38,11 +38,17 @@ abstract class Component<T extends Record<string, unknown>> {
 
   private _getChildrenAndProps(propsWithChildren: T) {
     const props: Record<string, any> = {};
-    const children: Record<string, Component<T>> = {};
+    const children: Record<string, any> = {};
 
     Object.entries(propsWithChildren).forEach(([key, value]) => {
-      if (value instanceof Component) {
-        children[key] = value;
+      if (
+        Array.isArray(value) &&
+        value.length > 0 &&
+        value.every((v) => v instanceof Component)
+      ) {
+        children[key as string] = value;
+      } else if (value instanceof Component) {
+        children[key as string] = value;
       } else {
         props[key] = value;
       }
@@ -191,7 +197,13 @@ abstract class Component<T extends Record<string, unknown>> {
     const contextAndStubs = { ...context };
 
     Object.entries(this.children).forEach(([name, component]) => {
-      contextAndStubs[name] = `<div data-id="${component.id}"></div>`;
+      if (Array.isArray(component)) {
+        contextAndStubs[name] = component.map(
+          (child) => `<div data-id="${child.id}"></div>`,
+        );
+      } else {
+        contextAndStubs[name] = `<div data-id="${component.id}"></div>`;
+      }
     });
 
     const html = template(contextAndStubs);

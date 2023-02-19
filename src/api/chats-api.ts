@@ -28,6 +28,10 @@ export class ChatsAPI extends BaseAPI {
     return this.http.get('', data);
   }
 
+  deleteChat(data: any) {
+    return this.http.delete('', data);
+  }
+
   request() {}
 }
 

@@ -48,7 +48,8 @@ class ProfilePage extends Component<Record<string, unknown>> {
     this.children.avatar = new Avatar({
       alt: 'Аватар пользователя',
       size: 'xl',
-      src: this.props.avatar ?? '',
+      src:
+        `https://ya-praktikum.tech/api/v2/resources/${this.props.avatar}` ?? '',
     });
   }
 

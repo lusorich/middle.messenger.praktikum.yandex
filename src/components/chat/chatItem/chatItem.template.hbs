@@ -1,0 +1,16 @@
+<div class='wrapper-chat-item {{active}}'>
+  <div class='chat-item'>
+    <div class='chat-item__ava'>{{{chatAvatar}}}</div>
+    <div class='chat-item__info'>
+      <span class='chat-info__title'>{{title}}</span>
+      {{#if last_message}}
+        <p class='chat-info__msg'>{{last_message}}</p>
+      {{else}}
+        <p class='chat-info__msg'>В чат пока никто не написал</p>
+      {{/if}}
+    </div>
+    <div class='chat-item__btn-delete'>
+      {{{deleteChatBtn}}}
+    </div>
+  </div>
+</div>

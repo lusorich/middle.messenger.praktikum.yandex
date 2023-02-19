@@ -78,4 +78,17 @@ export class Router {
   getRoute(pathname: string) {
     return this.routes.find((route) => route.match(pathname));
   }
+
+  getHistoryState(key: string) {
+    return window.history.state?.[key];
+  }
+
+  setHistoryState(value: string[]) {
+    this.history.pushState(
+      {
+        [value[0]]: value[1],
+      },
+      '',
+    );
+  }
 }

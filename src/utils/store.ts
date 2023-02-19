@@ -8,6 +8,7 @@ export enum StoreEvents {
 export const enum ACTIONS {
   'ADD_CHAT',
   'SET_CHATS',
+  'DELETE_CHAT',
 }
 export class Store extends EventBus {
   private state: any = {};
@@ -36,7 +37,7 @@ export class Store extends EventBus {
     this.emit(StoreEvents.Updated, this.getState());
   }
 
-  public dispatch(action: ACTIONS, data: unknown) {
+  public dispatch(action: ACTIONS, data: any) {
     switch (action) {
       case ACTIONS.ADD_CHAT: {
         if (!this.state?.chats?.list) {
@@ -51,6 +52,15 @@ export class Store extends EventBus {
       }
       case ACTIONS.SET_CHATS: {
         this.state.chats.list = data;
+        localStorage.setItem('store', JSON.stringify(this.state));
+        this.emit(StoreEvents.Updated, this.getState());
+
+        break;
+      }
+      case ACTIONS.DELETE_CHAT: {
+        this.state.chats.list = this.state.chats.list.filter(
+          (item: any) => item.id !== data,
+        );
         localStorage.setItem('store', JSON.stringify(this.state));
         this.emit(StoreEvents.Updated, this.getState());
 

@@ -33,6 +33,20 @@ export class ChatsController {
       console.error(e);
     }
   }
+
+  async deleteChat(data: any) {
+    try {
+      const res: any = await this.api.deleteChat(data);
+
+      if (res.status < 200 || res.status > 300) {
+        throw new Error('Ошибка при попытке удалить чат');
+      }
+
+      store.dispatch(ACTIONS.DELETE_CHAT, JSON.parse(data?.data).chatId);
+    } catch (e: any) {
+      console.error(e);
+    }
+  }
 }
 
 export default new ChatsController();

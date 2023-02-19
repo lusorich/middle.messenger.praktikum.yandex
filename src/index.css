@@ -16,6 +16,7 @@
 @import "./pages/404/404.style.css";
 @import "./pages/505/505.style.css";
 @import "./components/chat/chatItem/chatItem.style.css";
+@import "./components/chat/chatListWithDialogs/chatListWithDialogs.style.css";
 @import "./components/dialog/dialogHeader/dialogHeader.style.css";
 @import "./components/dialog/dialogContent/dialogContent.style.css";
 @import "./components/dialog/dialogFooter/dialogFooter.style.css";
@@ -24,3 +25,4 @@
 @import "./components/inputAvatar/inputAvatar.style.css";
 @import "./components/popup/popup.style.css";
 @import "./components/forms/add-chat-form/addChatForm.style.css";
+@import "./components/dialog/dialogBlock/dialogBlock.style.css";
