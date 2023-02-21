@@ -1,10 +1,10 @@
 import tpl from './main.template.hbs';
 import Component from '../../utils/component/component';
-import ChatList from '../../components/chat/chatListWithDialogs/chatListWithDialogs';
+import ChatListWithDialogs from '../../components/chat/chatListWithDialogs/chatListWithDialogs';
 
 export default class MainPage extends Component<Record<string, unknown>> {
   init() {
-    this.children.chatList = new ChatList() as any;
+    this.children.chatList = new ChatListWithDialogs() as any;
   }
 
   render() {

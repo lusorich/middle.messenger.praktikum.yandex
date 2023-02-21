@@ -9,7 +9,13 @@ import DialogBlock from 'src/components/dialog/dialogBlock/dialogBlock';
 import Button from 'src/components/button/button';
 import Link from 'src/components/link/link';
 import Popup from 'src/components/popup/popup';
-import AddChatForm from 'src/components/forms/add-chat-form/addChatForm';
+import PopupForm from 'src/components/forms/popup-form/popupForm';
+import {
+  ERROR_CHAT_NAME_MSG,
+  isChatNameValid,
+} from 'src/helpers/validation.helpers';
+import { store } from 'src/utils/store';
+import MessageController from 'src/controllers/message-controller';
 
 class ChatListWithDialogs extends Component<Record<string, unknown>> {
   init() {
@@ -17,25 +23,32 @@ class ChatListWithDialogs extends Component<Record<string, unknown>> {
       data: '',
     });
 
+    if (
+      this.props?.activeChatId &&
+      this.props?.chatTokens?.[this.props.activeChatId]
+    ) {
+      MessageController.connect(
+        store.getState()?.auth?.id ?? '',
+        this.props.activeChatId,
+        this.props.chatTokens[this.props.activeChatId],
+      );
+    }
+
     this.children.addChatPopup = new Popup({
-      content: new AddChatForm(),
+      content: new PopupForm({
+        name: 'chatName',
+        placeholder: 'Введите наименование чата',
+        errorMsg: ERROR_CHAT_NAME_MSG,
+        inputValidator: isChatNameValid,
+        btnText: 'Сохранить',
+        successMsg: 'Чат успешно добавлен',
+        formType: 'addChat',
+      }),
     });
 
     this.children.dialogBlock = new DialogBlock();
 
-    this.children.chats = this.generateChatList(this.props.list ?? []);
-
-    this.children.addChatBtn = new Button({
-      name: 'addChat',
-      className: 'btn btn--outline',
-      type: 'button',
-      text: 'Add chat',
-      events: {
-        click: () => {
-          this.children.addChatPopup.show();
-        },
-      },
-    });
+    this.children.chats = this.generateChatList(this.props?.list ?? []);
 
     this.children.linkProfile = new Link({
       id: 'link-profile',
@@ -76,14 +89,22 @@ class ChatListWithDialogs extends Component<Record<string, unknown>> {
       (chat: any) =>
         new ChatItem({
           ...chat,
-          activeChatId: this.props.activeChatId,
+          lastMessage: chat?.last_message?.content || null,
+          activeChatId: this.props?.activeChatId ?? '',
           events: {
-            click: () => {
-              this.children.dialogBlock.setProps({
-                title: chat.title,
-                activeChatId: chat?.id || '',
+            click: async () => {
+              store.set('chats', {
+                activeChatId: chat?.id ?? '',
+                title: chat?.title ?? '',
               });
-              this.setProps({ ...this.props, activeChatId: chat?.id || '' });
+
+              const chatToken = await ChatsController.getChatToken(chat?.id);
+
+              MessageController.connect(
+                store.getState()?.auth?.id ?? '',
+                chat?.id ?? '',
+                chatToken ?? '',
+              );
             },
           },
         }),

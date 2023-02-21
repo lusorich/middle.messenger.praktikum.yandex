@@ -1,10 +1,12 @@
+import { Indexed } from 'src/helpers/custom-utility-types';
+import { connect } from 'src/utils/connect';
 import Component, { Props } from '../../../utils/component/component';
 import DialogContent from '../dialogContent/dialogContent';
 import DialogFooter from '../dialogFooter/dialogFooter';
 import DialogHeader from '../dialogHeader/dialogHeader';
 import tpl from './dialogBlock.template.hbs';
 
-export default class DialogBlock extends Component<Record<string, unknown>> {
+class DialogBlock extends Component<Record<string, unknown>> {
   init() {
     this.children.dialogHeader = new DialogHeader(this.props);
     this.children.dialogContent = new DialogContent(this.props);
@@ -23,3 +25,7 @@ export default class DialogBlock extends Component<Record<string, unknown>> {
     return this.compile(tpl, this.props);
   }
 }
+
+export default connect((state) => {
+  return state.chats as Indexed;
+})(DialogBlock);

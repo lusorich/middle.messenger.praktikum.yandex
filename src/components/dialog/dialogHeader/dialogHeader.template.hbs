@@ -1,9 +1,15 @@
 <div class='dialog__header'>
   {{#if activeChatId}}
-    <div class='dialog__header-chat'>
+    <div class='dialog__header-info'>
       <div>Ava</div>
       <span class='header-chat__name'>{{title}}</span>
     </div>
+    <div class='dialog__header-actions'>
+      {{{addUser}}}
+      {{{removeUser}}}
+    </div>
   {{else}}
   {{/if}}
+  {{{addUserPopup}}}
+  {{{removeUserPopup}}}
 </div>

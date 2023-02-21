@@ -1,8 +1,12 @@
 import { EVENTS_T } from './component/component.types';
 import { ValueOf } from '../helpers/custom-utility-types';
 import { StoreEvents } from './store';
+import { WS_EVENTS } from 'src/lib/websocket-transport/websocket-transport';
 
-type T_EVENTS = ValueOf<typeof EVENTS_T> | ValueOf<typeof StoreEvents>;
+type T_EVENTS =
+  | ValueOf<typeof EVENTS_T>
+  | ValueOf<typeof StoreEvents>
+  | WS_EVENTS;
 
 class EventBus {
   private listeners: {

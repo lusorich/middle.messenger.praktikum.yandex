@@ -9,6 +9,7 @@ export const enum ACTIONS {
   'ADD_CHAT',
   'SET_CHATS',
   'DELETE_CHAT',
+  'ADD_CHAT_TOKEN',
 }
 export class Store extends EventBus {
   private state: any = {};
@@ -45,13 +46,15 @@ export class Store extends EventBus {
         }
 
         this.state.chats.list.push(data);
+
         localStorage.setItem('store', JSON.stringify(this.state));
         this.emit(StoreEvents.Updated, this.getState());
 
         break;
       }
       case ACTIONS.SET_CHATS: {
-        this.state.chats.list = data;
+        set(this.state, 'chats.list', data);
+
         localStorage.setItem('store', JSON.stringify(this.state));
         this.emit(StoreEvents.Updated, this.getState());
 
@@ -61,6 +64,19 @@ export class Store extends EventBus {
         this.state.chats.list = this.state.chats.list.filter(
           (item: any) => item.id !== data,
         );
+
+        localStorage.setItem('store', JSON.stringify(this.state));
+        this.emit(StoreEvents.Updated, this.getState());
+
+        break;
+      }
+      case ACTIONS.ADD_CHAT_TOKEN: {
+        if (!this.state.chats.chatTokens) {
+          set(this.state, 'chats.chatTokens', {});
+        }
+
+        this.state.chats.chatTokens[data.chatId] = data.token;
+
         localStorage.setItem('store', JSON.stringify(this.state));
         this.emit(StoreEvents.Updated, this.getState());
 

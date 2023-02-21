@@ -8,8 +8,11 @@ import {
   validate,
   ERROR_MSG_MSG,
 } from '../../../helpers/validation.helpers';
+import MessageController from 'src/controllers/message-controller';
+import { connect } from 'src/utils/connect';
+import { Indexed } from 'src/helpers/custom-utility-types';
 
-export default class MessageForm extends Component<Record<string, unknown>> {
+class MessageForm extends Component<Record<string, unknown>> {
   init() {
     this.setProps({
       ...this.props,
@@ -23,9 +26,11 @@ export default class MessageForm extends Component<Record<string, unknown>> {
 
           if (isValidMessageValue) {
             validate('message', ERROR_MSG_MSG, isMessageValid);
-            console.log({
-              message: inputMessageValue,
-            });
+
+            MessageController.sendMessage(
+              this.props.activeChatId,
+              inputMessageValue,
+            );
           } else {
             validate('message', ERROR_MSG_MSG, isMessageValid);
           }
@@ -54,3 +59,7 @@ export default class MessageForm extends Component<Record<string, unknown>> {
     });
   }
 }
+
+export default connect((state) => {
+  return state.chats as Indexed;
+})(MessageForm);

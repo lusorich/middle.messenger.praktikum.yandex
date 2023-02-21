@@ -6,10 +6,6 @@ import tpl from './chatItem.template.hbs';
 import defaultuserImg from 'src/assets/images/user.png';
 
 export default class ChatItem extends Component<Record<string, unknown>> {
-  constructor(props: Record<string, unknown>) {
-    super({ ...props });
-  }
-
   init() {
     this.children.deleteChatBtn = new Button({
       className: 'btn',
@@ -17,7 +13,10 @@ export default class ChatItem extends Component<Record<string, unknown>> {
       text: 'Delete',
       type: 'button',
       events: {
-        click: () => {
+        click: (e: Event) => {
+          e.preventDefault();
+          e.stopPropagation();
+
           ChatsController.deleteChat({
             data: JSON.stringify({
               chatId: this.props.id,

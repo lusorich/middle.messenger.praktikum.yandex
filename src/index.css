@@ -24,5 +24,5 @@
 @import "./components/avatar/avatar.style.css";
 @import "./components/inputAvatar/inputAvatar.style.css";
 @import "./components/popup/popup.style.css";
-@import "./components/forms/add-chat-form/addChatForm.style.css";
+@import "./components/forms/popup-form/popupForm.style.css";
 @import "./components/dialog/dialogBlock/dialogBlock.style.css";
