@@ -50,7 +50,7 @@ export default class WSTransport extends EventBus {
     });
 
     this.on(WS_EVENTS.Message, () => {
-      console.log('message event', '');
+      console.log('message event');
     });
 
     this.on(WS_EVENTS.Error, () => {
@@ -82,9 +82,8 @@ export default class WSTransport extends EventBus {
       console.log('Connection success');
     };
 
-    socket.onmessage = () => {
-      this.emit(WS_EVENTS.Message);
-      console.log('Message send');
+    socket.onmessage = (e) => {
+      this.emit(WS_EVENTS.Message, e?.data ? JSON.parse(e.data) : '');
     };
 
     socket.onerror = () => {

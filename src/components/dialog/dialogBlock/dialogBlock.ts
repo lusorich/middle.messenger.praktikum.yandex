@@ -15,7 +15,6 @@ class DialogBlock extends Component<Record<string, unknown>> {
 
   protected componentDidUpdate(_prevProps: Props, _nextProps: Props): boolean {
     this.children.dialogHeader = new DialogHeader(this.props);
-    this.children.dialogContent = new DialogContent(this.props);
     this.children.dialogFooter = new DialogFooter(this.props);
 
     return true;

@@ -69,7 +69,7 @@ class ChatListWithDialogs extends Component<Record<string, unknown>> {
       name: 'addChat',
       className: 'btn btn--outline',
       type: 'button',
-      text: 'Add chat',
+      text: 'Добавить чат',
       events: {
         click: () => {
           this.children.addChatPopup.show();

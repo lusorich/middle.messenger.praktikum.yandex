@@ -1,4 +1,7 @@
-import WSTransport from 'src/lib/websocket-transport/websocket-transport';
+import WSTransport, {
+  WS_EVENTS,
+} from 'src/lib/websocket-transport/websocket-transport';
+import { ACTIONS, store } from 'src/utils/store';
 
 export class MessageController {
   private clients: Map<string, WSTransport> = new Map();
@@ -23,6 +26,12 @@ export class MessageController {
     this.clients.set(chatId, client);
 
     await client.connect();
+
+    client.on(WS_EVENTS.Message, (data) => {
+      if (data && data?.type !== 'pong') {
+        store.dispatch(ACTIONS.ADD_MESSAGES, { chatId, messages: data });
+      }
+    });
 
     this.getOldMessages(chatId);
   }
