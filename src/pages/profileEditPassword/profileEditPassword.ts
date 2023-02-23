@@ -1,5 +1,5 @@
 import tpl from './profileEditPassword.template.hbs';
-import Component from '../../utils/component/component';
+import Component, { Props } from '../../utils/component/component';
 import ProfilePasswordForm from '../../components/forms/profilePasswordForm/profilePasswordForm';
 import Avatar from 'src/components/avatar/avatar';
 import { connect } from 'src/utils/connect';
@@ -15,6 +15,21 @@ class ProfileEditPasswordPage extends Component<Record<string, unknown>> {
       src:
         `https://ya-praktikum.tech/api/v2/resources/${this.props.avatar}` ?? '',
     });
+  }
+
+  protected componentDidUpdate(_prevProps: Props, _nextProps: Props): boolean {
+    if (_prevProps.avatar !== _nextProps.avatar) {
+      this.children.avatar = new Avatar({
+        alt: 'Аватар пользователя',
+        size: 'xl',
+        src:
+          `https://ya-praktikum.tech/api/v2/resources/${this.props.avatar}` ??
+          '',
+      });
+
+      return true;
+    }
+    return false;
   }
 
   render() {
