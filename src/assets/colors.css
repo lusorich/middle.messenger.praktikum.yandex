@@ -7,8 +7,10 @@
   --back-block-color: #fbfbfb;
   --border-grey-color: #eaeaea;
   --error-color: #ff0000;
+  --success-color: #428f61;
   --chat-background: #e4edfd;
   --other-msg-background: #f8f8f8;
   --my-msg-background: #e4edfd;
   --input-msg-background: #efefef;
+  --main-blackout: #76a9cb88;
 }

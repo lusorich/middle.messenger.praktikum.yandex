@@ -1,26 +1,13 @@
-import DialogHeader from '../../components/dialog/dialogHeader/dialogHeader';
-import ChatItem from '../../components/chat/chatItem/chatItem';
-import tpl from './main.template';
-import { compile } from '../../lib/template-engine/compile';
+import tpl from './main.template.hbs';
 import Component from '../../utils/component/component';
-import DialogContent from '../../components/dialog/dialogContent/dialogContent';
-import DialogFooter from '../../components/dialog/dialogFooter/dialogFooter';
+import ChatListWithDialogs from '../../components/chat/chatListWithDialogs/chatListWithDialogs';
 
 export default class MainPage extends Component<Record<string, unknown>> {
   init() {
-    this.children.chatItem = new ChatItem();
-    this.children.dialogHeader = new DialogHeader();
-    this.children.dialogContent = new DialogContent();
-    this.children.dialogFooter = new DialogFooter();
+    this.children.chatList = new ChatListWithDialogs() as any;
   }
 
   render() {
-    return this.compile(
-      (context) =>
-        compile(tpl(), {
-          ...context,
-        }),
-      this.props,
-    );
+    return this.compile(tpl, this.props);
   }
 }

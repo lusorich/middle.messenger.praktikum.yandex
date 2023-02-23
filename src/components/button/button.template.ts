@@ -1,4 +1,0 @@
-export default () => `
-  <button id={{ name }} name={{ name }} class="{{ className }}" type={{ type }}>
-    {{ text }}
-  </button>`;

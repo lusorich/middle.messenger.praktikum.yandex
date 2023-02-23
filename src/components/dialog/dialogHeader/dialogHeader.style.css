@@ -1,9 +1,6 @@
 .dialog__header {
   display: flex;
-}
-
-.dialog__header-chat {
-  display: flex;
+  justify-content: space-between;
   gap: 1rem;
   padding-bottom: 0.5rem;
 }
@@ -11,4 +8,10 @@
 .header-chat__name {
   font-size: 1rem;
   font-weight: 600;
+}
+
+.dialog__header-info {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
 }

@@ -1,19 +1,14 @@
-// eslint-disable-next-line no-shadow
-const enum HTTP_METHODS {
-  GET = 'GET',
-  POST = 'POST',
-  PUT = 'PUT',
-  DELETE = 'DELETE',
-}
+import { HTTP_METHODS } from './https-transport.types';
 
 interface REQUEST_OPTIONS {
-  method: HTTP_METHODS;
+  method?: HTTP_METHODS;
   headers?: Record<string, string>;
   data?: XMLHttpRequestBodyInit;
+  isClearHeaders?: boolean;
 }
 
 interface METHOD_OPTIONS extends REQUEST_OPTIONS {
-  timeout: number;
+  timeout?: number;
 }
 
 function queryStringify(data: REQUEST_OPTIONS['data']) {
@@ -28,40 +23,47 @@ function queryStringify(data: REQUEST_OPTIONS['data']) {
   return `?${res.join('&')}`;
 }
 
+const BASE_API_PATH = 'https://ya-praktikum.tech/api/v2';
 export default class HTTPTransport {
-  get = (url: string, options: METHOD_OPTIONS) =>
+  protected endpoint: string;
+
+  constructor(endpoint: string) {
+    this.endpoint = `${BASE_API_PATH}${endpoint}`;
+  }
+
+  get = (url: string, options?: METHOD_OPTIONS) =>
     this.request(
-      url,
+      this.endpoint + url,
       {
         ...options,
         method: HTTP_METHODS.GET,
       },
-      options.timeout,
+      options?.timeout,
     );
 
-  put = (url: string, options: METHOD_OPTIONS) =>
+  put = (url: string, options?: METHOD_OPTIONS) =>
     this.request(
-      url,
+      this.endpoint + url,
       {
         ...options,
         method: HTTP_METHODS.PUT,
       },
-      options.timeout,
+      options?.timeout,
     );
 
-  post = (url: string, options: METHOD_OPTIONS) =>
+  post = (url: string, options?: METHOD_OPTIONS) =>
     this.request(
-      url,
+      this.endpoint + url,
       {
         ...options,
         method: HTTP_METHODS.POST,
       },
-      options.timeout,
+      options?.timeout,
     );
 
   delete = (url: string, options: METHOD_OPTIONS) =>
     this.request(
-      url,
+      this.endpoint + url,
       {
         ...options,
         method: HTTP_METHODS.DELETE,
@@ -70,7 +72,7 @@ export default class HTTPTransport {
     );
 
   request = (url: string, options: REQUEST_OPTIONS, timeout = 5000) => {
-    const { method, data, headers = {} } = options;
+    const { method, data, headers = {}, isClearHeaders = false } = options;
 
     return new Promise((resolve, reject) => {
       if (!method) {
@@ -101,6 +103,10 @@ export default class HTTPTransport {
 
       xhr.timeout = timeout;
       xhr.ontimeout = reject;
+
+      !isClearHeaders &&
+        xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.withCredentials = true;
 
       if (method === HTTP_METHODS.GET || !data) {
         xhr.send();

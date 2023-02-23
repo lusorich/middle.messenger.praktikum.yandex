@@ -1,0 +1,16 @@
+.wrapper-avatar {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+
+  >img {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+  }
+
+  &.s>img {
+    max-width: 2rem;
+    max-height: 2rem;
+  }
+}

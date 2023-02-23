@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import EventBus from '../Event-bus';
+import EventBus from '../event-bus';
 import { EVENTS_T } from './component.types';
 
 export type Props = Record<string, any>;
@@ -15,9 +15,9 @@ abstract class Component<T extends Record<string, unknown>> {
 
   private eventBus: () => EventBus;
 
-  protected children: Children = {};
+  protected children: Record<string, any>;
 
-  protected props: Props = {};
+  public props: Props = {};
 
   constructor(protected propsWithChildren: T = {} as T) {
     const eventBus = new EventBus();
@@ -38,11 +38,17 @@ abstract class Component<T extends Record<string, unknown>> {
 
   private _getChildrenAndProps(propsWithChildren: T) {
     const props: Record<string, any> = {};
-    const children: Record<string, Component<T>> = {};
+    const children: Record<string, any> = {};
 
     Object.entries(propsWithChildren).forEach(([key, value]) => {
-      if (value instanceof Component) {
-        children[key] = value;
+      if (
+        Array.isArray(value) &&
+        value.length > 0 &&
+        value.every((v) => v instanceof Component)
+      ) {
+        children[key as string] = value;
+      } else if (value instanceof Component) {
+        children[key as string] = value;
       } else {
         props[key] = value;
       }
@@ -51,10 +57,15 @@ abstract class Component<T extends Record<string, unknown>> {
     return { props, children };
   }
 
-  protected addEvents(events: Props) {
-    // eslint-disable-next-line no-restricted-syntax
+  private _addEvents(events: Props) {
     for (const [event, cb] of Object.entries(events)) {
       this._element?.addEventListener(event, cb);
+    }
+  }
+
+  private _removeEvents(events: Props): void {
+    for (const [event, cb] of Object.entries(events)) {
+      this._element?.removeEventListener(event, cb);
     }
   }
 
@@ -91,7 +102,7 @@ abstract class Component<T extends Record<string, unknown>> {
     }
   }
 
-  componentDidUpdate(_prevProps: Props, _nextProps: Props) {
+  protected componentDidUpdate(_prevProps: Props, _nextProps: Props) {
     return true;
   }
 
@@ -127,7 +138,8 @@ abstract class Component<T extends Record<string, unknown>> {
     this._element = actualElement;
 
     if (!!this.props?.events) {
-      this.addEvents(this.props.events);
+      this._removeEvents(this.props.events);
+      this._addEvents(this.props.events);
     }
   }
 
@@ -138,8 +150,6 @@ abstract class Component<T extends Record<string, unknown>> {
   }
 
   private _makePropsProxy(props: Record<string, any>) {
-    // Можно и так передать this
-    // Такой способ больше не применяется с приходом ES6+
     const propsProxy = new Proxy(props, {
       get: (target, name: string) => {
         this._checkPrivateMethod(name);
@@ -176,18 +186,24 @@ abstract class Component<T extends Record<string, unknown>> {
   }
 
   show() {
-    if (this.element) this.element.style.display = 'block';
+    if (this.element) this.element.classList.remove('visually-hidden');
   }
 
   hide() {
-    if (this.element) this.element.style.display = 'none';
+    if (this.element) this.element.classList.add('visually-hidden');
   }
 
   protected compile(template: (context: any) => string, context: any) {
     const contextAndStubs = { ...context };
 
     Object.entries(this.children).forEach(([name, component]) => {
-      contextAndStubs[name] = `<div data-id="${component.id}"></div>`;
+      if (Array.isArray(component)) {
+        contextAndStubs[name] = component.map(
+          (child) => `<div data-id="${child.id}"></div>`,
+        );
+      } else {
+        contextAndStubs[name] = `<div data-id="${component.id}"></div>`;
+      }
     });
 
     const html = template(contextAndStubs);
@@ -196,7 +212,7 @@ abstract class Component<T extends Record<string, unknown>> {
 
     temp.innerHTML = html;
 
-    Object.entries(this.children).forEach(([_, component]) => {
+    const replaceStub = (component: Component<Record<string, unknown>>) => {
       const stub = temp.content.querySelector(`[data-id="${component.id}"]`);
 
       if (!stub) {
@@ -206,6 +222,14 @@ abstract class Component<T extends Record<string, unknown>> {
       component.getContent()?.append(...Array.from(stub.childNodes));
 
       stub.replaceWith(component.getContent()!);
+    };
+
+    Object.entries(this.children).forEach(([_, component]) => {
+      if (Array.isArray(component)) {
+        component.forEach(replaceStub);
+      } else {
+        replaceStub(component);
+      }
     });
 
     return temp.content;

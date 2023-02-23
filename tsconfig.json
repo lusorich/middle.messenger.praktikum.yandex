@@ -2,8 +2,23 @@
   "compileOnSave": true,
   "compilerOptions": {
     "baseUrl": "./",
+    "paths": {
+      "src": ["./src/"],
+      "pages": ["./src/pages/"],
+      "app": ["./src/app/"],
+      "assets": ["./src/assets/"],
+      "components": ["./src/components/"],
+      "layouts": ["./src/layouts/"],
+      "lib": ["./src/lib/"],
+      "utils": ["./src/utils/"]
+    },
     "outDir": "dist",
     "removeComments": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "sourceMap": true,
+    "strictNullChecks": true,
     "typeRoots": ["node_modules/@types"],
     "target": "ES2019",
     "module": "commonjs",

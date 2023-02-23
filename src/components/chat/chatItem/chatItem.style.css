@@ -5,11 +5,15 @@
   &:hover {
     background-color: var(--chat-background);
   }
+
+  &.active {
+    background-color: var(--chat-background);
+  }
 }
 
-.wrapper-chat-inner {
+.chat-item {
   display: flex;
-  gap: 0.5rem;
+  flex-wrap: wrap;
   align-items: center;
   padding: 0.8rem 0;
   border-top: 1px solid;
@@ -17,11 +21,14 @@
   border-color: var(--border-grey-color);
 }
 
-.wrapper-chat-ava {
-  flex-grow: 1;
+.chat-item__ava {
+  padding-right: 0.5rem;
 }
 
-.wrapper-chat-info {
+.chat-item__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
   flex-grow: 3;
 }
 
@@ -32,6 +39,9 @@
 .chat-info__title {
   font-size: 1rem;
   font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .chat-info__msg {

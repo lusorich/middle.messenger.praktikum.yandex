@@ -1,0 +1,11 @@
+<div class='dialog__content'>
+  <div class='dialog__content-message-block'>
+    {{#if activeChatId}}
+      {{#each messageList}}
+        {{{this}}}
+      {{/each}}
+    {{else}}
+      Выберите чат
+    {{/if}}
+  </div>
+</div>
