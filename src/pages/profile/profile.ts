@@ -1,5 +1,5 @@
 import Link from '../../components/link/link';
-import Component from '../../utils/component/component';
+import Component, { Props } from '../../utils/component/component';
 import tpl from './profile.template.hbs';
 import AuthController from 'src/controllers/authController';
 import { mainRouter } from 'src/app/app';
@@ -45,12 +45,24 @@ class ProfilePage extends Component<Record<string, unknown>> {
         },
       },
     });
+
     this.children.avatar = new Avatar({
       alt: 'Аватар пользователя',
       size: 'xl',
       src:
         `https://ya-praktikum.tech/api/v2/resources/${this.props.avatar}` ?? '',
     });
+  }
+
+  protected componentDidUpdate(_prevProps: Props, _nextProps: Props): boolean {
+    this.children.avatar = new Avatar({
+      alt: 'Аватар пользователя',
+      size: 'xl',
+      src:
+        `https://ya-praktikum.tech/api/v2/resources/${this.props.avatar}` ?? '',
+    });
+
+    return true;
   }
 
   render() {
