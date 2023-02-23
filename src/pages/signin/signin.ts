@@ -1,5 +1,5 @@
 import tpl from './signin.template.hbs';
-import SignInForm from '../../components/forms/signin-form/signin-form';
+import SignInForm from '../../components/forms/signinForm/signinForm';
 import Link from '../../components/link/link';
 import Component from '../../utils/component/component';
 import { mainRouter } from '../../app/app';

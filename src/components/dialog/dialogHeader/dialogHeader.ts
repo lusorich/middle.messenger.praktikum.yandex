@@ -1,5 +1,5 @@
 import Button from 'src/components/button/button';
-import PopupForm from 'src/components/forms/popup-form/popupForm';
+import PopupForm from 'src/components/forms/popupForm/popupForm';
 import Popup from 'src/components/popup/popup';
 import {
   ERROR_ADD_REMOVE_MSG,

@@ -79,7 +79,6 @@ export default class WSTransport extends EventBus {
   subscribe(socket: WebSocket) {
     socket.onopen = () => {
       this.emit(WS_EVENTS.Open);
-      console.log('Connection success');
     };
 
     socket.onmessage = (e) => {
@@ -88,12 +87,10 @@ export default class WSTransport extends EventBus {
 
     socket.onerror = () => {
       this.emit(WS_EVENTS.Error);
-      console.log('Error');
     };
 
     socket.onclose = () => {
       this.emit(WS_EVENTS.Close);
-      console.log('close');
     };
   }
 }

@@ -1,4 +1,5 @@
 import AuthAPI from 'src/api/auth-api';
+import { AuthSignIn, AuthSignUp } from 'src/api/auth-api.types';
 import { mainRouter } from 'src/app/app';
 import { store } from 'src/utils/store';
 
@@ -9,15 +10,17 @@ export class AuthController {
     this.api = AuthAPI;
   }
 
-  async signin(data: any) {
+  async signin(payload: { data: AuthSignIn }) {
     try {
-      const res: any = await this.api.signin(data);
+      const res: any = await this.api.signin(payload);
 
       if (res.status < 200 || res.status > 300) {
         throw new Error('Ошибка при попытке входа');
       }
 
-      const userInfo: any = await this.api.userInfo();
+      const userInfo: { response: string } = (await this.api.userInfo()) as {
+        response: string;
+      };
 
       store.set('auth', {
         ...JSON.parse(userInfo.response),
@@ -30,15 +33,17 @@ export class AuthController {
     }
   }
 
-  async signup(data: any) {
+  async signup(payload: { data: AuthSignUp }) {
     try {
-      const res: any = await this.api.signup(data);
+      const res: any = await this.api.signup(payload);
 
       if (res.status < 200 || res.status > 300) {
         throw new Error('Ошибка при попытке зарегистрироваться');
       }
 
-      const userInfo: any = await this.api.userInfo();
+      const userInfo: { response: string } = (await this.api.userInfo()) as {
+        response: string;
+      };
 
       store.set('auth', {
         ...JSON.parse(userInfo.response),

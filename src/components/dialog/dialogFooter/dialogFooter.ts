@@ -1,4 +1,4 @@
-import MessageForm from '../../forms/message-form/message-form';
+import MessageForm from '../../forms/messageForm/messageForm';
 import Component from '../../../utils/component/component';
 import tpl from './dialogFooter.template.hbs';
 

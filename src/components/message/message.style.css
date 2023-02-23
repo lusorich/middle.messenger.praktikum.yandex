@@ -1,0 +1,27 @@
+.message {
+  padding: 1rem 0;
+}
+
+.message--left {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.message--right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.message__text {
+  max-width: 40%;
+  border-radius: 0.5rem;
+  padding: 0.8rem;
+
+  &.message__text--others {
+    background-color: var(--other-msg-background);
+  }
+
+  &.message__text--my {
+    background-color: var(--my-msg-background);
+  }
+}

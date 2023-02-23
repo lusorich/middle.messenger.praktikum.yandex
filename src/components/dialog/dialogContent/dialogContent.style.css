@@ -3,6 +3,7 @@
   min-height: 85%;
   border-bottom: 1px solid var(--border-grey-color);
   border-top: 1px solid var(--border-grey-color);
+  overflow-y: auto;
 }
 
 .content-message-block__wrapper-date {

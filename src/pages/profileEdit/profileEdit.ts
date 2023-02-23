@@ -1,6 +1,6 @@
-import tpl from './profile-edit.template.hbs';
+import tpl from './profileEdit.template.hbs';
 import Component from '../../utils/component/component';
-import ProfileForm from '../../components/forms/profile-form/profile-form';
+import ProfileForm from '../../components/forms/profileForm/profileForm';
 
 export default class ProfileEditPage extends Component<
 Record<string, unknown>

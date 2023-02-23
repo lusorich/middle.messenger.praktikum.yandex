@@ -1,3 +1,4 @@
+import { store } from '../store';
 import { Route } from './route';
 
 export class Router {
@@ -49,7 +50,15 @@ export class Router {
   _onRoute(pathname: string) {
     const route = this.getRoute(pathname);
 
+    if (!store.getState()?.auth?.id && pathname !== '/registration') {
+      this._currentRoute = this.getRoute('/signin') as Route;
+      this._currentRoute.render();
+      return;
+    }
+
     if (!route) {
+      this._currentRoute = this.getRoute('/404') as Route;
+      this._currentRoute.render();
       return;
     }
 

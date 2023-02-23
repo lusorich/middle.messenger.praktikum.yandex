@@ -1,4 +1,4 @@
-import tpl from './profile-form.template.hbs';
+import tpl from './profileForm.template.hbs';
 import Component from '../../../utils/component/component';
 import InputWithLabel from '../../inputWithLabel/inputWithLabel';
 import Button from '../../button/button';

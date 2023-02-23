@@ -1,4 +1,11 @@
 import { BaseAPI } from 'src/utils/base-api';
+import {
+  ChatAddUsersParams,
+  ChatDeleteUsersParams,
+  CreateChatBodyParams,
+  DeleteChatBodyParams,
+  GetChatsQueryParams,
+} from './chats-api.types';
 
 const CHATS_API_PATH = '/chats';
 const CHATS_USERS_API_PATH = '/users';
@@ -17,28 +24,32 @@ export class ChatsAPI extends BaseAPI {
     ChatsAPI.__instance = this;
   }
 
-  createChat(data: any) {
-    return this.http.post('', data);
+  createChat(payload: { data: CreateChatBodyParams }) {
+    return this.http.post('', { data: JSON.stringify(payload.data) });
   }
 
-  getChats(data: any) {
-    return this.http.get('', data);
+  getChats(payload: { data?: GetChatsQueryParams }) {
+    return this.http.get('', { data: JSON.stringify(payload?.data ?? '') });
   }
 
   getChatToken(id: string) {
     return this.http.post(`${CHATS_TOKEN_API_PATH}/${id}`);
   }
 
-  deleteChat(data: any) {
-    return this.http.delete('', data);
+  deleteChat(payload: { data: DeleteChatBodyParams }) {
+    return this.http.delete('', { data: JSON.stringify(payload.data) });
   }
 
-  addUsersToChat(data: any) {
-    return this.http.put(CHATS_USERS_API_PATH, data);
+  addUsersToChat(payload: { data: ChatAddUsersParams }) {
+    return this.http.put(CHATS_USERS_API_PATH, {
+      data: JSON.stringify(payload.data),
+    });
   }
 
-  removeUsersFromChat(data: any) {
-    return this.http.delete(CHATS_USERS_API_PATH, data);
+  removeUsersFromChat(payload: { data: ChatDeleteUsersParams }) {
+    return this.http.delete(CHATS_USERS_API_PATH, {
+      data: JSON.stringify(payload.data),
+    });
   }
 
   request() {}

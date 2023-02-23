@@ -1,6 +1,6 @@
 import Avatar from 'src/components/avatar/avatar';
 import Button from 'src/components/button/button';
-import ChatsController from 'src/controllers/chats-controller';
+import ChatsController from 'src/controllers/chatsController';
 import Component from '../../../utils/component/component';
 import tpl from './chatItem.template.hbs';
 import defaultuserImg from 'src/assets/images/user.png';
@@ -18,9 +18,9 @@ export default class ChatItem extends Component<Record<string, unknown>> {
           e.stopPropagation();
 
           ChatsController.deleteChat({
-            data: JSON.stringify({
+            data: {
               chatId: this.props.id,
-            }),
+            },
           });
         },
       },

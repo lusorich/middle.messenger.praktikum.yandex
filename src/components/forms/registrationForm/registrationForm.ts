@@ -1,8 +1,8 @@
-import tpl from './registration-form.template.hbs';
+import tpl from './registrationForm.template.hbs';
 import Component from '../../../utils/component/component';
 import Button from '../../button/button';
 import Input from '../../input/input';
-import { RegistrationFormProps } from './registration-form.types';
+import { RegistrationFormProps } from './registrationForm.types';
 import {
   isLoginValid,
   isPasswordValid,
@@ -17,7 +17,7 @@ import {
   ERROR_PHONE_MSG,
   isPhoneValid,
 } from '../../../helpers/validation.helpers';
-import AuthController from 'src/controllers/auth-controller';
+import AuthController from 'src/controllers/authController';
 
 export default class RegistrationForm extends Component<RegistrationFormProps> {
   init() {
@@ -142,14 +142,14 @@ export default class RegistrationForm extends Component<RegistrationFormProps> {
             isValidPhone
           ) {
             AuthController.signup({
-              data: JSON.stringify({
+              data: {
                 first_name: firstName,
                 second_name: secondName,
                 login,
                 email,
                 password,
                 phone,
-              }),
+              },
             });
           } else {
             validate('first_name', ERROR_FIRST_NAME_MSG, isNameValid);

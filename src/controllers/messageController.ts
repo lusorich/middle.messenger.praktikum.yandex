@@ -28,7 +28,7 @@ export class MessageController {
     await client.connect();
 
     client.on(WS_EVENTS.Message, (data) => {
-      if (data && data?.type !== 'pong') {
+      if (data && data.type === 'message') {
         store.dispatch(ACTIONS.ADD_MESSAGES, { chatId, messages: data });
       }
     });

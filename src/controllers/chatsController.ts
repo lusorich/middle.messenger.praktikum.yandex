@@ -1,4 +1,11 @@
 import ChatsAPI from 'src/api/chats-api';
+import {
+  ChatAddUsersParams,
+  ChatDeleteUsersParams,
+  CreateChatBodyParams,
+  DeleteChatBodyParams,
+  GetChatsQueryParams,
+} from 'src/api/chats-api.types';
 import { ACTIONS, store } from 'src/utils/store';
 
 export class ChatsController {
@@ -8,21 +15,23 @@ export class ChatsController {
     this.api = ChatsAPI;
   }
 
-  async createChat(data: any) {
+  async createChat(payload: { data: CreateChatBodyParams }) {
     try {
-      const res: any = await this.api.createChat(data);
+      const res: any = await this.api.createChat(payload);
 
       if (res.status < 200 || res.status > 300) {
         throw new Error('Ошибка при попытке добавить чат');
       }
+
+      this.getChats();
     } catch (e: any) {
       console.error(e);
     }
   }
 
-  async getChats(data: any) {
+  async getChats(payload?: { data?: GetChatsQueryParams }) {
     try {
-      const res: any = await this.api.getChats(data);
+      const res: any = await this.api.getChats(payload ?? { data: undefined });
 
       if (res.status < 200 || res.status > 300) {
         throw new Error('Ошибка при попытке добавить чат');
@@ -34,23 +43,23 @@ export class ChatsController {
     }
   }
 
-  async deleteChat(data: any) {
+  async deleteChat(payload: { data: DeleteChatBodyParams }) {
     try {
-      const res: any = await this.api.deleteChat(data);
+      const res: any = await this.api.deleteChat(payload);
 
       if (res.status < 200 || res.status > 300) {
         throw new Error('Ошибка при попытке удалить чат');
       }
 
-      store.dispatch(ACTIONS.DELETE_CHAT, JSON.parse(data?.data).chatId);
+      store.dispatch(ACTIONS.DELETE_CHAT, payload.data.chatId);
     } catch (e: any) {
       console.error(e);
     }
   }
 
-  async addUserToChat(data: any) {
+  async addUserToChat(payload: { data: ChatAddUsersParams }) {
     try {
-      const res: any = await this.api.addUsersToChat(data);
+      const res: any = await this.api.addUsersToChat(payload);
 
       if (res.status < 200 || res.status > 300) {
         throw new Error('Ошибка при попытке добавить пользователя в чат');
@@ -60,9 +69,9 @@ export class ChatsController {
     }
   }
 
-  async removeUserFromChat(data: any) {
+  async removeUserFromChat(payload: { data: ChatDeleteUsersParams }) {
     try {
-      const res: any = await this.api.removeUsersFromChat(data);
+      const res: any = await this.api.removeUsersFromChat(payload);
 
       if (res.status < 200 || res.status > 300) {
         throw new Error('Ошибка при попытке удалить пользователя из чата');

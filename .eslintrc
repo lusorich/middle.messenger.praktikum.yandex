@@ -19,7 +19,7 @@
     "sourceType": "module",
     "modules": true
   },
-  "ignorePatterns": ["**/*.css", "**/*.html"],
+  "ignorePatterns": ["**/*.css", "**/*.html", "**/*.hbs", "**/*.png"],
   "rules": {
     "no-undef": "error",
     "no-console": "warn",

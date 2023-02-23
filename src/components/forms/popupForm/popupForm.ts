@@ -3,7 +3,7 @@ import Component from '../../../utils/component/component';
 import Input from 'src/components/input/input';
 import Button from 'src/components/button/button';
 import { validate } from 'src/helpers/validation.helpers';
-import ChatsController from 'src/controllers/chats-controller';
+import ChatsController from 'src/controllers/chatsController';
 
 type Props = {
   name: string;
@@ -61,25 +61,26 @@ export default class PopupForm extends Component<Props> {
             switch (this.props.formType) {
               case 'addChat': {
                 ChatsController.createChat({
-                  data: JSON.stringify({ title: value }),
+                  data: { title: value },
                 });
+
                 break;
               }
               case 'addUser': {
                 ChatsController.addUserToChat({
-                  data: JSON.stringify({
+                  data: {
                     users: [Number(value)],
                     chatId: this.props.activeChatId,
-                  }),
+                  },
                 });
                 break;
               }
               case 'removeUser': {
                 ChatsController.removeUserFromChat({
-                  data: JSON.stringify({
+                  data: {
                     users: [Number(value)],
                     chatId: this.props.activeChatId,
-                  }),
+                  },
                 });
                 break;
               }

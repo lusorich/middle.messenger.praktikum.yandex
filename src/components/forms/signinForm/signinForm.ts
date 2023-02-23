@@ -1,8 +1,8 @@
-import tpl from './signin-form.template.hbs';
+import tpl from './signinForm.template.hbs';
 import Button from '../../button/button';
 import Input from '../../input/input';
 import Component, { Props } from '../../../utils/component/component';
-import { SigninFormProps } from './signin-form.types';
+import { SigninFormProps } from './signinForm.types';
 
 import {
   isLoginValid,
@@ -11,7 +11,7 @@ import {
   ERROR_LOGIN_MSG,
   ERROR_PASSWORD_MSG,
 } from '../../../helpers/validation.helpers';
-import AuthController from 'src/controllers/auth-controller';
+import AuthController from 'src/controllers/authController';
 
 export default class SigninForm extends Component<SigninFormProps> {
   componentDidUpdate(prevProps: Props, nextProps: Props) {
@@ -44,10 +44,10 @@ export default class SigninForm extends Component<SigninFormProps> {
 
           if (isValidLoginValue && isValidPasswordValue) {
             AuthController.signin({
-              data: JSON.stringify({
+              data: {
                 login: inputLoginValue,
                 password: inputPasswordValue,
-              }),
+              },
             });
           } else {
             validate('login', ERROR_LOGIN_MSG, isLoginValid);

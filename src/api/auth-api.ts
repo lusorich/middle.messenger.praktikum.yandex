@@ -1,4 +1,5 @@
 import { BaseAPI } from 'src/utils/base-api';
+import { AuthSignIn, AuthSignUp } from './auth-api.types';
 
 const AUTH_API_PATH = '/auth';
 const AUTH_SIGNIN_API_PATH = '/signin';
@@ -19,12 +20,16 @@ export class AuthAPI extends BaseAPI {
     AuthAPI.__instance = this;
   }
 
-  signin(data: any) {
-    return this.http.post(AUTH_SIGNIN_API_PATH, data);
+  signin(payload: { data: AuthSignIn }) {
+    return this.http.post(AUTH_SIGNIN_API_PATH, {
+      data: JSON.stringify(payload.data),
+    });
   }
 
-  signup(data: any) {
-    return this.http.post(AUTH_SIGNUP_API_PATH, data);
+  signup(payload: { data: AuthSignUp }) {
+    return this.http.post(AUTH_SIGNUP_API_PATH, {
+      data: JSON.stringify(payload.data),
+    });
   }
 
   userInfo() {

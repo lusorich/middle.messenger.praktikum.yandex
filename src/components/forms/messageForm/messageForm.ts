@@ -1,4 +1,4 @@
-import tpl from './message-form.template.hbs';
+import tpl from './messageForm.template.hbs';
 import Button from '../../button/button';
 import Input from '../../input/input';
 import Component from '../../../utils/component/component';
@@ -8,7 +8,7 @@ import {
   validate,
   ERROR_MSG_MSG,
 } from '../../../helpers/validation.helpers';
-import MessageController from 'src/controllers/message-controller';
+import MessageController from 'src/controllers/messageController';
 import { connect } from 'src/utils/connect';
 import { Indexed } from 'src/helpers/custom-utility-types';
 

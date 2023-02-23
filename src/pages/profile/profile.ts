@@ -1,7 +1,7 @@
 import Link from '../../components/link/link';
 import Component from '../../utils/component/component';
 import tpl from './profile.template.hbs';
-import AuthController from 'src/controllers/auth-controller';
+import AuthController from 'src/controllers/authController';
 import { mainRouter } from 'src/app/app';
 import Avatar from 'src/components/avatar/avatar';
 import { connect } from 'src/utils/connect';

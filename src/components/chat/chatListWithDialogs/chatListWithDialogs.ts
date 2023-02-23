@@ -2,26 +2,26 @@ import Component, { Props } from '../../../utils/component/component';
 import tpl from './chatListWithDialogs.template.hbs';
 import { Indexed } from 'src/helpers/custom-utility-types';
 import { connect } from 'src/utils/connect';
-import ChatsController from 'src/controllers/chats-controller';
+import ChatsController from 'src/controllers/chatsController';
 import ChatItem from '../chatItem/chatItem';
 import { mainRouter } from 'src/app/app';
 import DialogBlock from 'src/components/dialog/dialogBlock/dialogBlock';
 import Button from 'src/components/button/button';
 import Link from 'src/components/link/link';
 import Popup from 'src/components/popup/popup';
-import PopupForm from 'src/components/forms/popup-form/popupForm';
+import PopupForm from 'src/components/forms/popupForm/popupForm';
 import {
   ERROR_CHAT_NAME_MSG,
   isChatNameValid,
 } from 'src/helpers/validation.helpers';
-import { store } from 'src/utils/store';
-import MessageController from 'src/controllers/message-controller';
+import { ACTIONS, store } from 'src/utils/store';
+import MessageController from 'src/controllers/messageController';
 
 class ChatListWithDialogs extends Component<Record<string, unknown>> {
   init() {
-    ChatsController.getChats({
-      data: '',
-    });
+    store.dispatch(ACTIONS.DELETE_ACTIVE_CHAT_ID, '');
+
+    ChatsController.getChats();
 
     if (
       this.props?.activeChatId &&

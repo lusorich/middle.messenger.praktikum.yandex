@@ -1,4 +1,4 @@
-import tpl from './profile-password-form.template.hbs';
+import tpl from './profilePasswordForm.template.hbs';
 import Component from '../../../utils/component/component';
 import InputWithLabel from '../../inputWithLabel/inputWithLabel';
 import Button from '../../button/button';
@@ -9,7 +9,9 @@ import {
 } from '../../../helpers/validation.helpers';
 import UserController from 'src/controllers/user-controller';
 
-export default class ProfilePasswordForm extends Component<Record<string, unknown>> {
+export default class ProfilePasswordForm extends Component<
+Record<string, unknown>
+> {
   init() {
     this.children.inputOldPassword = new InputWithLabel({
       labelText: 'Старый пароль',

@@ -11,6 +11,7 @@ export const enum ACTIONS {
   'DELETE_CHAT',
   'ADD_CHAT_TOKEN',
   'ADD_MESSAGES',
+  'DELETE_ACTIVE_CHAT_ID',
 }
 export class Store extends EventBus {
   private state: any = {};
@@ -84,17 +85,28 @@ export class Store extends EventBus {
         break;
       }
       case ACTIONS.ADD_MESSAGES: {
-        if (!this.state.chats.messages[data.chatId]) {
+        if (!this.state.chats.messages?.[data.chatId]) {
           set(this.state, `chats.messages.${data.chatId}`, []);
         }
 
         if (Array.isArray(data?.messages)) {
-          this.state.chats.messages[data.chatId].push(...data.messages);
+          data?.messages.forEach((message) => {
+            if (!this.state.chats.messages[data.chatId].includes(message.id)) {
+              this.state.chats.messages[data.chatId].push(message);
+            }
+          });
         } else {
           this.state.chats.messages[data.chatId].push(data.messages);
         }
 
         localStorage.setItem('store', JSON.stringify(this.state));
+        this.emit(StoreEvents.Updated, this.getState());
+
+        break;
+      }
+      case ACTIONS.DELETE_ACTIVE_CHAT_ID: {
+        set(this.state, 'chats.activeChatId', '');
+
         this.emit(StoreEvents.Updated, this.getState());
 
         break;
