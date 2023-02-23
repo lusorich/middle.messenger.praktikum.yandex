@@ -1,4 +1,4 @@
-import EventBus from 'src/utils/event-bus';
+import EventBus from 'src/utils/Event-bus';
 
 const BASE_API_PATH = 'wss://ya-praktikum.tech/ws/chats/';
 

@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import EventBus from 'src/utils/event-bus';
+import EventBus from 'src/utils/Event-bus';
 import { EVENTS_T } from './component.types';
 
 export type Props = Record<string, any>;
