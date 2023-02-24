@@ -1,4 +1,4 @@
-[![Tests](https://github.com/lusorich/middle.messenger.praktikum.yandex/actions/workflows/tests.yml/badge.svg?branch=sprint_2)](https://github.com/lusorich/middle.messenger.praktikum.yandex/actions/workflows/tests.yml)
+[![Tests](https://github.com/lusorich/middle.messenger.praktikum.yandex/actions/workflows/tests.yml/badge.svg)](https://github.com/lusorich/middle.messenger.praktikum.yandex/actions/workflows/tests.yml)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/edd7dee2-adbe-4f32-a737-6e2f34eb4596/deploy-status)](https://app.netlify.com/sites/deft-jelly-669969/deploys)
 
 ## [Проект на Netlify](https://deft-jelly-669969.netlify.app/)
