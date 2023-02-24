@@ -56,6 +56,14 @@ export class Router {
       return;
     }
 
+    if (
+      store.getState()?.auth?.id &&
+      ['/registration', '/signin'].includes(pathname)
+    ) {
+      this.go('/');
+      return;
+    }
+
     if (!route) {
       this._currentRoute = this.getRoute('/404') as Route;
       this._currentRoute.render();
