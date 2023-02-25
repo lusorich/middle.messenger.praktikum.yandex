@@ -26,7 +26,6 @@ p {
 main {
   min-width: 320px;
   height: 100vh;
-  padding-top: 1rem;
   overflow: hidden;
 }
 
