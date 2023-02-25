@@ -14,7 +14,10 @@ export class AuthController {
     try {
       const res: any = await this.api.signin(payload);
 
-      if (res.status < 200 || res.status > 300) {
+      if (
+        (res.status < 200 || res.status > 300) &&
+        JSON.parse(res.response)?.reason !== 'User already in system'
+      ) {
         throw new Error('Ошибка при попытке входа');
       }
 
