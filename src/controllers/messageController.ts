@@ -18,6 +18,7 @@ export class MessageController {
 
   async connect(userId: string, chatId: string, chatToken: string) {
     if (this.clients.has(chatId)) {
+      this.getOldMessages(chatId);
       return;
     }
 
