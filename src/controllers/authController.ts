@@ -77,7 +77,7 @@ export class AuthController {
         isSignin: false,
       });
 
-      mainRouter.go('/signin');
+      mainRouter.go(PAGE_PATHS.SIGNIN);
     } catch (e: any) {
       console.error(e);
     }
