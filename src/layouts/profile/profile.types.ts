@@ -1,5 +1,5 @@
 import Component from '../../utils/component/component';
 
 export type ProfileLayoutProps = {
-  content: Component;
+  content: Component<Record<string, unknown>>;
 };

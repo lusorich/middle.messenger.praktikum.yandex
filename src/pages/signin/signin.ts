@@ -11,7 +11,7 @@ export default class SigninPage extends Component<Record<string, unknown>> {
     });
     this.children.registrationLink = new Link({
       id: 'link-registration',
-      href: '/registration',
+      href: '/sign-up',
       text: 'Регистрация',
       className: 'link',
       events: {

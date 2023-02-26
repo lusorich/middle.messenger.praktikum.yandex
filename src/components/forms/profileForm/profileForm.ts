@@ -76,11 +76,12 @@ class ProfileForm extends Component<Record<string, unknown>> {
   init() {
     this.children.inputFirstName = new InputWithLabel({
       labelText: 'Имя',
-      placeholder: this.props.first_name ?? 'Введите имя',
+      value: this.props.first_name ?? '',
       name: 'first_name',
       wrapperClassName: 'wrapper-profile-form',
       inputClassName: 'input input-form',
       type: 'text',
+      placeholder: 'Введите имя',
       events: {
         blur: () => {
           validate('first_name', ERROR_FIRST_NAME_MSG, isNameValid);
@@ -92,7 +93,8 @@ class ProfileForm extends Component<Record<string, unknown>> {
     });
     this.children.inputSecondName = new InputWithLabel({
       labelText: 'Фамилия',
-      placeholder: this.props.second_name ?? 'Введите фамилию',
+      value: this.props.second_name ?? '',
+      placeholder: 'Введите фамилию',
       name: 'second_name',
       wrapperClassName: 'wrapper-profile-form',
       inputClassName: 'input input-form',
@@ -108,7 +110,8 @@ class ProfileForm extends Component<Record<string, unknown>> {
     });
     this.children.inputDisplayName = new InputWithLabel({
       labelText: 'Отображаемое имя',
-      placeholder: this.props.display_name ?? 'Введите отображаемое имя',
+      value: this.props.display_name ?? '',
+      placeholder: 'Введите отображаемое имя',
       name: 'display_name',
       wrapperClassName: 'wrapper-profile-form',
       inputClassName: 'input input-form',
@@ -124,7 +127,8 @@ class ProfileForm extends Component<Record<string, unknown>> {
     });
     this.children.inputLogin = new InputWithLabel({
       labelText: 'Логин',
-      placeholder: this.props.login ?? 'Введите логин',
+      value: this.props.login ?? '',
+      placeholder: 'Введите логин',
       name: 'login',
       wrapperClassName: 'wrapper-profile-form',
       inputClassName: 'input input-form',
@@ -140,7 +144,8 @@ class ProfileForm extends Component<Record<string, unknown>> {
     });
     this.children.inputEmail = new InputWithLabel({
       labelText: 'Почта',
-      placeholder: this.props.email ?? 'Введите почту',
+      value: this.props.email ?? '',
+      placeholder: 'Введите почту',
       name: 'email',
       wrapperClassName: 'wrapper-profile-form',
       inputClassName: 'input input-form',
@@ -156,7 +161,8 @@ class ProfileForm extends Component<Record<string, unknown>> {
     });
     this.children.inputPhone = new InputWithLabel({
       labelText: 'Телефон',
-      placeholder: this.props.phone ?? 'Введите телефон',
+      value: this.props.phone ?? '',
+      placeholder: 'Введите телефон',
       name: 'phone',
       type: 'tel',
       wrapperClassName: 'wrapper-profile-form',

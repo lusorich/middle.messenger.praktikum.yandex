@@ -4,6 +4,7 @@ import ChatsController from 'src/controllers/chatsController';
 import Component from '../../../utils/component/component';
 import tpl from './chatItem.template.hbs';
 import defaultuserImg from 'src/assets/images/user.png';
+import { BASE_URL } from 'src/app/app.constants';
 
 export default class ChatItem extends Component<Record<string, unknown>> {
   init() {
@@ -30,7 +31,7 @@ export default class ChatItem extends Component<Record<string, unknown>> {
       size: 's',
       alt: 'Аватар чата',
       src: this.props.avatar
-        ? `https://ya-praktikum.tech/api/v2/resources/${this.props.avatar}`
+        ? `${BASE_URL}/resources/${this.props.avatar}`
         : defaultuserImg,
     });
   }

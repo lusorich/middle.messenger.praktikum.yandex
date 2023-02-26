@@ -1,8 +1,8 @@
-import tpl from './main.template.hbs';
+import tpl from './messenger.template.hbs';
 import Component from '../../utils/component/component';
 import ChatListWithDialogs from '../../components/chat/chatListWithDialogs/chatListWithDialogs';
 
-export default class MainPage extends Component<Record<string, unknown>> {
+export default class MessengerPage extends Component<Record<string, unknown>> {
   init() {
     this.children.chatList = new ChatListWithDialogs() as any;
   }

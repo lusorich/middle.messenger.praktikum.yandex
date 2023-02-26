@@ -4,6 +4,7 @@ import ProfilePasswordForm from '../../components/forms/profilePasswordForm/prof
 import Avatar from 'src/components/avatar/avatar';
 import { connect } from 'src/utils/connect';
 import { Indexed } from 'src/helpers/custom-utility-types';
+import { BASE_URL } from 'src/app/app.constants';
 
 class ProfileEditPasswordPage extends Component<Record<string, unknown>> {
   init() {
@@ -12,8 +13,7 @@ class ProfileEditPasswordPage extends Component<Record<string, unknown>> {
     this.children.avatar = new Avatar({
       alt: 'Аватар пользователя',
       size: 'xl',
-      src:
-        `https://ya-praktikum.tech/api/v2/resources/${this.props.avatar}` ?? '',
+      src: `${BASE_URL}/resources/${this.props.avatar}` ?? '',
     });
   }
 
@@ -22,9 +22,7 @@ class ProfileEditPasswordPage extends Component<Record<string, unknown>> {
       this.children.avatar = new Avatar({
         alt: 'Аватар пользователя',
         size: 'xl',
-        src:
-          `https://ya-praktikum.tech/api/v2/resources/${this.props.avatar}` ??
-          '',
+        src: `${BASE_URL}/resources/${this.props.avatar}` ?? '',
       });
 
       return true;

@@ -6,36 +6,37 @@ import { mainRouter } from 'src/app/app';
 import Avatar from 'src/components/avatar/avatar';
 import { connect } from 'src/utils/connect';
 import { Indexed } from 'src/helpers/custom-utility-types';
+import { BASE_URL, PAGE_PATHS } from 'src/app/app.constants';
 
 class ProfilePage extends Component<Record<string, unknown>> {
   init() {
     this.children.editDataLink = new Link({
       id: 'link-profile-edit',
-      href: '/edit',
+      href: `${PAGE_PATHS.PROFILE_EDIT}`,
       text: 'Изменить данные',
       className: 'link link-border-bottom',
       events: {
         click: (e: Event) => {
           e.preventDefault();
-          mainRouter.go('/profile/edit');
+          mainRouter.go(`${PAGE_PATHS.PROFILE_EDIT}`);
         },
       },
     });
     this.children.editPasswordLink = new Link({
       id: 'link-profile-password-edit',
-      href: '/edit-password',
+      href: `${PAGE_PATHS.PROFILE_EDIT_PASSWORD}`,
       text: 'Изменить пароль',
       className: 'link link-border-bottom',
       events: {
         click: (e: Event) => {
           e.preventDefault();
-          mainRouter.go('/profile/edit-password');
+          mainRouter.go(`${PAGE_PATHS.PROFILE_EDIT_PASSWORD}`);
         },
       },
     });
     this.children.exitLink = new Link({
       id: 'link-profile-signin',
-      href: '/signin',
+      href: `${PAGE_PATHS.SIGNIN}`,
       text: 'Выйти',
       className: 'link link--red',
       events: {
@@ -49,8 +50,7 @@ class ProfilePage extends Component<Record<string, unknown>> {
     this.children.avatar = new Avatar({
       alt: 'Аватар пользователя',
       size: 'xl',
-      src:
-        `https://ya-praktikum.tech/api/v2/resources/${this.props.avatar}` ?? '',
+      src: `${BASE_URL}/resources/${this.props.avatar}` ?? '',
     });
   }
 
@@ -58,8 +58,7 @@ class ProfilePage extends Component<Record<string, unknown>> {
     this.children.avatar = new Avatar({
       alt: 'Аватар пользователя',
       size: 'xl',
-      src:
-        `https://ya-praktikum.tech/api/v2/resources/${this.props.avatar}` ?? '',
+      src: `${BASE_URL}/resources/${this.props.avatar}` ?? '',
     });
 
     return true;

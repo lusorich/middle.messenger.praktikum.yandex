@@ -3,7 +3,7 @@
   flex-grow: 1;
   position: relative;
 
-  > .input__error {
+  >.input__error {
     color: var(--error-color);
     position: absolute;
     top: 3rem;
