@@ -10,7 +10,7 @@ import {
 import UserController from 'src/controllers/userController';
 
 export default class ProfilePasswordForm extends Component<
-  Record<string, unknown>
+Record<string, unknown>
 > {
   init() {
     this.children.inputOldPassword = new InputWithLabel({

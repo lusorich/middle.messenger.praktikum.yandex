@@ -2,7 +2,7 @@ import AuthAPI from 'src/api/auth-api';
 import { AuthSignIn, AuthSignUp } from 'src/api/auth-api.types';
 import { mainRouter } from 'src/app/app';
 import { PAGE_PATHS } from 'src/app/app.constants';
-import { store } from 'src/utils/store';
+import { ACTIONS, store } from 'src/utils/store';
 
 export class AuthController {
   private readonly api: typeof AuthAPI;
@@ -35,6 +35,8 @@ export class AuthController {
         isSignin: true,
       });
 
+      store.dispatch(ACTIONS.CLEAR_CHATS_STATE, {});
+
       mainRouter.go('/');
     } catch (e: any) {
       console.error(e);
@@ -57,6 +59,8 @@ export class AuthController {
         ...JSON.parse(userInfo.response),
         isSignin: true,
       });
+
+      store.dispatch(ACTIONS.CLEAR_CHATS_STATE, {});
 
       mainRouter.go('/');
     } catch (e: any) {
