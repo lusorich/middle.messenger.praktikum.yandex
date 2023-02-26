@@ -6,8 +6,9 @@ import { InputWithLabelProps } from './inputWithLabel.types';
 export default class InputWithLabel extends Component<InputWithLabelProps> {
   init() {
     this.children.input = new Input({
-      placeholder: this.props.placeholder,
+      value: this.props.value,
       name: this.props.name,
+      placeholder: this.props.placeholder,
       className: this.props.inputClassName,
       type: this.props.type,
       events: this.props.events,

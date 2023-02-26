@@ -1,7 +1,7 @@
 @import "./pages/signin/signin.style.css";
 @import "./components/forms/signinForm/signinForm.style.css";
 @import "./components/forms/registrationForm/registrationForm.style.css";
-@import "./pages/main/main.style.css";
+@import "./pages/messenger/messenger.style.css";
 @import "./app/app.style.css";
 @import "./pages/profile/profile.style.css";
 @import "./layouts/profile/profile.style.css";

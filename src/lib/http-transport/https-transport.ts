@@ -1,3 +1,4 @@
+import { BASE_URL } from 'src/app/app.constants';
 import { HTTP_METHODS } from './https-transport.types';
 
 interface REQUEST_OPTIONS {
@@ -23,12 +24,11 @@ function queryStringify(data: REQUEST_OPTIONS['data']) {
   return `?${res.join('&')}`;
 }
 
-const BASE_API_PATH = 'https://ya-praktikum.tech/api/v2';
 export default class HTTPTransport {
   protected endpoint: string;
 
   constructor(endpoint: string) {
-    this.endpoint = `${BASE_API_PATH}${endpoint}`;
+    this.endpoint = `${BASE_URL}${endpoint}`;
   }
 
   get = (url: string, options?: METHOD_OPTIONS) =>

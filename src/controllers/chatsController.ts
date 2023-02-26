@@ -58,14 +58,10 @@ export class ChatsController {
   }
 
   async addUserToChat(payload: { data: ChatAddUsersParams }) {
-    try {
-      const res: any = await this.api.addUsersToChat(payload);
+    const res: any = await this.api.addUsersToChat(payload);
 
-      if (res.status < 200 || res.status > 300) {
-        throw new Error('Ошибка при попытке добавить пользователя в чат');
-      }
-    } catch (e: any) {
-      console.error(e);
+    if (res.status < 200 || res.status > 300) {
+      throw new Error('Ошибка при попытке добавить пользователя в чат');
     }
   }
 

@@ -3,7 +3,7 @@ import ProfilePage from '../pages/profile/profile';
 import UnauthorizedLayout from '../layouts/unauthorized/unauthorized';
 import SigninPage from '../pages/signin/signin';
 import RegistrationPage from '../pages/registration/registration';
-import MainPage from '../pages/main/main';
+import MainPage from '../pages/messenger/messenger';
 import ProfileLayout from '../layouts/profile/profile';
 import ProfileEditPage from '../pages/profileEdit/profileEdit';
 import ProfileEditPasswordPage from '../pages/profileEditPassword/profileEditPassword';

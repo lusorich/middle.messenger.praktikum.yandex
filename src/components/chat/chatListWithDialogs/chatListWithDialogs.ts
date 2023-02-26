@@ -16,6 +16,7 @@ import {
 } from 'src/helpers/validation.helpers';
 import { ACTIONS, store } from 'src/utils/store';
 import MessageController from 'src/controllers/messageController';
+import { PAGE_PATHS } from 'src/app/app.constants';
 
 class ChatListWithDialogs extends Component<Record<string, unknown>> {
   init() {
@@ -52,13 +53,13 @@ class ChatListWithDialogs extends Component<Record<string, unknown>> {
 
     this.children.linkProfile = new Link({
       id: 'link-profile',
-      href: '/profile',
+      href: `${PAGE_PATHS.PROFILE}`,
       text: 'Профиль',
       className: 'link-profile',
       events: {
         click: (e: Event) => {
           e.preventDefault();
-          mainRouter.go('/profile');
+          mainRouter.go(PAGE_PATHS.PROFILE);
         },
       },
     });

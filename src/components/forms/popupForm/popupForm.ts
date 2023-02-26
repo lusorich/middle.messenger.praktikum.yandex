@@ -50,7 +50,7 @@ export default class PopupForm extends Component<Props> {
     this.setProps({
       ...this.props,
       events: {
-        submit: (e: SubmitEvent) => {
+        submit: async (e: SubmitEvent) => {
           e.preventDefault();
           const formData = new FormData(e.target as HTMLFormElement);
 
@@ -67,12 +67,22 @@ export default class PopupForm extends Component<Props> {
                 break;
               }
               case 'addUser': {
-                ChatsController.addUserToChat({
-                  data: {
-                    users: [Number(value)],
-                    chatId: this.props.activeChatId,
-                  },
-                });
+                try {
+                  await ChatsController.addUserToChat({
+                    data: {
+                      users: [Number(value)],
+                      chatId: this.props.activeChatId,
+                    },
+                  });
+                } catch (error) {
+                  validate(
+                    this.props.name,
+                    'Не удалось добавить пользователя',
+                    () => false,
+                    this.props.successMsg,
+                  );
+                  return;
+                }
                 break;
               }
               case 'removeUser': {
@@ -108,8 +118,8 @@ export default class PopupForm extends Component<Props> {
 
   render() {
     return this.compile(tpl, {
-      ...this.props,
       errorText: '',
+      ...this.props,
     });
   }
 }

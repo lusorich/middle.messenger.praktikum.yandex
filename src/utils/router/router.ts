@@ -50,17 +50,14 @@ export class Router {
   _onRoute(pathname: string) {
     const route = this.getRoute(pathname);
 
-    if (!store.getState()?.auth?.id && pathname !== '/registration') {
-      this._currentRoute = this.getRoute('/signin') as Route;
+    if (!store.getState()?.auth?.id && pathname !== '/sign-up') {
+      this._currentRoute = this.getRoute('/') as Route;
       this._currentRoute.render();
       return;
     }
 
-    if (
-      store.getState()?.auth?.id &&
-      ['/registration', '/signin'].includes(pathname)
-    ) {
-      this.go('/');
+    if (store.getState()?.auth?.id && ['/sign-up', '/'].includes(pathname)) {
+      this.go('/messenger');
       return;
     }
 

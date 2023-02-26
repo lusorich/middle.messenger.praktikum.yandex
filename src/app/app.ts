@@ -1,4 +1,4 @@
-import MainPage from 'src/pages/main/main';
+import MessengerPage from 'src/pages/messenger/messenger';
 import { Router } from 'src/utils/router/router';
 import SigninPage from 'src/pages/signin/signin';
 import UnauthorizedLayout from 'src/layouts/unauthorized/unauthorized';
@@ -13,56 +13,22 @@ import Page505 from 'src/pages/505/505';
 export const mainRouter = new Router('#root');
 
 mainRouter
-  .use('/', MainPage)
-  .use('/signin', UnauthorizedLayout, {
+  .use('/', UnauthorizedLayout, {
     content: new SigninPage(),
   })
-  .use('/registration', UnauthorizedLayout, {
+  .use('/messenger', MessengerPage)
+  .use('/sign-up', UnauthorizedLayout, {
     content: new RegistrationPage(),
   })
-  .use('/profile', ProfileLayout, {
+  .use('/settings', ProfileLayout, {
     content: new ProfilePage(),
   })
-  .use('/profile/edit', ProfileLayout, {
+  .use('/settings/edit', ProfileLayout, {
     content: new ProfileEditPage(),
   })
-  .use('/profile/edit-password', ProfileLayout, {
+  .use('/settings/edit-password', ProfileLayout, {
     content: new ProfileEditPasswordPage(),
   })
   .use('/404', Page404)
   .use('/505', Page505)
   .start();
-
-const navMain = document.querySelector('#nav-main');
-const navSignin = document.querySelector('#nav-signin');
-const navReg = document.querySelector('#nav-registration');
-const navProfile = document.querySelector('#nav-profile');
-const navProfileEdit = document.querySelector('#nav-profile-edit');
-const navProfileEditPassword = document.querySelector(
-  '#nav-profile-edit-password',
-);
-
-navMain?.addEventListener('click', (e) => {
-  e.preventDefault();
-  mainRouter.go('/');
-});
-navSignin?.addEventListener('click', (e) => {
-  e.preventDefault();
-  mainRouter.go('/signin');
-});
-navReg?.addEventListener('click', (e) => {
-  e.preventDefault();
-  mainRouter.go('/registration');
-});
-navProfile?.addEventListener('click', (e) => {
-  e.preventDefault();
-  mainRouter.go('/profile');
-});
-navProfileEdit?.addEventListener('click', (e) => {
-  e.preventDefault();
-  mainRouter.go('/profile/edit');
-});
-navProfileEditPassword?.addEventListener('click', (e) => {
-  e.preventDefault();
-  mainRouter.go('/profile/edit-password');
-});
