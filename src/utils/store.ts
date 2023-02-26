@@ -12,6 +12,7 @@ export const enum ACTIONS {
   'ADD_CHAT_TOKEN',
   'ADD_MESSAGES',
   'DELETE_ACTIVE_CHAT_ID',
+  'CLEAR_CHATS_STATE',
 }
 export class Store extends EventBus {
   private state: any = {};
@@ -106,6 +107,13 @@ export class Store extends EventBus {
       }
       case ACTIONS.DELETE_ACTIVE_CHAT_ID: {
         set(this.state, 'chats.activeChatId', '');
+
+        this.emit(StoreEvents.Updated, this.getState());
+
+        break;
+      }
+      case ACTIONS.CLEAR_CHATS_STATE: {
+        this.state.chats = {};
 
         this.emit(StoreEvents.Updated, this.getState());
 
