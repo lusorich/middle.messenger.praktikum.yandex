@@ -35,7 +35,7 @@ class DialogContent extends Component<Record<string, unknown>> {
     return this.compile(tpl, this.props);
   }
 
-  generateMessageList(messages) {
+  generateMessageList(messages: Record<string, unknown>[]) {
     return messages.map((message) => {
       return new Message({
         message,
