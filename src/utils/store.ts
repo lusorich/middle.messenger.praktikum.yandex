@@ -92,7 +92,11 @@ export class Store extends EventBus {
 
         if (Array.isArray(data?.messages)) {
           data?.messages.forEach((message: Record<string, unknown>) => {
-            if (!this.state.chats.messages[data.chatId].includes(message.id)) {
+            if (
+              !this.state.chats.messages[data.chatId].find(
+                (item: Record<string, unknown>) => item?.id === message.id,
+              )
+            ) {
               this.state.chats.messages[data.chatId].push(message);
             }
           });

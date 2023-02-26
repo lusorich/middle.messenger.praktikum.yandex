@@ -25,27 +25,27 @@ const fieldUpdate = {
     dataProp: 'avatar',
   },
   inputFirstName: {
-    componentProp: 'placeholder',
+    componentProp: 'value',
     dataProp: 'first_name',
   },
   inputSecondName: {
-    componentProp: 'placeholder',
+    componentProp: 'value',
     dataProp: 'second_name',
   },
   inputDisplayName: {
-    componentProp: 'placeholder',
+    componentProp: 'value',
     dataProp: 'display_name',
   },
   inputLogin: {
-    componentProp: 'placeholder',
+    componentProp: 'value',
     dataProp: 'login',
   },
   inputEmail: {
-    componentProp: 'placeholder',
+    componentProp: 'value',
     dataProp: 'email',
   },
   inputPhone: {
-    componentProp: 'placeholder',
+    componentProp: 'value',
     dataProp: 'phone',
   },
 };

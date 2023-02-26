@@ -31,6 +31,12 @@ export class MessageController {
       if (data && data.type === 'message') {
         store.dispatch(ACTIONS.ADD_MESSAGES, { chatId, messages: data });
       }
+      if (Array.isArray(data)) {
+        store.dispatch(ACTIONS.ADD_MESSAGES, {
+          chatId,
+          messages: data?.reverse(),
+        });
+      }
     });
 
     this.getOldMessages(chatId);
