@@ -1,6 +1,7 @@
 .input {
   font-size: 0.8rem;
   color: var(--input-text-color);
+  text-overflow: ellipsis;
 
   &:focus {
     outline: none;
