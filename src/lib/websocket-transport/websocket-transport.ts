@@ -1,6 +1,6 @@
 import EventBus from 'src/utils/Event-bus';
 
-const BASE_URL = 'wss://ya-praktikum.tech/ws/chats/';
+const BASE_WS_PATH = 'wss://ya-praktikum.tech/ws/chats/';
 
 export const enum WS_EVENTS {
   Open = 'open',
@@ -19,7 +19,7 @@ export default class WSTransport extends EventBus {
   constructor(userId: string, public chatId: string, tokenValue: string) {
     super();
 
-    this.endpoint = `${BASE_URL}/${userId}/${chatId}/${tokenValue}`;
+    this.endpoint = `${BASE_WS_PATH}/${userId}/${chatId}/${tokenValue}`;
   }
 
   private setupPing() {
