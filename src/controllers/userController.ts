@@ -1,5 +1,6 @@
 import UserAPI from 'src/api/user-api';
 import { mainRouter } from 'src/app/app';
+import { PAGE_PATHS } from 'src/app/app.constants';
 import { store } from 'src/utils/store';
 
 export class UserController {
@@ -22,7 +23,7 @@ export class UserController {
         isSignin: true,
       });
 
-      mainRouter.go('/profile');
+      mainRouter.go(PAGE_PATHS.SETTINGS);
     } catch (e: any) {
       console.error(e);
     }
@@ -36,7 +37,7 @@ export class UserController {
         throw new Error('Ошибка при попытке изменения пароля');
       }
 
-      mainRouter.go('/profile');
+      mainRouter.go(PAGE_PATHS.SETTINGS);
     } catch (e: any) {
       console.error(e);
     }

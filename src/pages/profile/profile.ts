@@ -12,25 +12,25 @@ class ProfilePage extends Component<Record<string, unknown>> {
   init() {
     this.children.editDataLink = new Link({
       id: 'link-profile-edit',
-      href: `${PAGE_PATHS.PROFILE_EDIT}`,
+      href: `${PAGE_PATHS.SETTINGS_EDIT}`,
       text: 'Изменить данные',
       className: 'link link-border-bottom',
       events: {
         click: (e: Event) => {
           e.preventDefault();
-          mainRouter.go(`${PAGE_PATHS.PROFILE_EDIT}`);
+          mainRouter.go(`${PAGE_PATHS.SETTINGS_EDIT}`);
         },
       },
     });
     this.children.editPasswordLink = new Link({
       id: 'link-profile-password-edit',
-      href: `${PAGE_PATHS.PROFILE_EDIT_PASSWORD}`,
+      href: `${PAGE_PATHS.SETTINGS_EDIT_PASSWORD}`,
       text: 'Изменить пароль',
       className: 'link link-border-bottom',
       events: {
         click: (e: Event) => {
           e.preventDefault();
-          mainRouter.go(`${PAGE_PATHS.PROFILE_EDIT_PASSWORD}`);
+          mainRouter.go(`${PAGE_PATHS.SETTINGS_EDIT_PASSWORD}`);
         },
       },
     });

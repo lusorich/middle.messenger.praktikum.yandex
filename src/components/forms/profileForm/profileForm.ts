@@ -14,7 +14,7 @@ import {
   isPhoneValid,
   validate,
 } from '../../../helpers/validation.helpers';
-import UserController from 'src/controllers/user-controller';
+import UserController from 'src/controllers/userController';
 import InputAvatar from 'src/components/inputAvatar/inputAvatar';
 import { connect } from 'src/utils/connect';
 import { Indexed } from 'src/helpers/custom-utility-types';

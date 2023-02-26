@@ -20,13 +20,13 @@ export const getPageByPath: {
     new UnauthorizedLayout({
       content: new RegistrationPage({}),
     }).getContent(),
-  [PAGE_PATHS.PROFILE]: () =>
+  [PAGE_PATHS.SETTINGS]: () =>
     new ProfileLayout({ content: new ProfilePage() }).getContent(),
-  [PAGE_PATHS.PROFILE_EDIT]: () =>
+  [PAGE_PATHS.SETTINGS_EDIT]: () =>
     new ProfileLayout({
       content: new ProfileEditPage(),
     }).getContent(),
-  [PAGE_PATHS.PROFILE_EDIT_PASSWORD]: () =>
+  [PAGE_PATHS.SETTINGS_EDIT_PASSWORD]: () =>
     new ProfileLayout({
       content: new ProfileEditPasswordPage(),
     }).getContent(),
@@ -73,10 +73,10 @@ export const setListenersByRoute: {
 
     profileLink &&
       profileLink.addEventListener('click', (e) =>
-        navLinkClickHandler(e, PAGE_PATHS.PROFILE, rootEl),
+        navLinkClickHandler(e, PAGE_PATHS.SETTINGS, rootEl),
       );
   },
-  [PAGE_PATHS.PROFILE]: (rootEl) => {
+  [PAGE_PATHS.SETTINGS]: (rootEl) => {
     const profileEditLink = document.querySelector('#link-profile-edit');
     const profilePasswordEditLink = document.querySelector(
       '#link-profile-password-edit',
@@ -86,7 +86,7 @@ export const setListenersByRoute: {
 
     profileEditLink &&
       profileEditLink.addEventListener('click', (e) =>
-        navLinkClickHandler(e, PAGE_PATHS.PROFILE_EDIT, rootEl),
+        navLinkClickHandler(e, PAGE_PATHS.SETTINGS_EDIT, rootEl),
       );
 
     profileSigninLink &&
@@ -96,7 +96,7 @@ export const setListenersByRoute: {
 
     profilePasswordEditLink &&
       profilePasswordEditLink.addEventListener('click', (e) =>
-        navLinkClickHandler(e, PAGE_PATHS.PROFILE_EDIT_PASSWORD, rootEl),
+        navLinkClickHandler(e, PAGE_PATHS.SETTINGS_EDIT_PASSWORD, rootEl),
       );
 
     profileBackLink &&
@@ -104,20 +104,20 @@ export const setListenersByRoute: {
         navLinkClickHandler(e, PAGE_PATHS.MAIN, rootEl),
       );
   },
-  [PAGE_PATHS.PROFILE_EDIT]: (rootEl) => {
+  [PAGE_PATHS.SETTINGS_EDIT]: (rootEl) => {
     const profileBackLink = document.querySelector('#link-profile-back');
 
     profileBackLink &&
       profileBackLink.addEventListener('click', (e) =>
-        navLinkClickHandler(e, PAGE_PATHS.PROFILE, rootEl),
+        navLinkClickHandler(e, PAGE_PATHS.SETTINGS, rootEl),
       );
   },
-  [PAGE_PATHS.PROFILE_EDIT_PASSWORD]: (rootEl) => {
+  [PAGE_PATHS.SETTINGS_EDIT_PASSWORD]: (rootEl) => {
     const profileBackLink = document.querySelector('#link-profile-back');
 
     profileBackLink &&
       profileBackLink.addEventListener('click', (e) =>
-        navLinkClickHandler(e, PAGE_PATHS.PROFILE, rootEl),
+        navLinkClickHandler(e, PAGE_PATHS.SETTINGS, rootEl),
       );
   },
   [PAGE_PATHS.NOT_FIND]: (rootEl) => {

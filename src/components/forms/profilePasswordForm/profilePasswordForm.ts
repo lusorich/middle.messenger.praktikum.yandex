@@ -7,10 +7,10 @@ import {
   isPasswordValid,
   validate,
 } from '../../../helpers/validation.helpers';
-import UserController from 'src/controllers/user-controller';
+import UserController from 'src/controllers/userController';
 
 export default class ProfilePasswordForm extends Component<
-Record<string, unknown>
+  Record<string, unknown>
 > {
   init() {
     this.children.inputOldPassword = new InputWithLabel({

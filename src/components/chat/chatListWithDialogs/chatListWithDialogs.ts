@@ -53,13 +53,13 @@ class ChatListWithDialogs extends Component<Record<string, unknown>> {
 
     this.children.linkProfile = new Link({
       id: 'link-profile',
-      href: `${PAGE_PATHS.PROFILE}`,
+      href: `${PAGE_PATHS.SETTINGS}`,
       text: 'Профиль',
       className: 'link-profile',
       events: {
         click: (e: Event) => {
           e.preventDefault();
-          mainRouter.go(PAGE_PATHS.PROFILE);
+          mainRouter.go(PAGE_PATHS.SETTINGS);
         },
       },
     });
