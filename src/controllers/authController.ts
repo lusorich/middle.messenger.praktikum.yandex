@@ -1,6 +1,7 @@
 import AuthAPI from 'src/api/auth-api';
 import { AuthSignIn, AuthSignUp } from 'src/api/auth-api.types';
 import { mainRouter } from 'src/app/app';
+import { PAGE_PATHS } from 'src/app/app.constants';
 import { store } from 'src/utils/store';
 
 export class AuthController {
@@ -13,6 +14,10 @@ export class AuthController {
   async signin(payload: { data: AuthSignIn }) {
     try {
       const res: any = await this.api.signin(payload);
+
+      if (res.status === 500) {
+        return mainRouter.go(PAGE_PATHS.SERVER_ERROR);
+      }
 
       if (
         (res.status < 200 || res.status > 300) &&

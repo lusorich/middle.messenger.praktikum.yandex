@@ -50,7 +50,16 @@ export class Router {
   _onRoute(pathname: string) {
     const route = this.getRoute(pathname);
 
-    if (!store.getState()?.auth?.id && pathname !== '/sign-up') {
+    if (!route) {
+      this._currentRoute = this.getRoute('/404') as Route;
+      this._currentRoute.render();
+      return;
+    }
+
+    if (
+      !store.getState()?.auth?.id &&
+      !['/sign-up', '/505', '404'].includes(pathname)
+    ) {
       this._currentRoute = this.getRoute('/') as Route;
       this._currentRoute.render();
       return;
@@ -58,12 +67,6 @@ export class Router {
 
     if (store.getState()?.auth?.id && ['/sign-up', '/'].includes(pathname)) {
       this.go('/messenger');
-      return;
-    }
-
-    if (!route) {
-      this._currentRoute = this.getRoute('/404') as Route;
-      this._currentRoute.render();
       return;
     }
 

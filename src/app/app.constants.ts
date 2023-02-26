@@ -3,9 +3,9 @@ export enum PAGE_PATHS {
   MAIN = '/messenger',
   SIGNIN = '/',
   REGISTRATION = '/sign-up',
-  PROFILE = '/settings',
-  PROFILE_EDIT = '/settings/edit',
-  PROFILE_EDIT_PASSWORD = '/settings/edit-password',
+  SETTINGS = '/settings',
+  SETTINGS_EDIT = '/settings/edit',
+  SETTINGS_EDIT_PASSWORD = '/settings/edit-password',
   NOT_FIND = '/404',
   SERVER_ERROR = '/505',
 }
