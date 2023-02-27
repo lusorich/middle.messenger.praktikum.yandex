@@ -1,0 +1,11 @@
+<div class='message'>
+  {{#if isActiveUserMsg}}
+    <div class='message message--right'>
+      <p class='message__text message__text--my'>{{message.content}}.</p>
+    </div>
+  {{else}}
+    <div class='message message--left'>
+      <p class='message__text message__text--others'>{{message.content}}.</p>
+    </div>
+  {{/if}}
+</div>

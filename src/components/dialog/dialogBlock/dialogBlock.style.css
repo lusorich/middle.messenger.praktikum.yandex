@@ -1,0 +1,7 @@
+.dialogs {
+  width: 80%;
+  background-color: var(--white-color);
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}

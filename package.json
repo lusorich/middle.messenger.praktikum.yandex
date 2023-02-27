@@ -14,9 +14,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "handlebars": "^4.7.7",
     "nanoid": "4.0.0"
   },
   "devDependencies": {
+    "@anikin/parcel-transformer-handlebars-precompile": "^1.0.1",
     "@parcel/transformer-css": "2.8.3",
     "eslint": "8.2.0",
     "eslint-config-airbnb-typescript": "17.0.0",
@@ -26,6 +28,7 @@
     "eslint-plugin-unused-imports": "2.0.0",
     "lightningcss": "1.18.0",
     "parcel": "2.8.3",
+    "parcel-plugin-static-files-copy": "^2.6.0",
     "postcss": "8.4.21",
     "postcss-nested": "6.0.0",
     "stylelint": "14.16.1",
@@ -39,9 +42,22 @@
       "sourceMap": false
     }
   },
+  "staticFiles": {
+    "staticPath": "src/assets/images"
+  },
   "parserOptions": {
     "project": [
       "./tsconfig.json"
     ]
+  },
+  "alias": {
+    "src": "./src/",
+    "pages": "./src/pages/",
+    "app": "./src/app/",
+    "assets": "./src/assets/",
+    "components": "./src/components/",
+    "layouts": "./src/layouts/",
+    "lib": "./src/lib/",
+    "utils": "./src/utils/"
   }
 }

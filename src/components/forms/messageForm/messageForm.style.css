@@ -1,0 +1,16 @@
+.wrapper-message-input {
+  display: flex;
+  flex-grow: 1;
+  position: relative;
+
+  >.input__error {
+    color: var(--error-color);
+    position: absolute;
+    top: 3rem;
+    left: 50%;
+  }
+}
+
+.message-form {
+  display: flex;
+}

@@ -1,0 +1,19 @@
+<div class='wrapper-main-content'>
+  <div class='chats'>
+    <div class='chats__header'>
+      <div class='chats__actions'>
+        {{{addChatBtn}}}
+      </div>
+      <div class='wrapper-link-profile'>
+        {{{linkProfile}}}
+      </div>
+    </div>
+    <div class='chats__list'>
+      {{#each chats}}
+        {{{this}}}
+      {{/each}}
+    </div>
+  </div>
+  {{{dialogBlock}}}
+  {{{addChatPopup}}}
+</div>

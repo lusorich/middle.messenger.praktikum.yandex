@@ -19,7 +19,7 @@
     "sourceType": "module",
     "modules": true
   },
-  "ignorePatterns": ["**/*.css", "**/*.html"],
+  "ignorePatterns": ["**/*.css", "**/*.html", "**/*.hbs", "**/*.png"],
   "rules": {
     "no-undef": "error",
     "no-console": "warn",
@@ -49,6 +49,7 @@
         "ts": "never"
       }
     ],
+    "import/no-unresolved": "off",
     "@typescript-eslint/camelcase": "off",
     "@typescript-eslint/naming-convention": [
       "error",

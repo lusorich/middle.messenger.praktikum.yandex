@@ -1,13 +1,9 @@
-import tpl from './unauthorized.template';
-import { compile } from '../../lib/template-engine/compile';
+import tpl from './unauthorized.template.hbs';
 import Component from '../../utils/component/component';
 import { UnauthorizedLayoutProps } from './unauthorized.types';
 
 export default class UnauthorizedLayout extends Component<UnauthorizedLayoutProps> {
   render() {
-    return this.compile(
-      (context) => compile(tpl(), { ...context }),
-      this.props,
-    );
+    return this.compile(tpl, this.props);
   }
 }

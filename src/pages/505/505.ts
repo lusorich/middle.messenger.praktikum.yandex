@@ -1,5 +1,4 @@
-import { compile } from '../../lib/template-engine/compile';
-import tpl from './505.template';
+import tpl from './505.template.hbs';
 import Link from '../../components/link/link';
 import Component from '../../utils/component/component';
 
@@ -14,12 +13,6 @@ export default class Page505 extends Component<Record<string, unknown>> {
   }
 
   render() {
-    return this.compile(
-      (context) =>
-        compile(tpl(), {
-          ...context,
-        }),
-      this.props,
-    );
+    return this.compile(tpl, this.props);
   }
 }

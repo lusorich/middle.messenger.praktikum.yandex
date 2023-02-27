@@ -1,0 +1,19 @@
+.input-avatar {
+  display: none;
+}
+
+.wrapper-input-avatar {
+  display: flex;
+  justify-content: center;
+}
+
+.input-avatar-label {
+  cursor: pointer;
+}
+
+.input-avatar-img {
+  display: block;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+}

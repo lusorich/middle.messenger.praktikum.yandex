@@ -1,5 +1,4 @@
-import { compile } from '../../lib/template-engine/compile';
-import tpl from './inputWithLabel.template';
+import tpl from './inputWithLabel.template.hbs';
 import Input from '../input/input';
 import Component from '../../utils/component/component';
 import { InputWithLabelProps } from './inputWithLabel.types';
@@ -7,8 +6,9 @@ import { InputWithLabelProps } from './inputWithLabel.types';
 export default class InputWithLabel extends Component<InputWithLabelProps> {
   init() {
     this.children.input = new Input({
-      placeholder: this.props.placeholder,
+      value: this.props.value,
       name: this.props.name,
+      placeholder: this.props.placeholder,
       className: this.props.inputClassName,
       type: this.props.type,
       events: this.props.events,
@@ -16,7 +16,7 @@ export default class InputWithLabel extends Component<InputWithLabelProps> {
   }
 
   render() {
-    return this.compile((context) => compile(tpl(), { ...context }), {
+    return this.compile(tpl, {
       ...this.props,
       errorText: '',
     });

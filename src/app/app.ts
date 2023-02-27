@@ -1,67 +1,34 @@
-import { PAGE_PATHS } from './app.constants';
-import {
-  setListenersByRoute,
-  renderActualRoute,
-  navLinkClickHandler,
-} from './app.helpers';
+import MessengerPage from 'src/pages/messenger/messenger';
+import { Router } from 'src/utils/router/router';
+import SigninPage from 'src/pages/signin/signin';
+import UnauthorizedLayout from 'src/layouts/unauthorized/unauthorized';
+import RegistrationPage from 'src/pages/registration/registration';
+import ProfileLayout from 'src/layouts/profile/profile';
+import ProfilePage from 'src/pages/profile/profile';
+import ProfileEditPage from 'src/pages/profileEdit/profileEdit';
+import ProfileEditPasswordPage from 'src/pages/profileEditPassword/profileEditPassword';
+import Page404 from 'src/pages/404/404';
+import Page505 from 'src/pages/505/505';
 
-const rootEl = document.getElementById('root');
-const bodyEl = document.querySelector('body');
+export const mainRouter = new Router('#root');
 
-if (rootEl) {
-  renderActualRoute(document.location.pathname, rootEl);
-  setListenersByRoute[`${document.location.pathname as PAGE_PATHS}`](rootEl);
-
-  document.querySelector('#nav-main')?.addEventListener('click', (e) => {
-    navLinkClickHandler(e, PAGE_PATHS.MAIN, rootEl);
-  });
-  document.querySelector('#nav-signin')?.addEventListener('click', (e) => {
-    navLinkClickHandler(e, PAGE_PATHS.SIGNIN, rootEl);
-  });
-  document
-    .querySelector('#nav-registration')
-    ?.addEventListener('click', (e) => {
-      navLinkClickHandler(e, PAGE_PATHS.REGISTRATION, rootEl);
-    });
-  document.querySelector('#nav-profile')?.addEventListener('click', (e) => {
-    navLinkClickHandler(e, PAGE_PATHS.PROFILE, rootEl);
-  });
-  document
-    .querySelector('#nav-profile-edit')
-    ?.addEventListener('click', (e) => {
-      navLinkClickHandler(e, PAGE_PATHS.PROFILE_EDIT, rootEl);
-    });
-  document
-    .querySelector('#nav-profile-edit-password')
-    ?.addEventListener('click', (e) => {
-      navLinkClickHandler(e, PAGE_PATHS.PROFILE_EDIT_PASSWORD, rootEl);
-    });
-  document.querySelector('#nav-404')?.addEventListener('click', (e) => {
-    navLinkClickHandler(e, PAGE_PATHS.NOT_FIND, rootEl);
-  });
-  document.querySelector('#nav-505')?.addEventListener('click', (e) => {
-    navLinkClickHandler(e, PAGE_PATHS.SERVER_ERROR, rootEl);
-  });
-
-  const observeUrlChange = () => {
-    let lastPathname = document.location.pathname;
-
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach(() => {
-        if (lastPathname !== document.location.pathname) {
-          lastPathname = document.location.pathname;
-          setListenersByRoute[lastPathname as PAGE_PATHS] &&
-            setListenersByRoute[lastPathname as PAGE_PATHS](rootEl);
-        }
-      });
-    });
-
-    bodyEl &&
-      observer.observe(bodyEl, {
-        childList: true,
-        subtree: true,
-      });
-  };
-
-  window.onload = observeUrlChange;
-}
+mainRouter
+  .use('/', UnauthorizedLayout, {
+    content: new SigninPage(),
+  })
+  .use('/messenger', MessengerPage)
+  .use('/sign-up', UnauthorizedLayout, {
+    content: new RegistrationPage(),
+  })
+  .use('/settings', ProfileLayout, {
+    content: new ProfilePage(),
+  })
+  .use('/settings/edit', ProfileLayout, {
+    content: new ProfileEditPage(),
+  })
+  .use('/settings/edit-password', ProfileLayout, {
+    content: new ProfileEditPasswordPage(),
+  })
+  .use('/404', Page404)
+  .use('/505', Page505)
+  .start();

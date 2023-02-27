@@ -1,4 +1,4 @@
-[![Tests](https://github.com/lusorich/middle.messenger.praktikum.yandex/actions/workflows/tests.yml/badge.svg?branch=sprint_2)](https://github.com/lusorich/middle.messenger.praktikum.yandex/actions/workflows/tests.yml)
+[![Tests](https://github.com/lusorich/middle.messenger.praktikum.yandex/actions/workflows/tests.yml/badge.svg)](https://github.com/lusorich/middle.messenger.praktikum.yandex/actions/workflows/tests.yml)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/edd7dee2-adbe-4f32-a737-6e2f34eb4596/deploy-status)](https://app.netlify.com/sites/deft-jelly-669969/deploys)
 
 ## [Проект на Netlify](https://deft-jelly-669969.netlify.app/)
@@ -24,7 +24,12 @@
 - `/404` — страница 404 (автоматическое перенаправление, если роут не найден)
 - `/505` — страница 505
 
-_**P.S.** Сделал на главной минимум стилей, т.к. при подключение бека надо будет
-переделывать. Добавил только по 1 чату, т.к. использую кастомный шаблонизатор, а
-он не может в списки, хочу переделать чтобы он мог формировать dom-элементы, но
-если не буду успевать, перейду на handlebars_
+## TODO:
+
+- обработка сетевых ошибок в UI
+- избавиться от всех any
+- разные ошибки при валидации
+- стили
+- подключить шрифты
+- лоадеры
+- в попапах убрать сохранение последнего состояния
