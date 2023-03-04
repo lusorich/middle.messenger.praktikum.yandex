@@ -1,4 +1,3 @@
-import { nanoid } from 'nanoid';
 import EventBus from 'src/utils/Event-bus';
 import { EVENTS_T } from './component.types';
 
@@ -7,7 +6,7 @@ export type Children = Record<string, Component<Record<string, unknown>>>;
 abstract class Component<T extends Record<string, unknown>> {
   static EVENTS = EVENTS_T;
 
-  public id = nanoid(6);
+  public id = Math.random();
 
   private _element?: HTMLElement;
 

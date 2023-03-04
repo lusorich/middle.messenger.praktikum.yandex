@@ -7,8 +7,6 @@ const CopyPlugin = require('copy-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV == 'production';
 
-const stylesHandler = MiniCssExtractPlugin.loader;
-
 const plugins = [
   new HtmlWebpackPlugin({
     template: './src/index.html',
