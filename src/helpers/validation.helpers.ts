@@ -7,7 +7,7 @@ export const isContainsOnlyAllowedChars = (str: string, reg: RegExp): boolean =>
 
 const NAME_LATINIC_REGEXP = /^[A-Z]{1}[A-Za-z-]+$/;
 const NAME_CYRILLIC_REGEXP = /^[А-Я]{1}[А-Яа-я-]+$/;
-const EMAIL_REGEXP = /[\w]*[@]{1}[\w{1}]*[.{1}][\w]+$/;
+const EMAIL_REGEXP = /[\w]*[src]{1}[\w{1}]*[.{1}][\w]+$/;
 const LOGIN_REGEXP = /^[a-zA-Z-_]+$/;
 const PHONE_REGEXP = /^[+|\d]{1,1}?[\d]+$/;
 const ONLY_UPPERCASE_REGEXP = /[A-ZА-Я]+/;
