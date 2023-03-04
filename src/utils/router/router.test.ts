@@ -2,9 +2,8 @@
  * @jest-environment jsdom
  */
 
-import UnauthorizedLayout from 'src/layouts/unauthorized/unauthorized';
-import RegistrationPage from 'src/pages/registration/registration';
-import SigninPage from 'src/pages/signin/signin';
+import Page404 from 'src/pages/404/404';
+import Page505 from 'src/pages/505/505';
 import { Router } from './router';
 
 describe('Тестируем переходы у Роутера', () => {
@@ -13,13 +12,9 @@ describe('Тестируем переходы у Роутера', () => {
   }
 
   it('Переход на новую страницу должен менять history', () => {
-    const ROUTER_INSTANCE = createRouter('');
+    const ROUTER_INSTANCE = createRouter('#root');
 
-    ROUTER_INSTANCE.use('/', UnauthorizedLayout, {
-      content: new SigninPage(),
-    }).use('/sign-up', UnauthorizedLayout, {
-      content: new RegistrationPage(),
-    });
+    ROUTER_INSTANCE.use('/505', Page505).use('/404', Page404).start();
 
     ROUTER_INSTANCE.go('/');
     ROUTER_INSTANCE.go('sign-up');

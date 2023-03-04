@@ -18,7 +18,9 @@
   "parserOptions": {
     "ecmaVersion": 13,
     "sourceType": "module",
-    "modules": true
+    "modules": true,
+    "parser": "@typescript-eslint/parser",
+    "tsconfigRootDir": "./"
   },
   "ignorePatterns": ["**/*.css", "**/*.html", "**/*.hbs", "**/*.png"],
   "rules": {

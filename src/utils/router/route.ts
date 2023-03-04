@@ -9,8 +9,12 @@ function rootRender(
   component: Component<Record<string, unknown>>,
 ) {
   const root = document.querySelector(query);
-  root!.innerHTML = '';
-  root && root.appendChild(component.getContent() as Node);
+
+  if (root) {
+    root!.innerHTML = '';
+    root && root.appendChild(component.getContent() as Node);
+  }
+
   return root;
 }
 
