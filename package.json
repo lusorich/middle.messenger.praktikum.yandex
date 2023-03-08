@@ -10,7 +10,8 @@
     "build:prod": "webpack --mode=production --node-env=production",
     "watch": "webpack --watch",
     "serve": "webpack serve",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "prepare": "husky install"
   },
   "engines": {
     "node": ">=12"
@@ -61,11 +62,6 @@
         "browsers": ">= 50%"
       },
       "sourceMap": false
-    }
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run test lint"
     }
   }
 }

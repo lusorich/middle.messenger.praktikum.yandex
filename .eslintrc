@@ -20,7 +20,8 @@
     "sourceType": "module",
     "modules": true,
     "parser": "@typescript-eslint/parser",
-    "tsconfigRootDir": "./"
+    "tsconfigRootDir": "./",
+    "project": "./tsconfig.json"
   },
   "ignorePatterns": ["**/*.css", "**/*.html", "**/*.hbs", "**/*.png"],
   "rules": {
