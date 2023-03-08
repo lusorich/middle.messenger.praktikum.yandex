@@ -22,7 +22,7 @@
     "nanoid": "4.0.0"
   },
   "devDependencies": {
-    "@jest/globals": "^29.4.3",
+    "@jest/globals": "29.4.3",
     "@types/jest": "29.4.0",
     "autoprefixer": "10.4.7",
     "copy-webpack-plugin": "11.0.0",
@@ -33,13 +33,15 @@
     "eslint-plugin-n": "15.0.0",
     "eslint-plugin-promise": "6.0.0",
     "eslint-plugin-unused-imports": "2.0.0",
-    "handlebars-jest": "^1.0.0",
+    "handlebars-jest": "1.0.0",
     "handlebars-loader": "1.7.3",
     "html-webpack-plugin": "5.5.0",
-    "identity-obj-proxy": "^3.0.0",
+    "husky": "8.0.3",
     "jest-environment-jsdom": "29.4.3",
     "jsdom": "21.1.0",
     "mini-css-extract-plugin": "2.7.2",
+    "mock-xmlhttprequest": "8.1.0",
+    "npm": "9.6.0",
     "postcss": "8.4.21",
     "postcss-loader": "7.0.1",
     "postcss-nested": "6.0.0",
@@ -59,6 +61,11 @@
         "browsers": ">= 50%"
       },
       "sourceMap": false
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run test lint"
     }
   }
 }
