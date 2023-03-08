@@ -1,5 +1,5 @@
 import { BASE_URL } from 'src/app/app.constants';
-import { HTTP_METHODS } from './https-transport.types';
+import { HTTP_METHODS } from './http-transport.types';
 
 interface REQUEST_OPTIONS {
   method?: HTTP_METHODS;

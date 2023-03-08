@@ -10,6 +10,12 @@
 - `npm run start` — для запуска проекта,
 - `npm run build` — для сборки
 - `npm run lint` — для проверки линтером
+- `npm run test` — для запуски тестов
+
+## Команды для запуска через docker:
+
+- `docker build -t %TAG_NAME% .` — для билда
+- `docker run -dp %HOST_PORT%:%CONTAINER_PORT% %TAG_NAME% ` — для запуска образа
 
 ## Страницы проекта:
 

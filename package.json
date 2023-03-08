@@ -9,7 +9,9 @@
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --node-env=production",
     "watch": "webpack --watch",
-    "serve": "webpack serve"
+    "serve": "webpack serve",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "prepare": "husky install"
   },
   "engines": {
     "node": ">=12"
@@ -21,6 +23,8 @@
     "nanoid": "4.0.0"
   },
   "devDependencies": {
+    "@jest/globals": "29.4.3",
+    "@types/jest": "29.4.0",
     "autoprefixer": "10.4.7",
     "copy-webpack-plugin": "11.0.0",
     "css-loader": "6.7.2",
@@ -30,15 +34,22 @@
     "eslint-plugin-n": "15.0.0",
     "eslint-plugin-promise": "6.0.0",
     "eslint-plugin-unused-imports": "2.0.0",
+    "handlebars-jest": "1.0.0",
     "handlebars-loader": "1.7.3",
     "html-webpack-plugin": "5.5.0",
+    "husky": "8.0.3",
+    "jest-environment-jsdom": "29.4.3",
+    "jsdom": "21.1.0",
     "mini-css-extract-plugin": "2.7.2",
+    "mock-xmlhttprequest": "8.1.0",
+    "npm": "9.6.0",
     "postcss": "8.4.21",
     "postcss-loader": "7.0.1",
     "postcss-nested": "6.0.0",
     "prettier": "2.8.1",
     "style-loader": "3.3.1",
     "stylelint": "14.16.1",
+    "ts-jest": "29.0.5",
     "ts-loader": "9.3.0",
     "typescript": "4.9.4",
     "webpack": "5.75.0",

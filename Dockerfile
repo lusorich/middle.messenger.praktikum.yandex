@@ -1,5 +1,5 @@
 FROM node:18-alpine
-WORKDIR /middle.messenger.praktikum.yandex
+WORKDIR /var/www
 COPY . .
 RUN npm install
 RUN npm run build

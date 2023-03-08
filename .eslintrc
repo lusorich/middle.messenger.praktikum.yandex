@@ -2,7 +2,8 @@
   "env": {
     "browser": true,
     "es2021": true,
-    "node": true
+    "node": true,
+    "jest": true
   },
   "parser": "@typescript-eslint/parser",
   "extends": ["airbnb-typescript/base", "plugin:import/recommended"],
@@ -17,7 +18,10 @@
   "parserOptions": {
     "ecmaVersion": 13,
     "sourceType": "module",
-    "modules": true
+    "modules": true,
+    "parser": "@typescript-eslint/parser",
+    "tsconfigRootDir": "./",
+    "project": "./tsconfig.json"
   },
   "ignorePatterns": ["**/*.css", "**/*.html", "**/*.hbs", "**/*.png"],
   "rules": {
