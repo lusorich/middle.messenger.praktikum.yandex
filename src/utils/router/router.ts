@@ -52,7 +52,7 @@ export class Router {
 
     if (!route) {
       this._currentRoute = this.getRoute('/404') as Route;
-      this._currentRoute.render();
+      this._currentRoute?.render();
       return;
     }
 
@@ -61,7 +61,7 @@ export class Router {
       !['/sign-up', '/505', '404'].includes(pathname)
     ) {
       this._currentRoute = this.getRoute('/') as Route;
-      this._currentRoute.render();
+      this._currentRoute?.render();
       return;
     }
 
@@ -96,7 +96,7 @@ export class Router {
     return this.routes.find((route) => route.match(pathname));
   }
 
-  getHistoryState(key: string) {
+  getHistoryStateValue(key: string) {
     return window.history.state?.[key];
   }
 

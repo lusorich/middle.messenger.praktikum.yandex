@@ -14,7 +14,7 @@ export default class WSTransport extends EventBus {
 
   protected socket: WebSocket | null = null;
 
-  private pingInterval: number = 0;
+  private pingInterval: ReturnType<typeof setInterval> | number = 0;
 
   constructor(userId: string, public chatId: string, tokenValue: string) {
     super();

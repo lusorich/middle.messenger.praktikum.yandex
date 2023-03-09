@@ -1,4 +1,4 @@
-import HTTPTransport from 'src/lib/http-transport/https-transport';
+import HTTPTransport from 'src/lib/http-transport/http-transport';
 
 export abstract class BaseAPI {
   protected http: HTTPTransport;

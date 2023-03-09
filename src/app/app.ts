@@ -9,6 +9,7 @@ import ProfileEditPage from 'src/pages/profileEdit/profileEdit';
 import ProfileEditPasswordPage from 'src/pages/profileEditPassword/profileEditPassword';
 import Page404 from 'src/pages/404/404';
 import Page505 from 'src/pages/505/505';
+import '../index.css';
 
 export const mainRouter = new Router('#root');
 
